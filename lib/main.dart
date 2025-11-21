@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
+import 'package:union_shop/widgets/app_shell.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -16,12 +17,19 @@ class UnionShopApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
       ),
-      home: const HomeScreen(),
-      // By default, the app starts at the '/' route, which is the HomeScreen
+      // Use named routes and wrap pages in AppShell so the shared shell can
+      // be controlled centrally. For the incremental refactor we keep the
+      // existing in-page headers by disabling the shell navbar (showNavbar:
+      // false). After migrating pages to remove their embedded header we
+      // will enable the shell navbar.
       initialRoute: '/',
-      // When navigating to '/product', build and return the ProductPage
-      // In your browser, try this link: http://localhost:49856/#/product
-      routes: {'/product': (context) => const ProductPage()},
+      routes: {
+        '/': (context) => const AppShell(child: HomeScreen(), showNavbar: false),
+        // Deep link to product page should still work and render inside
+        // AppShell. We disable the shell navbar for now to avoid duplicate
+        // header UI until the page is refactored.
+        '/product': (context) => const AppShell(child: ProductPage(), showNavbar: false),
+      },
     );
   }
 }
