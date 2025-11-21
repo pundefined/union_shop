@@ -57,7 +57,6 @@ class AppNavbar extends StatelessWidget {
                     child: InkWell(
                       onTap: onLogoTap ?? () => _navigateHome(context),
                       child: const SizedBox(
-                        width: 48,
                         height: 48,
                         child: Center(
                           child: ImageNetworkLogo(),
