@@ -6,8 +6,8 @@ import 'package:union_shop/widgets/app_navbar.dart';
 void main() {
   testWidgets('AppShell wraps child and shows AppNavbar',
       (WidgetTester tester) async {
-    final app = MaterialApp(
-      home: const AppShell(child: Text('CHILD-CONTENT')),
+    const app = MaterialApp(
+      home: AppShell(child: Text('CHILD-CONTENT')),
     );
 
     await tester.pumpWidget(app);
