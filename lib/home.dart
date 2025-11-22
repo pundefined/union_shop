@@ -9,8 +9,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // This widget now returns only the page body (no Scaffold / header).
-    // The shared `AppShell` places the navbar above this content.
     return SingleChildScrollView(
       child: Column(
         children: [

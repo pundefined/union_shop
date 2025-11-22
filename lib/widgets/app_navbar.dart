@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 /// A reusable top navigation bar used across the app.
-///
-/// This extracts the header UI and navigation behavior from the
-/// existing pages. Tapping the logo navigates to `/` and clears
-/// navigation history by default.
 class AppNavbar extends StatelessWidget {
   final VoidCallback? onLogoTap;
   final VoidCallback? onSearch;

@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
 
 /// AppShell composes the shared AppNavbar with page content.
-///
-/// Contract:
-/// - Inputs: required `child` widget (page content). Optional `title` (String),
-///   `floatingAction` (Widget), `bottomNav` (Widget), and `showNavbar` (bool).
-/// - Output: a `Scaffold` that places the `AppNavbar` above the provided child.
-/// - Error modes: if `child` itself contains a `Scaffold` the visual layout may
-///   differ (nested scaffolds). Caller should prefer providing the page body
-///   only (no top-level Scaffold) when migrating pages to use AppShell.
 class AppShell extends StatelessWidget {
   final Widget child;
   final String? title;
