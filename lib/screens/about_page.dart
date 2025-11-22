@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// A simple, accessible "About us" page used by the app's route table.
-///
-/// This widget intentionally does not include a `Scaffold` so it can be
-/// composed as the `child` of a shared `AppShell` widget. It renders a
-/// centered, constrained column of text with vertical scrolling when needed.
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
 
