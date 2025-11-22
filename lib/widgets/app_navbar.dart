@@ -80,6 +80,25 @@ class AppNavbar extends StatelessWidget {
                     ),
                   ),
 
+                  Expanded(
+                    child: Center(
+                      child: Semantics(
+                        label: 'Collections',
+                        button: true,
+                        child: TextButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/collections'),
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size(48, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            foregroundColor: Colors.black,
+                          ),
+                          child: const Text('Collections'),
+                        ),
+                      ),
+                    ),
+                  ),
+
                   // Right-side icons constrained in width
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
