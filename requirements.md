@@ -145,3 +145,141 @@ Add these subtasks and mark them complete when done.
 - [ ] Title and at least one paragraph are visible in tests.
 - [ ] Tappable area and semantic labels meet accessibility expectations.
 - [ ] Page scrolls when content exceeds viewport height.
+
+# Collections Page — Detailed Requirements Document
+
+## 1. Feature Overview
+
+### Purpose
+The Collections page provides users with an organized, visually appealing way to browse product collections in the union_shop Flutter application. Collections are displayed as an interactive grid of image tiles with overlaid text, allowing users to quickly explore curated product groups (e.g., "Summer Sale", "New Arrivals", "Clearance").
+
+### Key Objectives
+- Present multiple collections in a scannable grid format
+- Ensure text readability on image backgrounds through contrast techniques
+- Provide responsive design for mobile, tablet, and desktop viewports
+- Offer intuitive tap interaction with visual feedback
+
+---
+
+## 2. User Stories
+
+### User Story 1: Browse Collections on Mobile
+**As a** mobile user shopping for products  
+**I want to** see collections displayed in a grid that fits my phone screen  
+**So that** I can quickly scan available product categories without excessive scrolling
+
+**Acceptance Criteria:**
+- Grid displays 2 columns on screens < 600px wide
+- Each tile is square or 3:4 aspect ratio
+- Text is clearly visible and centered on each tile
+- Consistent padding between tiles
+
+---
+
+### User Story 2: Tap and Navigate to Collection
+**As a** customer interested in a specific collection  
+**I want to** tap a collection tile and see visual feedback  
+**So that** I know my interaction was registered and I can proceed to view that collection
+
+**Acceptance Criteria:**
+- Tapped tile displays ripple/ink animation
+- onTap callback is triggered
+- No lag or stuttering in feedback animation
+
+---
+
+### User Story 3: View Collections on Tablet/Desktop
+**As a** desktop or tablet user  
+**I want to** see more collections per row to maximize screen space  
+**So that** I can view more options without scrolling
+
+**Acceptance Criteria:**
+- Grid displays 3 columns on screens 600–900px wide
+- Grid displays 4 columns on screens > 900px wide
+- Layout adjusts smoothly when window is resized
+- Tiles maintain proper aspect ratio and spacing
+
+---
+
+### User Story 4: View Collection Metadata
+**As a** customer browsing collections  
+**I want to** see the collection title and optional subtitle/description overlaid on the image  
+**So that** I understand what each collection contains at a glance
+
+**Acceptance Criteria:**
+- Title is prominently displayed and readable
+- Text contrast meets WCAG AA standards
+- Text does not overflow or clip tile boundaries
+
+---
+
+## 3. Detailed Acceptance Criteria
+
+### Grid & Layout
+- [ ] Grid uses `GridView.builder` for efficient rendering
+- [ ] Responsive column count:
+  - [ ] 2 columns for screen width < 600px
+  - [ ] 3 columns for screen width 600–900px
+  - [ ] 4 columns for screen width > 900px
+- [ ] Column count updates when screen is resized
+- [ ] Consistent padding/margin between tiles (8–16dp recommended)
+- [ ] Tiles maintain square aspect ratio
+
+### Tile Design & Appearance
+- [ ] Background image covers entire tile (BoxFit.cover)
+- [ ] Subtle shadow or elevation applied to tile
+- [ ] Centered text overlay with semi-opaque dark gradient behind it
+- [ ] Text color contrasts adequately with background
+
+### Image Loading & Error Handling
+- [ ] `FadeInImage` or similar used for smooth load transitions
+- [ ] Placeholder/shimmer displayed while image loads
+- [ ] Placeholder uses neutral color (e.g., light gray)
+- [ ] Error state shows fallback placeholder image
+- [ ] No console warnings or errors when image fails to load
+- [ ] Loading/error states are visually distinct from loaded state
+
+### Interactivity & Tap Feedback
+- [ ] Tapping a tile triggers `onTap` callback
+- [ ] `InkWell` provides Material ripple feedback
+- [ ] Ripple animation is smooth and responsive
+- [ ] Tap feedback is immediate (no noticeable delay)
+- [ ] Callback can log event or navigate (implementation deferred)
+
+### Content & Data
+- [ ] 6–8 hardcoded sample collections provided
+- [ ] Each collection includes:
+  - [ ] Unique title (e.g., "Summer Sale", "New Arrivals")
+  - [ ] Image URL or asset path
+  - [ ] Optional description/subtitle
+- [ ] Data is stored as list of maps or simple objects
+- [ ] No null/undefined values in sample data
+
+### Code Quality
+- [ ] `CollectionsPage` widget created and self-contained
+- [ ] `CollectionTile` sub-widget created and reusable
+- [ ] Code is well-commented and easy to understand
+- [ ] No hardcoded magic numbers; use constants for spacing/sizing
+- [ ] Widgets follow Flutter conventions and best practices
+
+### Testing
+- [ ] Unit/widget test verifies grid renders correct tile count
+- [ ] Test verifies tap callback is triggered
+- [ ] Test verifies responsive column count at different widths
+- [ ] Tests are clear and maintainable
+
+
+## 4. Deliverables Checklist
+
+### Code
+- [ ] `collections_page.dart` – Complete CollectionsPage + CollectionTile widgets
+- [ ] `collections_page_test.dart` – Widget tests covering grid, responsiveness, tap behavior
+
+### Documentation
+- [ ] Inline code comments explaining key sections
+- [ ] README or doc comment describing widget usage
+
+### Testing
+- [ ] All acceptance criteria verified
+- [ ] Widget tests pass on all target platforms
+- [ ] No console warnings or errors
