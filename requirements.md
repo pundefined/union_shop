@@ -107,7 +107,7 @@ Scope: introduce an `AboutPage` widget, register a named route `/about`, add an 
 Below are concrete, testable criteria for determining feature completeness.
 
 1. Files & API
-	- `lib/widgets/about_page.dart` exists and exports a `AboutPage` StatelessWidget that renders the page content.
+	- `lib/screens/about_page.dart` exists and exports a `AboutPage` StatelessWidget that renders the page content.
 	- The app's route table includes a named route `/about` mapped to a builder that returns the `AboutPage` (ideally wrapped by `AppShell` if the shell is used globally).
 
 2. Content & Layout
@@ -122,7 +122,7 @@ Below are concrete, testable criteria for determining feature completeness.
 	- The back button (system or app) pops the `/about` route returning to the previous page.
 
 4. Tests
-	- `test/widgets/about_page_test.dart` exists and contains a widget test that:
+	- `test/screens/about_page_test.dart` exists and contains a widget test that:
 	  - pumps the app (using the app's route table), navigates to `/about` (either by calling `pushNamed` or by launching the route directly), and asserts the title "About us" is present and at least one paragraph is visible.
 	- Optionally, a golden or layout test verifies the About page layout on a narrow and wide viewport.
 
@@ -130,10 +130,10 @@ Below are concrete, testable criteria for determining feature completeness.
 
 Add these subtasks and mark them complete when done.
 
-- [ ] Create `lib/widgets/about_page.dart` containing `AboutPage` (StatelessWidget) with the required title and 4–6 paragraphs of content, using theme text styles and respecting dark mode.
+- [ ] Create file containing `AboutPage` (StatelessWidget) with the required title and 4–6 paragraphs of content, using theme text styles and respecting dark mode.
 - [ ] Register a named route `/about` in the app's route table (e.g., in `lib/main.dart`) that returns `AboutPage`. Ensure deep links resolve to this route.
 - [ ] Add an "About" item/link to the primary navbar (`AppNavbar` or equivalent) that calls `Navigator.pushNamed(context, '/about')` and includes a semantic label and minimum tappable size.
-- [ ] Add a widget test `test/widgets/about_page_test.dart` that pumps the app, navigates to `/about`, and asserts title and paragraph presence.
+- [ ] Add a widget test that pumps the app, navigates to `/about`, and asserts title and paragraph presence.
 - [ ] (Optional) Add a golden/layout test to validate responsive layout on narrow and wide viewports.
 - [ ] Manually verify the page on mobile and tablet viewports for visual parity and accessibility.
 - [ ] Run analyzer and tests; fix any issues.
