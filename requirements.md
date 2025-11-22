@@ -10,8 +10,6 @@ Scope: affects the primary app UI and routes currently defined. It must preserve
 
 ## User Stories
 
-Each user story uses the form: As a <role>, I want <goal>, so that <benefit>.
-
 1. As a first-time visitor, I want a consistent top navigation bar across pages, so I can quickly go back to the home page by tapping the logo.
 
 2. As a returning shopper, I want product tiles and browse buttons to still open product details, so I don’t lose the expected workflow.
@@ -147,8 +145,3 @@ Add these subtasks and mark them complete when done.
 - [ ] Title and at least one paragraph are visible in tests.
 - [ ] Tappable area and semantic labels meet accessibility expectations.
 - [ ] Page scrolls when content exceeds viewport height.
-
----
-
-Append complete.
-
