@@ -283,3 +283,165 @@ The Collections page provides users with an organized, visually appealing way to
 - [ ] All acceptance criteria verified
 - [ ] Widget tests pass on all target platforms
 - [ ] No console warnings or errors
+
+# Collection Page Feature - Requirements Document
+
+## 1. Feature Description
+
+### Purpose
+The Collection Page enables customers to browse a curated collection of products in an organized, visually appealing grid layout. This page serves as a hub for discovering products within a specific category or theme, with UI controls for filtering and sorting to enhance the shopping experience.
+
+### Scope
+- Display a collection with header information (title and description)
+- Present products in a responsive grid layout
+- Provide filter and sort UI controls (non-functional for now)
+- Ensure mobile and desktop responsiveness
+- Create reusable widget components for maintainability
+
+---
+
+## 2. User Stories
+
+### Story 1: Customer Browses Collection
+**As a** customer  
+**I want to** view a collection of products in an organized grid layout  
+**So that** I can easily discover and compare items within the collection
+
+**Acceptance Criteria:**
+- Grid displays 2 columns on mobile, 3 columns on tablet/desktop
+- Each product card shows image, name, and price
+- Cards are properly spaced with consistent padding
+- Layout is responsive and adapts to different screen sizes
+
+---
+
+### Story 2: Customer Explores Collection Details
+**As a** customer  
+**I want to** see the collection title and description at the top of the page  
+**So that** I understand what the collection is about
+
+**Acceptance Criteria:**
+- Collection title is prominently displayed
+- Description text appears directly below the title
+- Typography is consistent with existing storefront design
+- Text is readable on all screen sizes
+
+---
+
+### Story 3: Customer Interacts with Product Cards
+**As a** customer  
+**I want to** tap on a product card to view details  
+**So that** I can learn more about a specific product
+
+**Acceptance Criteria:**
+- Product cards are clearly clickable/tappable
+- Cards have sufficient size and padding for easy interaction
+- Visual feedback (hover/pressed state) indicates interactivity
+- Tap leads to product detail page (or placeholder behavior)
+
+---
+
+### Story 4: Customer Sees Filter and Sort Options
+**As a** customer  
+**I want to** see filter and sort dropdown controls  
+**So that** I know filtering and sorting capabilities will be available
+
+**Acceptance Criteria:**
+- "Filter By" dropdown is visible and styled consistently
+- "Sort By" dropdown is visible and styled consistently
+- Dropdowns are positioned side-by-side in the control section
+- Dropdowns are UI-only (non-functional) for this phase
+
+---
+
+## 3. Acceptance Criteria
+
+### Functional Requirements
+
+#### FR-1: Collection Page Display
+- [ ] Page displays hardcoded sample collection data (title, description, items)
+- [ ] Page renders without errors on initial load
+- [ ] All page sections load within 2 seconds
+
+#### FR-2: Header Section
+- [ ] Collection title displays prominently at the top
+- [ ] Description text displays below the title with appropriate spacing
+- [ ] Text content is truncated or wrapped appropriately for all screen sizes
+
+#### FR-3: Control Section
+- [ ] "Filter By" dropdown renders with placeholder text
+- [ ] "Sort By" dropdown renders with placeholder text
+- [ ] Both dropdowns are positioned horizontally side-by-side
+- [ ] Dropdowns have consistent styling and spacing
+- [ ] Dropdowns are tappable but non-functional
+
+#### FR-4: Items Grid
+- [ ] Grid displays 2 columns on screens < 600px width
+- [ ] Grid displays 3 columns on screens ≥ 600px width
+- [ ] Each grid item displays product image, name, and price
+- [ ] Grid items have consistent spacing and padding
+- [ ] All items are visible without horizontal scrolling
+
+#### FR-5: Grid Item Cards
+- [ ] Product image displays with appropriate aspect ratio (e.g., 1:1 or 3:4)
+- [ ] Product name displays below the image
+- [ ] Price displays below the product name
+- [ ] Cards have sufficient tap target size (minimum 44x44 dp)
+- [ ] Cards show visual feedback on tap (opacity change or elevation)
+
+#### FR-6: Responsiveness
+- [ ] Layout adapts correctly for mobile (320px+)
+- [ ] Layout adapts correctly for tablet (600px+)
+- [ ] Layout adapts correctly for desktop (900px+)
+- [ ] Images scale appropriately without distortion
+- [ ] No horizontal scrolling on any screen size
+
+### Non-Functional Requirements
+
+#### NF-1: Code Quality
+- [ ] Reusable widget created for collection page container
+- [ ] Reusable widget created for grid item cards
+- [ ] Reusable widget created for dropdown controls
+- [ ] Code follows Flutter/Dart style guidelines
+- [ ] Code is properly documented with comments
+
+#### NF-2: Design Consistency
+- [ ] Styling matches existing storefront design system
+- [ ] Colors, fonts, and spacing are consistent with app theme
+- [ ] Component interactions follow established patterns
+
+#### NF-3: Performance
+- [ ] Page builds in under 500ms
+- [ ] Images load without jank or frame drops
+- [ ] Scrolling performance is smooth (60 fps)
+
+#### NF-4: Accessibility
+- [ ] All interactive elements have sufficient contrast ratio
+- [ ] Tap targets are minimum 44x44 dp for touch accessibility
+- [ ] Semantic labels are present for screen readers
+
+---
+
+## 4. Test Scenarios
+
+### Scenario 1: Mobile View (Portrait)
+- [ ] Verify 2-column grid layout on 375px width device
+- [ ] Verify images scale correctly
+- [ ] Verify no horizontal overflow
+
+### Scenario 2: Tablet View (Landscape)
+- [ ] Verify 3-column grid layout on 768px width device
+- [ ] Verify spacing remains consistent
+
+### Scenario 3: Desktop View
+- [ ] Verify 3-column grid layout on desktop resolution
+- [ ] Verify optimal spacing and readability
+
+### Scenario 4: Product Card Interaction
+- [ ] Verify tap feedback is visible
+- [ ] Verify navigation occurs on tap (if implemented)
+
+### Scenario 5: Data Integrity
+- [ ] Verify all hardcoded sample data displays correctly
+- [ ] Verify no missing images or prices
+- [ ] Verify proper formatting of prices
