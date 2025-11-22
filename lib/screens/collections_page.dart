@@ -81,32 +81,31 @@ class CollectionsPage extends StatelessWidget {
       builder: (context, constraints) {
         final columnCount = getColumnCount(constraints.maxWidth);
 
-        return Padding(
+        return GridView.builder(
           padding: const EdgeInsets.all(12.0),
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: columnCount,
-              crossAxisSpacing: 12.0,
-              mainAxisSpacing: 12.0,
-              childAspectRatio: 1.0, // Square tiles
-            ),
-            itemCount: sampleCollections.length,
-            itemBuilder: (context, index) {
-              return CollectionTile(
-                collection: sampleCollections[index],
-                onTap: () {
-                  // Placeholder for future navigation logic
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content:
-                          Text('Tapped: ${sampleCollections[index].title}'),
-                      duration: const Duration(milliseconds: 800),
-                    ),
-                  );
-                },
-              );
-            },
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: columnCount,
+            crossAxisSpacing: 12.0,
+            mainAxisSpacing: 12.0,
+            childAspectRatio: 1.0, // Square tiles
           ),
+          itemCount: sampleCollections.length,
+          itemBuilder: (context, index) {
+            return CollectionTile(
+              collection: sampleCollections[index],
+              onTap: () {
+                // Placeholder for future navigation logic
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Tapped: ${sampleCollections[index].title}'),
+                    duration: const Duration(milliseconds: 800),
+                  ),
+                );
+              },
+            );
+          },
         );
       },
     );
