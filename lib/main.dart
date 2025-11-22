@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
+import 'package:union_shop/screens/about_page.dart';
 import 'package:union_shop/widgets/app_shell.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class UnionShopApp extends StatelessWidget {
         // refactored to provide only their body content (no header/scaffold),
         // so the shell's navbar is enabled here.
         '/': (context) => const AppShell(child: HomeScreen()),
+        '/about': (context) => const AppShell(child: AboutPage()),
         '/product': (context) => const AppShell(child: ProductPage()),
       },
     );
