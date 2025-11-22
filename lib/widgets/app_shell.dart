@@ -40,11 +40,6 @@ class AppShell extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-          // The provided child is expected to be the page content. We expand
-          // it to take remaining space so typical pages render correctly.
-          // Wrap the page in a scrollable that also contains the shared
-          // footer so the footer is appended after the page content rather
-          // than pinned to the bottom of the viewport.
           Expanded(
             child: SingleChildScrollView(
               child: Column(
