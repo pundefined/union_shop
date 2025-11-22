@@ -86,3 +86,69 @@ All subtasks should be completed before marking the feature done.
 - [ ] Added tests exist and pass.
 - [ ] Accessibility checks performed for semantics and tappable area size.
 
+
+## About Page - Requirements
+
+### Overview
+
+This feature adds a simple, accessible, responsive "About us" page to the storefront and exposes a persistent link to it from the top navigation bar so users can reach it from any main screen.
+
+Purpose: provide a place for organisation information and customer-facing copy. The page should be visually consistent with the app theme, accessible, scrollable on small screens, and reachable via the app's navbar and deep links.
+
+Scope: introduce an `AboutPage` widget, register a named route `/about`, add an "About" navigation item to the primary navbar, and add tests that verify navigation and content.
+
+### User Stories
+
+1. As a new visitor, I want an "About" page that explains who the store is, so I can learn about the service and contact details.
+2. As a returning customer, I want to open the About page from any screen using the navbar, so I can quickly check policies or contact information.
+3. As a developer, I want the About content implemented as a single widget and route, so it can be reused and maintained easily.
+4. As a QA engineer, I want the About page to be reachable by deep link (`/about`) and via the navbar across pages, so navigation regressions can be detected early.
+
+### Acceptance Criteria (Testable)
+
+Below are concrete, testable criteria for determining feature completeness.
+
+1. Files & API
+	- `lib/widgets/about_page.dart` exists and exports a `AboutPage` StatelessWidget that renders the page content.
+	- The app's route table includes a named route `/about` mapped to a builder that returns the `AboutPage` (ideally wrapped by `AppShell` if the shell is used globally).
+
+2. Content & Layout
+	- The page shows a centered title reading "About us" using the app's theme headline style (e.g., `Theme.of(context).textTheme.headline*`).
+	- The page contains 4–6 short paragraphs of placeholder or real copy. Tests should assert the presence of at least one paragraph and the title.
+	- Content is horizontally centered within a comfortable maximum width (e.g., limited width on large screens) and has clear vertical spacing between paragraphs.
+	- The page is vertically scrollable when vertical space is constrained (small/mobile screens).
+
+3. Navigation & Routing
+	- The top navbar includes an item labeled "About". Tapping the item pushes the `/about` route via `Navigator.pushNamed(context, '/about')` (i.e., regular push — it must NOT clear history).
+	- Navigating to `/about` directly (deep link / initial route) displays the `AboutPage` (within `AppShell` if the app uses it) without crashes.
+	- The back button (system or app) pops the `/about` route returning to the previous page.
+
+4. Tests
+	- `test/widgets/about_page_test.dart` exists and contains a widget test that:
+	  - pumps the app (using the app's route table), navigates to `/about` (either by calling `pushNamed` or by launching the route directly), and asserts the title "About us" is present and at least one paragraph is visible.
+	- Optionally, a golden or layout test verifies the About page layout on a narrow and wide viewport.
+
+### Implementation Subtasks (Deliverable checklist)
+
+Add these subtasks and mark them complete when done.
+
+- [ ] Create `lib/widgets/about_page.dart` containing `AboutPage` (StatelessWidget) with the required title and 4–6 paragraphs of content, using theme text styles and respecting dark mode.
+- [ ] Register a named route `/about` in the app's route table (e.g., in `lib/main.dart`) that returns `AboutPage`. Ensure deep links resolve to this route.
+- [ ] Add an "About" item/link to the primary navbar (`AppNavbar` or equivalent) that calls `Navigator.pushNamed(context, '/about')` and includes a semantic label and minimum tappable size.
+- [ ] Add a widget test `test/widgets/about_page_test.dart` that pumps the app, navigates to `/about`, and asserts title and paragraph presence.
+- [ ] (Optional) Add a golden/layout test to validate responsive layout on narrow and wide viewports.
+- [ ] Manually verify the page on mobile and tablet viewports for visual parity and accessibility.
+- [ ] Run analyzer and tests; fix any issues.
+
+### QA Checklist
+
+- [ ] `/about` route opens About page when navigated to directly.
+- [ ] Navbar "About" link opens About page without clearing history.
+- [ ] Title and at least one paragraph are visible in tests.
+- [ ] Tappable area and semantic labels meet accessibility expectations.
+- [ ] Page scrolls when content exceeds viewport height.
+
+---
+
+Append complete.
+
