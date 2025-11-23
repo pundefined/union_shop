@@ -46,17 +46,17 @@ final Collection sampleCollection = Collection(
       discountedPrice: 19.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-      description: 'Cozy hoodie with UPSU branding, perfect for students.',
+      description: 'Cozy hoodie with UPSU branding',
       colours: ['Navy', 'Grey', 'Black'],
       sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     ),
     Product(
       id: 'product-4',
-      name: 'Student Mug',
+      name: 'UPSU Mug',
       price: 8.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-      description: 'Ceramic mug with student-friendly design.',
+      description: 'Ceramic mug with UPSU logo.',
       colours: ['White', 'Black'],
     ),
     Product(
@@ -65,11 +65,11 @@ final Collection sampleCollection = Collection(
       price: 3.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-      description: 'Set of 5 vinyl stickers featuring UPSU landmarks.',
+      description: 'Set of 5 vinyl stickers featuring Portsmouth landmarks.',
     ),
     Product(
       id: 'product-6',
-      name: 'Campus Tote Bag',
+      name: 'Tote Bag',
       price: 12.50,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
