@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/product.dart';
+import 'widgets/color_selector.dart';
+import 'widgets/size_selector.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -14,6 +16,9 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  String? selectedColour;
+  String? selectedSize;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -128,6 +133,36 @@ class _ProductPageState extends State<ProductPage> {
                   height: 1.5,
                 ),
               ),
+
+              // Color selector (shown only if colours are available)
+              if (widget.product.colours != null &&
+                  widget.product.colours!.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                ColorSelector(
+                  colours: widget.product.colours!,
+                  selectedColour: selectedColour,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedColour = value;
+                    });
+                  },
+                ),
+              ],
+
+              // Size selector (shown only if sizes are available)
+              if (widget.product.sizes != null &&
+                  widget.product.sizes!.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                SizeSelector(
+                  sizes: widget.product.sizes!,
+                  selectedSize: selectedSize,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedSize = value;
+                    });
+                  },
+                ),
+              ],
             ],
           ),
         ),
