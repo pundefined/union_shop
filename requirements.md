@@ -445,3 +445,167 @@ The Collection Page enables customers to browse a curated collection of products
 - [ ] Verify all hardcoded sample data displays correctly
 - [ ] Verify no missing images or prices
 - [ ] Verify proper formatting of prices
+
+# Product Page Feature - Detailed Requirements Document
+
+## 1. Feature Description
+
+### Purpose
+Implement a comprehensive product detail page in a Flutter application that enables users to view detailed product information, configure product options (color, size, quantity), and add items to their shopping cart. This feature bridges the gap between product discovery (collection view) and purchase, providing an essential e-commerce functionality.
+
+### Scope
+- Display detailed product information on a dedicated page
+- Provide interactive UI controls for product configuration
+- Manage product selection state during the user session
+- Enable seamless navigation between product and collection views
+
+---
+
+## 2. User Stories
+
+### User Story 1: Viewing Product Details
+**As a** customer browsing the shop  
+**I want to** view detailed information about a product  
+**So that** I can make an informed decision about purchasing
+
+**Acceptance Criteria:**
+- Product image displays correctly with a placeholder if unavailable
+- Product name, price, and description are clearly visible
+- Discounted price is displayed prominently when available
+- All text is readable and properly formatted
+
+### User Story 2: Selecting Product Variants
+**As a** customer shopping for clothing  
+**I want to** select color and size options before adding to cart  
+**So that** I can customize my purchase according to my preferences
+
+**Acceptance Criteria:**
+- Color dropdown appears only when colors are available
+- Size dropdown appears only when sizes are available
+- Selected values persist while on the product page
+- All available options are displayed in dropdowns
+
+### User Story 3: Configuring Quantity
+**As a** customer making a purchase  
+**I want to** specify the quantity I wish to buy  
+**So that** I can purchase multiple items at once
+
+**Acceptance Criteria:**
+- Quantity selector starts at 1
+- Quantity cannot be set below 1
+- Users can increment/decrement quantity easily
+- Current quantity is always visible
+
+### User Story 4: Adding to Cart
+**As a** customer ready to purchase  
+**I want to** add configured products to my shopping cart  
+**So that** I can proceed with checkout
+
+**Acceptance Criteria:**
+- "Add to Cart" button is always visible and accessible
+- Button is enabled when quantity is greater than 0
+- Selecting color/size is only required if options are available
+- Cart addition is processed upon button click
+
+### User Story 5: Navigating Back
+**As a** customer browsing products  
+**I want to** return to the collection view from a product page  
+**So that** I can continue shopping for other items
+
+**Acceptance Criteria:**
+- "Back to Collection" button navigates to the parent collection
+- The collection view maintains its previous scroll position (if applicable)
+- Navigation is seamless and immediate
+
+---
+
+## 3. Acceptance Criteria
+
+### 3.1 Data Model
+- [ ] `Product` model includes `description` field (String)
+- [ ] `Product` model includes `discountedPrice` field (String, optional)
+- [ ] `Product` model includes `colors` field (List<String>, optional)
+- [ ] `Product` model includes `sizes` field (List<String>, optional)
+
+### 3.2 UI/Layout Requirements
+- [ ] Product image displays with proper aspect ratio
+- [ ] Placeholder image appears when product image is unavailable
+- [ ] Product name displays as a prominent heading
+- [ ] Original price displays in primary text styling
+- [ ] Discounted price displays with visual distinction (e.g., strikethrough on original, highlighted on discount)
+- [ ] Product description text wraps correctly and is readable
+- [ ] All UI elements are responsive and work on various screen sizes
+
+### 3.3 Selection Controls
+- [ ] Color dropdown renders only when `colors` list is not empty
+- [ ] Size dropdown renders only when `sizes` list is not empty
+- [ ] Dropdown values are pre-populated with available options
+- [ ] Quantity selector displays with spinner/number input interface
+- [ ] Quantity defaults to 1 and cannot go below 1
+
+### 3.4 State Management
+- [ ] Selected color is tracked in page state
+- [ ] Selected size is tracked in page state
+- [ ] Selected quantity is tracked in page state
+- [ ] State updates reflect immediately in UI
+- [ ] State is lost when navigating away from page (no persistence)
+
+### 3.5 Action Buttons
+- [ ] "Add to Cart" button is visible and properly labeled
+- [ ] "Add to Cart" button is functional (placeholder implementation acceptable)
+- [ ] "Add to Cart" validates that quantity > 0 before processing
+- [ ] "Add to Cart" validates that required selections are made (color/size if applicable)
+- [ ] "Back to Collection" button navigates to parent collection view
+- [ ] Both buttons are easily accessible (not hidden below fold)
+
+### 3.6 Navigation
+- [ ] Product page receives product object as route parameter
+- [ ] Product page receives parent collection object as route parameter
+- [ ] Back button navigates with correct collection reference
+- [ ] Route parameters are properly handled and validated
+
+### 3.7 Error Handling
+- [ ] Missing required fields display appropriate defaults or error messages
+- [ ] Invalid route parameters are handled gracefully
+- [ ] Empty product lists/strings are handled without crashes
+
+### 3.8 Code Quality
+- [ ] Code follows Flutter best practices and style guidelines
+- [ ] UI components are modular and reusable where applicable
+- [ ] State management is clean and maintainable
+- [ ] Comments explain complex logic
+
+---
+
+## 4. Subtasks
+
+### Phase 1: Data Model
+- [ ] Update `Product` model with new fields
+- [ ] Add validation for optional fields
+- [ ] Create factory constructors for testing
+
+### Phase 2: UI Implementation
+- [ ] Create ProductPage widget structure
+- [ ] Implement product image display with placeholder
+- [ ] Implement product info section (name, price, description)
+- [ ] Implement color selector dropdown
+- [ ] Implement size selector dropdown
+- [ ] Implement quantity selector
+
+### Phase 3: State Management
+- [ ] Initialize state variables for selections
+- [ ] Implement state update logic for dropdown changes
+- [ ] Implement state update logic for quantity changes
+- [ ] Add validation logic
+
+### Phase 4: Navigation & Actions
+- [ ] Implement "Add to Cart" button logic
+- [ ] Implement "Back to Collection" button logic
+- [ ] Set up route parameter passing
+- [ ] Test navigation flow
+
+### Phase 5: Testing & Polish
+- [ ] Unit test Product model
+- [ ] Widget test ProductPage
+- [ ] Manual testing on various devices
+- [ ] Performance optimization if needed
