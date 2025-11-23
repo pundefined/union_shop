@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'models/product.dart';
 import 'widgets/color_selector.dart';
 import 'widgets/size_selector.dart';
+import 'widgets/quantity_selector.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -18,6 +19,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   String? selectedColour;
   String? selectedSize;
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +165,17 @@ class _ProductPageState extends State<ProductPage> {
                   },
                 ),
               ],
+
+              // Quantity selector
+              const SizedBox(height: 24),
+              QuantitySelector(
+                quantity: quantity,
+                onChanged: (value) {
+                  setState(() {
+                    quantity = value;
+                  });
+                },
+              ),
             ],
           ),
         ),
