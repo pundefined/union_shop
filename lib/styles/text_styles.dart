@@ -54,6 +54,27 @@ class TextStyles {
     color: Colors.black,
   );
 
+  /// About page heading - Subheading style for "About us"
+  static const TextStyle aboutPageHeading = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
+  /// Collection page heading - Bold headline for collection titles
+  static const TextStyle collectionPageHeading = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
+  /// Collection page description - Secondary text for collection descriptions
+  static const TextStyle collectionPageDescription = TextStyle(
+    fontSize: 14,
+    color: Colors.grey,
+    height: 1.5,
+  );
+
   // ============================================================================
   // BODY TEXT STYLES
   // ============================================================================
