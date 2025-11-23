@@ -195,6 +195,17 @@ class _ProductPageState extends State<ProductPage> {
                   child: const Text('Add to Cart'),
                 ),
               ),
+
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Back to store'),
+                ),
+              ),
             ],
           ),
         ),
