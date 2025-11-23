@@ -83,15 +83,7 @@ class CollectionPage extends StatelessWidget {
       itemCount: collection.items.length,
       itemBuilder: (context, index) {
         final product = collection.items[index];
-        return ProductCard(
-          product: product,
-          onTap: () {
-            // TODO: Navigate to product detail page
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Tapped: ${product.name}')),
-            );
-          },
-        );
+        return ProductCard(product: product);
       },
     );
   }

@@ -2,20 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/models/product.dart';
 
 /// A reusable widget that displays a single product card in a grid.
+/// Tapping the card navigates to the product detail page.
 class ProductCard extends StatelessWidget {
   final Product product;
-  final VoidCallback? onTap;
 
   const ProductCard({
     super.key,
     required this.product,
-    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          '/product',
+          arguments: product,
+        );
+      },
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(
