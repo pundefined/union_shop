@@ -6,7 +6,7 @@ Implement a product detail page in Flutter that displays comprehensive product i
 ### Data Model Updates
 The existing `Product` model in `/lib/models/product.dart` needs to be extended with:
 - `description` (String): Product description
-- `discountedPrice` (String, optional): Discounted price if applicable
+- `discountedPrice` (double, optional): Discounted price if applicable
 - `colors` (List<String>, optional): Available color options
 - `sizes` (List<String>, optional): Available size options
 

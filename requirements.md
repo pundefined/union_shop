@@ -523,7 +523,7 @@ Implement a comprehensive product detail page in a Flutter application that enab
 
 ### 3.1 Data Model
 - [ ] `Product` model includes `description` field (String)
-- [ ] `Product` model includes `discountedPrice` field (String, optional)
+- [ ] `Product` model includes `discountedPrice` field (double, optional)
 - [ ] `Product` model includes `colors` field (List<String>, optional)
 - [ ] `Product` model includes `sizes` field (List<String>, optional)
 
