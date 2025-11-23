@@ -176,6 +176,25 @@ class _ProductPageState extends State<ProductPage> {
                   });
                 },
               ),
+
+              // Add to Cart button
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // TODO: Implement add to cart functionality
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Added ${widget.product.name} x$quantity to cart',
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text('Add to Cart'),
+                ),
+              ),
             ],
           ),
         ),
