@@ -28,6 +28,8 @@ final Collection sampleCollection = Collection(
       price: 2.50,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+      description:
+          'A vibrant magnet featuring Portsmouth landmarks and the UPSU logo.',
     ),
     Product(
       id: 'product-2',
@@ -35,13 +37,18 @@ final Collection sampleCollection = Collection(
       price: 1.50,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+      description: 'Beautiful postcard showcasing Portsmouth city views.',
     ),
     Product(
       id: 'product-3',
       name: 'University Hoodie',
       price: 25.00,
+      discountedPrice: 19.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+      description: 'Cozy hoodie with UPSU branding, perfect for students.',
+      colours: ['Navy', 'Grey', 'Black'],
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     ),
     Product(
       id: 'product-4',
@@ -49,6 +56,8 @@ final Collection sampleCollection = Collection(
       price: 8.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+      description: 'Ceramic mug with student-friendly design.',
+      colours: ['White', 'Black'],
     ),
     Product(
       id: 'product-5',
@@ -56,6 +65,7 @@ final Collection sampleCollection = Collection(
       price: 3.99,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+      description: 'Set of 5 vinyl stickers featuring UPSU landmarks.',
     ),
     Product(
       id: 'product-6',
@@ -63,6 +73,8 @@ final Collection sampleCollection = Collection(
       price: 12.50,
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+      description: 'Spacious tote bag perfect for campus life.',
+      colours: ['Navy', 'Natural'],
     ),
   ],
 );
