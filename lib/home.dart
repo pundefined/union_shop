@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/styles/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,21 +47,12 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const Text(
                       'Placeholder Hero Title',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        height: 1.2,
-                      ),
+                      style: TextStyles.heroTitle,
                     ),
                     const SizedBox(height: 16),
                     const Text(
                       "This is placeholder text for the hero section.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        height: 1.5,
-                      ),
+                      style: TextStyles.heroSubtitle,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 32),
@@ -75,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: const Text(
                         'BROWSE PRODUCTS',
-                        style: TextStyle(fontSize: 14, letterSpacing: 1),
+                        style: TextStyles.buttonText,
                       ),
                     ),
                   ],
@@ -94,11 +86,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const Text(
                   'PRODUCTS SECTION',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    letterSpacing: 1,
-                  ),
+                  style: TextStyles.sectionHeading,
                 ),
                 const SizedBox(height: 48),
                 GridView.count(

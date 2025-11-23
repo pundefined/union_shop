@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/models/collection.dart';
+import 'package:union_shop/styles/text_styles.dart';
 import 'package:union_shop/widgets/control_section.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
@@ -32,16 +33,12 @@ class CollectionPage extends StatelessWidget {
               children: [
                 Text(
                   collection.title,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: TextStyles.collectionPageHeading,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   collection.description,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey[700],
-                      ),
+                  style: TextStyles.collectionPageDescription,
                 ),
               ],
             ),

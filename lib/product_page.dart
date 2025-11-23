@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'models/product.dart';
+import 'styles/text_styles.dart';
 import 'widgets/color_selector.dart';
 import 'widgets/size_selector.dart';
 import 'widgets/quantity_selector.dart';
@@ -76,11 +77,7 @@ class _ProductPageState extends State<ProductPage> {
               // Product name
               Text(
                 widget.product.name,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: TextStyles.productHeading,
               ),
 
               const SizedBox(height: 12),
@@ -90,26 +87,15 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   Text(
                     '£${widget.product.price.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: widget.product.discountedPrice != null
-                          ? Colors.grey
-                          : const Color(0xFF4d2963),
-                      decoration: widget.product.discountedPrice != null
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
+                    style: TextStyles.getPriceStyle(
+                      isDiscounted: widget.product.discountedPrice != null,
                     ),
                   ),
                   if (widget.product.discountedPrice != null) ...[
                     const SizedBox(width: 12),
                     Text(
                       '£${widget.product.discountedPrice!.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF4d2963),
-                      ),
+                      style: TextStyles.productPrice,
                     ),
                   ],
                 ],
@@ -120,20 +106,12 @@ class _ProductPageState extends State<ProductPage> {
               // Product description
               const Text(
                 'Description',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
+                style: TextStyles.subHeading,
               ),
               const SizedBox(height: 8),
               Text(
                 widget.product.description,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  height: 1.5,
-                ),
+                style: TextStyles.bodyText,
               ),
 
               // Color selector (shown only if colours are available)

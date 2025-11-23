@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/styles/text_styles.dart';
 
 /// Sample collection data model
 class Collection {
@@ -177,12 +178,7 @@ class CollectionTile extends StatelessWidget {
               right: 12,
               child: Text(
                 collection.title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  height: 1.2,
-                ),
+                style: TextStyles.collectionTileTitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

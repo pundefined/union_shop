@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/styles/text_styles.dart';
 
 /// A reusable top navigation bar used across the app.
 class AppNavbar extends StatelessWidget {
@@ -36,7 +37,7 @@ class AppNavbar extends StatelessWidget {
             child: const Text(
               'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyles.bannerText,
             ),
           ),
 
