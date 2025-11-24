@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'models/product.dart';
-import 'styles/text_styles.dart';
-import 'widgets/color_selector.dart';
-import 'widgets/size_selector.dart';
-import 'widgets/quantity_selector.dart';
+import '../models/product.dart';
+import '../styles/text_styles.dart';
+import '../widgets/color_selector.dart';
+import '../widgets/size_selector.dart';
+import '../widgets/quantity_selector.dart';
 
 class ProductPage extends StatefulWidget {
   final Product product;
