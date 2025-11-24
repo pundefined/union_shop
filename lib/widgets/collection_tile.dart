@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
-
-/// CollectionTile represents a collection item with title and image URL.
-/// This is used in the collections grid browsing experience.
-class CollectionTileData {
-  final String title;
-  final String imageUrl;
-
-  const CollectionTileData({
-    required this.title,
-    required this.imageUrl,
-  });
-}
 
 /// CollectionTile widget displays a single collection with image background,
 /// overlay text, and tap feedback via Material InkWell.
 class CollectionTile extends StatelessWidget {
-  final CollectionTileData collection;
+  final Collection collection;
   final VoidCallback onTap;
 
   const CollectionTile({
