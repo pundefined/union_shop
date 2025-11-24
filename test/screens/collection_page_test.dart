@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/screens/collection_page.dart';
+import 'package:union_shop/widgets/product_card.dart';
 
 void main() {
   group('CollectionPage', () {
@@ -120,6 +121,16 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
+          onGenerateRoute: (settings) {
+            if (settings.name == '/product') {
+              return MaterialPageRoute(
+                builder: (context) => const Scaffold(
+                  body: Center(child: Text('Product Detail Page')),
+                ),
+              );
+            }
+            return null;
+          },
           home: Scaffold(
             body: CollectionPage(collection: testCollection),
           ),
@@ -129,13 +140,12 @@ void main() {
       // Find and tap the first product card
       expect(find.text('Product 1'), findsOneWidget);
 
-      // Tap on the product card
-      await tester.tap(find.byType(Card).first);
-      await tester.pump();
+      // Tap on the product card (InkWell wraps the Card)
+      await tester.tap(find.byType(ProductCard).first);
+      await tester.pumpAndSettle();
 
-      // Verify snackbar appears
-      expect(find.byType(SnackBar), findsOneWidget);
-      expect(find.text('Tapped: Product 1'), findsOneWidget);
+      // Verify navigation occurs (product detail page is shown)
+      expect(find.text('Product Detail Page'), findsOneWidget);
     });
 
     testWidgets('renders control section with dropdowns',
