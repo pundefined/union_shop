@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/main.dart';
 import 'package:union_shop/screens/collections_page.dart';
+import 'package:union_shop/widgets/collection_tile.dart';
 
 void main() {
   group('Collections Page Tests', () {
@@ -58,7 +59,9 @@ void main() {
       expect(CollectionsPage.getColumnCount(900), 4);
     });
 
-    testWidgets('tapping a collection tile shows snackbar', (tester) async {
+    testWidgets(
+        'tapping a collection tile navigates to collection details page',
+        (tester) async {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pumpAndSettle();
 
@@ -72,9 +75,10 @@ void main() {
       await tester.tap(summertileFinder);
       await tester.pumpAndSettle();
 
-      // Verify snackbar is shown with the collection title
-      expect(find.byType(SnackBar), findsOneWidget);
-      expect(find.text('Tapped: Summer Sale'), findsOneWidget);
+      // After tapping, we should navigate to the collection details page
+      // We should see the collection page content
+      expect(find.text('Summer Sale'), findsOneWidget);
+      expect(find.byType(GridView), findsOneWidget);
     });
 
     testWidgets('collection tiles are rendered as CollectionTile widgets',
