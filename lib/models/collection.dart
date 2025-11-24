@@ -5,12 +5,14 @@ class Collection {
   final String id;
   final String title;
   final String description;
+  final String imageUrl;
   final List<Product> items;
 
   Collection({
     required this.id,
     required this.title,
     required this.description,
+    required this.imageUrl,
     required this.items,
   });
 }
@@ -21,6 +23,8 @@ final Collection sampleCollection = Collection(
   title: 'New Arrivals',
   description:
       'Discover the latest additions to our store. Fresh products handpicked for you.',
+  imageUrl:
+      'https://images.unsplash.com/photo-1505695511574-73f5e69a7b2e?w=500&h=500&fit=crop',
   items: [
     Product(
       id: 'product-1',
