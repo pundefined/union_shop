@@ -13,7 +13,7 @@ void main() {
       imageUrl: 'https://example.com/image.jpg',
       description: 'Test product description',
       discountedPrice: 14.99,
-      colours: ['Red', 'Blue'],
+      colors: ['Red', 'Blue'],
       sizes: ['S', 'M', 'L'],
     );
 

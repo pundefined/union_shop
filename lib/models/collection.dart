@@ -47,7 +47,7 @@ final Collection sampleCollection = Collection(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
       description: 'Cozy hoodie with UPSU branding',
-      colours: ['Navy', 'Grey', 'Black'],
+      colors: ['Navy', 'Grey', 'Black'],
       sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     ),
     Product(
@@ -57,7 +57,7 @@ final Collection sampleCollection = Collection(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
       description: 'Ceramic mug with UPSU logo.',
-      colours: ['White', 'Black'],
+      colors: ['White', 'Black'],
     ),
     Product(
       id: 'product-5',
@@ -74,7 +74,7 @@ final Collection sampleCollection = Collection(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
       description: 'Spacious tote bag perfect for campus life.',
-      colours: ['Navy', 'Natural'],
+      colors: ['Navy', 'Natural'],
     ),
   ],
 );

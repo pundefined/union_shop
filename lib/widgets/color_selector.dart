@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ColorSelector extends StatelessWidget {
-  final List<String> colours;
+  final List<String> colors;
   final String? selectedColour;
   final ValueChanged<String?> onChanged;
 
   const ColorSelector({
     super.key,
-    required this.colours,
+    required this.colors,
     required this.selectedColour,
     required this.onChanged,
   });
@@ -30,7 +30,7 @@ class ColorSelector extends StatelessWidget {
           value: selectedColour,
           hint: const Text('Select a colour'),
           isExpanded: true,
-          items: colours.map((String colour) {
+          items: colors.map((String colour) {
             return DropdownMenuItem<String>(
               value: colour,
               child: Text(colour),

@@ -6,7 +6,7 @@ class Product {
   final String imageUrl;
   final String description;
   final double? discountedPrice;
-  final List<String>? colours;
+  final List<String>? colors;
   final List<String>? sizes;
 
   Product({
@@ -16,7 +16,7 @@ class Product {
     required this.imageUrl,
     required this.description,
     this.discountedPrice,
-    this.colours,
+    this.colors,
     this.sizes,
   });
 }

@@ -9,7 +9,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colours: ['Red', 'Blue'],
+              colors: ['Red', 'Blue'],
               selectedColour: null,
               onChanged: (_) {},
             ),
@@ -22,12 +22,12 @@ void main() {
 
     testWidgets('displays dropdown with colour options',
         (WidgetTester tester) async {
-      const colours = ['Red', 'Blue', 'Green'];
+      const colors = ['Red', 'Blue', 'Green'];
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colours: colours,
+              colors: colors,
               selectedColour: null,
               onChanged: (_) {},
             ),
@@ -40,7 +40,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Check all colours are present
-      for (final colour in colours) {
+      for (final colour in colors) {
         expect(find.text(colour), findsWidgets);
       }
     });
@@ -55,7 +55,7 @@ void main() {
             body: StatefulBuilder(
               builder: (context, setState) {
                 return ColorSelector(
-                  colours: ['Red', 'Blue', 'Green'],
+                  colors: ['Red', 'Blue', 'Green'],
                   selectedColour: selectedColour,
                   onChanged: (newColour) {
                     setState(() {
@@ -83,13 +83,13 @@ void main() {
 
     testWidgets('displays selected colour in dropdown',
         (WidgetTester tester) async {
-      const colours = ['Red', 'Blue', 'Green'];
+      const colors = ['Red', 'Blue', 'Green'];
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colours: colours,
+              colors: colors,
               selectedColour: 'Blue',
               onChanged: (_) {},
             ),
@@ -106,7 +106,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colours: ['Red', 'Blue'],
+              colors: ['Red', 'Blue'],
               selectedColour: null,
               onChanged: (_) {},
             ),

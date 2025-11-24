@@ -115,11 +115,11 @@ class _ProductPageState extends State<ProductPage> {
               ),
 
               // Color selector (shown only if colours are available)
-              if (widget.product.colours != null &&
-                  widget.product.colours!.isNotEmpty) ...[
+              if (widget.product.colors != null &&
+                  widget.product.colors!.isNotEmpty) ...[
                 const SizedBox(height: 24),
                 ColorSelector(
-                  colours: widget.product.colours!,
+                  colors: widget.product.colors!,
                   selectedColour: selectedColour,
                   onChanged: (value) {
                     setState(() {
