@@ -4,14 +4,15 @@ import 'package:union_shop/styles/text_styles.dart';
 
 /// CollectionTile widget displays a single collection with image background,
 /// overlay text, and tap feedback via Material InkWell.
+///
+/// When tapped, automatically navigates to the collection details page
+/// passing the collection data as an argument.
 class CollectionTile extends StatelessWidget {
   final Collection collection;
-  final VoidCallback onTap;
 
   const CollectionTile({
     super.key,
     required this.collection,
-    required this.onTap,
   });
 
   @override
@@ -20,7 +21,13 @@ class CollectionTile extends StatelessWidget {
       elevation: 4.0,
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            '/collection',
+            arguments: collection,
+          );
+        },
         child: Stack(
           fit: StackFit.expand,
           children: [
