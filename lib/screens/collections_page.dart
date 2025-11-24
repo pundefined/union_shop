@@ -110,15 +110,6 @@ class CollectionsPage extends StatelessWidget {
           itemBuilder: (context, index) {
             return CollectionTile(
               collection: sampleCollections[index],
-              onTap: () {
-                // Placeholder for future navigation logic
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Tapped: ${sampleCollections[index].title}'),
-                    duration: const Duration(milliseconds: 800),
-                  ),
-                );
-              },
             );
           },
         );
