@@ -28,11 +28,23 @@ class UnionShopApp extends StatelessWidget {
         '/': (context) => const AppShell(child: HomeScreen()),
         '/about': (context) => const AppShell(child: AboutPage()),
         '/collections': (context) => const AppShell(child: CollectionsPage()),
-        '/collection': (context) => AppShell(
-              child: CollectionPage(collection: sampleCollection),
-            ),
       },
       onGenerateRoute: (settings) {
+        if (settings.name == '/collection') {
+          final args = settings.arguments as Collection?;
+          if (args != null) {
+            return MaterialPageRoute(
+              builder: (context) =>
+                  AppShell(child: CollectionPage(collection: args)),
+            );
+          }
+          // Fallback to sampleCollection if no arguments provided
+          return MaterialPageRoute(
+            builder: (context) => AppShell(
+              child: CollectionPage(collection: sampleCollection),
+            ),
+          );
+        }
         if (settings.name == '/product') {
           final args = settings.arguments as Product?;
           if (args != null) {
