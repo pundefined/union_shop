@@ -609,3 +609,97 @@ Implement a comprehensive product detail page in a Flutter application that enab
 - [ ] Widget test ProductPage
 - [ ] Manual testing on various devices
 - [ ] Performance optimization if needed
+
+# Collections Page Refactoring - Requirements Document
+
+## 1. Feature Description
+
+### Purpose
+Refactor the Flutter e-commerce app's collections feature to improve code maintainability, reusability, and user experience by extracting components into separate files, using a centralized data model, and implementing proper navigation to collection detail pages.
+
+### Scope
+- Extract `CollectionTile` widget into a reusable component
+- Integrate the centralized `Collection` model
+- Replace SnackBar feedback with navigation to a dedicated collection details page
+- Maintain visual design and responsive layout
+
+---
+
+## 2. User Stories
+
+### User Story 1: Discover Collections
+**As a** customer browsing the app
+**I want to** see available product collections in a visually appealing grid layout
+**So that** I can quickly identify collections that interest me
+
+**Acceptance Criteria:**
+- Collections are displayed in a responsive grid
+- Each collection tile shows an image with overlay text (title)
+- The grid adapts to different screen sizes
+- The layout remains consistent with the current design
+
+---
+
+### User Story 2: Navigate to Collection Details
+**As a** customer
+**I want to** tap on a collection tile and view all products in that collection
+**So that** I can browse products within a specific category
+
+**Acceptance Criteria:**
+- Tapping a collection tile navigates to a dedicated collection details page
+- The collection details page displays products from the selected collection
+- Navigation is smooth and responsive
+- The tapped collection's data is correctly passed to the details page
+
+---
+
+## 3. Acceptance Criteria
+
+### General Acceptance Criteria
+- [ ] All code changes follow Flutter best practices
+- [ ] No breaking changes to existing functionality
+- [ ] App compiles and runs without errors
+- [ ] The visual design and responsive layout are maintained
+
+---
+
+### Task 1: Extract CollectionTile - Acceptance Criteria
+- [ ] New file `lib/widgets/collection_tile.dart` is created
+- [ ] `CollectionTile` widget is moved from `collections_page.dart` to the new file
+- [ ] All necessary imports are included in `collection_tile.dart`
+- [ ] `collections_page.dart` imports and uses `CollectionTile` from the new file
+- [ ] `CollectionTile` functions identically to before refactoring
+- [ ] No compilation errors after extraction
+
+---
+
+### Task 2: Update Collection Model Usage - Acceptance Criteria
+- [ ] `Collection` model is imported from `lib/models/collection.dart`
+- [ ] Local `Collection` class is removed from `collections_page.dart`
+- [ ] All collection references use the imported `Collection` model
+- [ ] `Collection` model has `title` and `imageUrl` properties (or model is updated)
+- [ ] `sampleCollections` list is updated to instantiate `Collection` objects
+- [ ] Both `collections_page.dart` and `collection_tile.dart` use the imported model
+- [ ] No compilation errors after model integration
+
+---
+
+### Task 3: Implement Navigation - Acceptance Criteria
+- [ ] `CollectionTile` onTap handler uses `Navigator.pushNamed()` instead of SnackBar
+- [ ] Navigation route is `'/collection'` (or verified existing route)
+- [ ] `Collection` object is passed as an argument to the destination page
+- [ ] Collection details page receives and displays the correct collection
+- [ ] Products displayed on collection page match the selected collection
+- [ ] Navigation is smooth with no visual glitches
+- [ ] User can navigate back from collection details page
+
+---
+
+### Quality Assurance - Acceptance Criteria
+- [ ] App renders collections grid without errors
+- [ ] Each collection tile displays image and title correctly
+- [ ] Tapping a tile navigates to collection details page
+- [ ] Collection details page displays relevant products
+- [ ] App maintains responsive design on various screen sizes
+- [ ] No console errors or warnings
+- [ ] Code is properly formatted and documented
