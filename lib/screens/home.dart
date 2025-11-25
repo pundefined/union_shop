@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/models/carousel_slide.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/widgets/carousel.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,72 +14,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carouselSlides = [
+      const CarouselSlide(
+        imageUrl:
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        title: 'Placeholder Hero Title',
+        subtitle: 'This is placeholder text for the hero section.',
+      ),
+      const CarouselSlide(
+        imageUrl:
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        title: 'Second Slide Title',
+        subtitle: 'This is placeholder text for the second slide.',
+      ),
+      const CarouselSlide(
+        imageUrl:
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        title: 'Third Slide Title',
+        subtitle: 'This is placeholder text for the third slide.',
+      ),
+    ];
+
     return Column(
       children: [
-        // Hero Section
-        SizedBox(
-          height: 400,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              // Background image rendered via Image.network so we can provide
-              // an errorBuilder and avoid test-time network exceptions.
-              Positioned.fill(
-                child: Image.network(
-                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(color: Colors.grey[200]);
-                  },
-                ),
-              ),
-              // Semi-transparent overlay
-              Positioned.fill(
-                child: Container(
-                  color: Colors.black.withValues(alpha: 0.7),
-                ),
-              ),
-              // Content overlay
-              Positioned(
-                left: 24,
-                right: 24,
-                top: 80,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Placeholder Hero Title',
-                      style: TextStyles.heroTitle,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "This is placeholder text for the hero section.",
-                      style: TextStyles.heroSubtitle,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: placeholderCallbackForButtons,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4d2963),
-                        foregroundColor: Colors.white,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
-                      ),
-                      child: const Text(
-                        'BROWSE PRODUCTS',
-                        style: TextStyles.buttonText,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+        // Hero Section with Carousel
+        Carousel(slides: carouselSlides),
 
         // Products Section
         Container(
