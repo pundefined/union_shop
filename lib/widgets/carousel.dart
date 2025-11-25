@@ -93,6 +93,23 @@ class _CarouselState extends State<Carousel> {
                       textAlign: TextAlign.center,
                       key: ValueKey<String>('subtitle-${_currentIndex}'),
                     ),
+                    if (slide.ctaText != null && slide.onCtaPressed != null) ...[
+                      const SizedBox(height: 32),
+                      ElevatedButton(
+                        onPressed: slide.onCtaPressed,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF4d2963),
+                          foregroundColor: Colors.white,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
+                          ),
+                        ),
+                        child: Text(
+                          slide.ctaText!,
+                          style: TextStyles.buttonText,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

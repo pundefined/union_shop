@@ -15,23 +15,35 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final carouselSlides = [
-      const CarouselSlide(
+      CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
         title: 'Placeholder Hero Title',
         subtitle: 'This is placeholder text for the hero section.',
+        ctaText: 'BROWSE PRODUCTS',
+        onCtaPressed: () {
+          // TODO: Implement navigation to products page
+        },
       ),
-      const CarouselSlide(
+      CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
         title: 'Second Slide Title',
         subtitle: 'This is placeholder text for the second slide.',
+        ctaText: 'BROWSE PRODUCTS',
+        onCtaPressed: () {
+          // TODO: Implement navigation to products page
+        },
       ),
-      const CarouselSlide(
+      CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
         title: 'Third Slide Title',
         subtitle: 'This is placeholder text for the third slide.',
+        ctaText: 'BROWSE PRODUCTS',
+        onCtaPressed: () {
+          // TODO: Implement navigation to products page
+        },
       ),
     ];
 
