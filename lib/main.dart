@@ -5,6 +5,7 @@ import 'package:union_shop/screens/product_page.dart';
 import 'package:union_shop/screens/about_page.dart';
 import 'package:union_shop/screens/collection_page.dart';
 import 'package:union_shop/screens/collections_page.dart';
+import 'package:union_shop/screens/login_signup_screen.dart';
 import 'package:union_shop/widgets/app_shell.dart';
 import 'package:union_shop/screens/home.dart';
 
@@ -28,6 +29,7 @@ class UnionShopApp extends StatelessWidget {
         '/': (context) => const AppShell(child: HomeScreen()),
         '/about': (context) => const AppShell(child: AboutPage()),
         '/collections': (context) => const AppShell(child: CollectionsPage()),
+        '/login': (context) => const AppShell(child: LoginSignupScreen()),
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/collection') {
