@@ -23,6 +23,19 @@ class _CarouselState extends State<Carousel> {
     _currentIndex = 0;
   }
 
+  void _nextSlide() {
+    setState(() {
+      _currentIndex = (_currentIndex + 1) % widget.slides.length;
+    });
+  }
+
+  void _previousSlide() {
+    setState(() {
+      _currentIndex =
+          (_currentIndex - 1 + widget.slides.length) % widget.slides.length;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.slides.isEmpty) {
@@ -79,6 +92,36 @@ class _CarouselState extends State<Carousel> {
                   key: ValueKey<String>('subtitle-${_currentIndex}'),
                 ),
               ],
+            ),
+          ),
+          // Previous button
+          Positioned(
+            left: 16,
+            top: 0,
+            bottom: 0,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                color: Colors.white,
+                iconSize: 32,
+                onPressed: _previousSlide,
+                tooltip: 'Previous slide',
+              ),
+            ),
+          ),
+          // Next button
+          Positioned(
+            right: 16,
+            top: 0,
+            bottom: 0,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                color: Colors.white,
+                iconSize: 32,
+                onPressed: _nextSlide,
+                tooltip: 'Next slide',
+              ),
             ),
           ),
         ],
