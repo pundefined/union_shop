@@ -137,16 +137,27 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               _buildPasswordField(),
               const SizedBox(height: 16),
 
-              // Remember me checkbox (Phase 3)
-              const SizedBox(height: 8),
+              // ============================================================
+              // REMEMBER ME CHECKBOX (if login mode)
+              // ============================================================
+              if (_isLoginMode) _buildRememberMeCheckbox(),
+              if (_isLoginMode) const SizedBox(height: 8),
 
-              // Forgot password link (Phase 3)
-              const SizedBox(height: 16),
+              // ============================================================
+              // FORGOT PASSWORD LINK (if login mode)
+              // ============================================================
+              if (_isLoginMode) _buildForgotPasswordLink(),
+              if (_isLoginMode) const SizedBox(height: 16),
 
-              // Login/Signup button (Phase 4)
+              // ============================================================
+              // ACTION BUTTONS (Phase 4)
+              // ============================================================
               const SizedBox(height: 24),
 
-              // Mode toggle (Phase 3)
+              // ============================================================
+              // MODE TOGGLE (Login/Signup Switch)
+              // ============================================================
+              _buildModeToggle(),
               const SizedBox(height: 24),
             ],
           ),
@@ -262,6 +273,84 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
       onChanged: (value) {
         // State updates automatically due to TextField controller binding
       },
+    );
+  }
+
+  /// Builds the "Remember me" checkbox (only shown in login mode)
+  Widget _buildRememberMeCheckbox() {
+    return Row(
+      children: [
+        Checkbox(
+          value: _rememberMe,
+          onChanged: (value) => _toggleRememberMe(value ?? false),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        Expanded(
+          child: GestureDetector(
+            onTap: () => _toggleRememberMe(!_rememberMe),
+            child: Text(
+              'Remember me',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Builds the "Forgot password?" link (only shown in login mode)
+  Widget _buildForgotPasswordLink() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {
+          // TODO: Implement password recovery flow
+          debugPrint('Forgot password clicked');
+        },
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          minimumSize: const Size(48, 48),
+        ),
+        child: Text(
+          'Forgot password?',
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                decoration: TextDecoration.underline,
+              ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the mode toggle button (switches between login and signup)
+  Widget _buildModeToggle() {
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            _isLoginMode
+                ? "Don't have an account? "
+                : 'Already have an account? ',
+            style: Theme.of(context).textTheme.bodySmall,
+            textAlign: TextAlign.center,
+          ),
+          TextButton(
+            onPressed: _switchMode,
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              minimumSize: const Size(48, 48),
+            ),
+            child: Text(
+              _isLoginMode ? 'Sign up here' : 'Log in here',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                  ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
