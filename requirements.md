@@ -862,3 +862,200 @@ Convert the static homepage banner into an interactive carousel component that d
 - [ ] Document carousel API/props (if component-based)
 - [ ] Create usage guide for content team
 - [ ] Document maintenance and future enhancements
+
+# Login/Signup Page Feature - Detailed Requirements Document
+
+## 1. Feature Description
+
+### Overview
+Implement a login/signup page for the Flutter union_shop storefront application that provides users with an intuitive interface to authenticate or create new accounts. This feature serves as the gateway for user access to personalized shopping experiences, order history, and account management.
+
+### Purpose
+- Enable existing users to securely access their accounts
+- Provide new users with a straightforward signup process
+- Maintain design consistency with the existing storefront UI
+- Prepare the foundation for future authentication backend integration
+
+### Scope Boundaries
+- **Included**: UI/UX design, widget structure, form state management
+- **Excluded**: Backend authentication, API integration, password validation logic, security implementations
+
+---
+
+## 2. User Stories
+
+### User Story 1: Existing User Login
+**As an** existing customer
+**I want to** log in using my username or email and password
+**So that** I can access my account, view order history, and manage my preferences
+
+**Acceptance Criteria:**
+- Username/email input field is clearly labeled and has appropriate placeholder text
+- Password input field masks the entered characters
+- User can toggle password visibility via an icon
+- Login button is prominently displayed and functional (UI-ready)
+- Form maintains input state during interactions
+
+### User Story 2: New User Signup
+**As a** new customer
+**I want to** create a new account through a signup form
+**So that** I can make purchases and save my preferences
+
+**Acceptance Criteria:**
+- Signup mode is accessible via a button or toggle from the login form
+- Same input fields (username/email and password) are available in signup mode
+- Form transitions smoothly between login and signup modes
+- Signup button is clearly distinguished from login button
+- Form fields are cleared when switching between modes
+
+### User Story 3: Password Recovery Access
+**As a** user who forgot my password
+**I want to** see a "Forgot password?" link
+**So that** I can initiate a password recovery process
+
+**Acceptance Criteria:**
+- "Forgot password?" link is visible below the password input field
+- Link is styled consistently with the storefront theme
+- Link is clickable (behavior to be implemented in future phase)
+
+### User Story 4: Responsive Design Access
+**As a** mobile and desktop user
+**I want to** use the login/signup page comfortably on any device
+**So that** I have a consistent experience across all screen sizes
+
+**Acceptance Criteria:**
+- Layout adapts properly to mobile, tablet, and desktop screen sizes
+- Input fields remain usable with appropriate touch targets on mobile
+- Spacing and padding are consistent with storefront theme
+- App logo/branding is visible and appropriately sized
+
+---
+
+## 3. Acceptance Criteria
+
+### Functional Requirements
+
+#### 3.1 Form Structure & State Management
+- [ ] Widget file created: `lib/screens/login_signup_screen.dart`
+- [ ] Stateful widget (`LoginSignupScreen`) implemented
+- [ ] Form state management using `TextEditingController` for email/username and password fields
+- [ ] State variable to track login vs. signup mode
+- [ ] State variable to track password visibility toggle
+- [ ] State variable to track "Remember me" checkbox status
+
+#### 3.2 UI Components - Login/Signup Mode
+
+**Username/Email Field:**
+- [ ] `TextField` widget with placeholder text "Username or Email"
+- [ ] Appropriate input type (email keyboard for mobile)
+- [ ] Connected to `TextEditingController`
+- [ ] Clear visual styling
+
+**Password Field:**
+- [ ] `TextField` widget with placeholder text "Password"
+- [ ] Password obscuring enabled by default
+- [ ] Connected to `TextEditingController`
+- [ ] Show/hide password toggle icon (eye icon)
+- [ ] Toggle icon updates `obscureText` property dynamically
+
+**Action Buttons:**
+- [ ] Login button (primary action in login mode)
+- [ ] Signup button (primary action in signup mode)
+- [ ] Mode toggle button/link to switch between login and signup
+- [ ] Buttons are visually distinct and properly sized
+
+#### 3.3 Optional UI Elements
+
+**Remember Me Checkbox:**
+- [ ] Checkbox widget displayed below password field
+- [ ] Label text "Remember me" next to checkbox
+- [ ] Checkbox state managed in form state
+- [ ] Optional (can be included in first iteration or deferred)
+
+**Forgot Password Link:**
+- [ ] Clickable link with text "Forgot password?"
+- [ ] Positioned below password field or at bottom of form
+- [ ] Styled consistently with theme
+- [ ] Placeholder for future functionality
+
+**Branding:**
+- [ ] App logo or title displayed at top of form
+- [ ] Appropriate sizing and spacing
+- [ ] Consistent with existing storefront design
+
+#### 3.4 Design & Responsiveness
+
+- [ ] Layout is responsive and works on mobile (360px+), tablet (600px+), and desktop (1000px+)
+- [ ] Minimum touch target size of 48x48dp for buttons and interactive elements
+- [ ] Consistent padding and margins (using theme spacing values)
+- [ ] Colors and typography consistent with storefront theme
+- [ ] Form elements properly aligned and centered
+- [ ] No horizontal scrolling required on any screen size
+
+#### 3.5 Code Quality
+
+- [ ] Widget follows Flutter best practices and conventions
+- [ ] Code is properly commented with documentation
+- [ ] Consistent naming conventions for variables and methods
+- [ ] No null safety issues or warnings
+- [ ] Code is formatted according to project standards
+- [ ] Imports are organized and unnecessary imports removed
+
+#### 3.6 Integration Readiness
+
+- [ ] Form state is accessible for future authentication logic implementation
+- [ ] `TextEditingController` values can be easily extracted for API calls
+- [ ] Widget structure allows for easy addition of validation logic
+- [ ] Clear separation between UI and business logic
+- [ ] Placeholder methods defined for future functionality (e.g., `_handleLogin()`, `_handleSignup()`)
+
+---
+
+## 4. Subtasks
+
+### Phase 1: Widget Structure
+- [ ] Create `LoginSignupScreen` stateful widget file
+- [ ] Initialize `TextEditingController` instances for email and password
+- [ ] Create state variables for mode toggle, password visibility, and remember me
+- [ ] Implement `dispose()` method for controller cleanup
+
+### Phase 2: UI Layout
+- [ ] Design main form container with appropriate padding
+- [ ] Implement app logo/branding section at top
+- [ ] Build email/username input field with controller
+- [ ] Build password input field with visibility toggle
+
+### Phase 3: Interactive Elements
+- [ ] Implement password show/hide toggle icon with state management
+- [ ] Add "Remember me" checkbox (optional)
+- [ ] Add "Forgot password?" link (optional)
+- [ ] Implement login/signup mode toggle button/link
+
+### Phase 4: Button Implementation
+- [ ] Create login button with styling
+- [ ] Create signup button with styling
+- [ ] Implement mode switching logic between buttons
+- [ ] Add form reset when switching modes
+
+### Phase 5: Responsive Design
+- [ ] Test layout on mobile screens
+- [ ] Test layout on tablet screens
+- [ ] Test layout on desktop screens
+- [ ] Adjust padding, margins, and spacing for each breakpoint
+- [ ] Verify touch target sizes on mobile
+
+### Phase 6: Polish & Documentation
+- [ ] Review code for consistency and best practices
+- [ ] Add inline comments and documentation
+- [ ] Verify all controllers are properly disposed
+- [ ] Ensure theme consistency with existing codebase
+- [ ] Final testing across all screen sizes
+
+---
+
+## 5. Success Metrics
+
+- All acceptance criteria marked as complete
+- No null safety warnings or errors
+- Responsive design verified on at least 3 different screen sizes
+- Ready for backend integration in next phase
