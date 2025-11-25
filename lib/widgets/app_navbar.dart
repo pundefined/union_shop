@@ -175,7 +175,8 @@ class AppNavbar extends StatelessWidget {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: onAccount ?? () {},
+                          onPressed: onAccount ??
+                              () => Navigator.pushNamed(context, '/login'),
                         ),
                         IconButton(
                           icon: const Icon(
