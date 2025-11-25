@@ -102,8 +102,8 @@ final List<Collection> sampleCollections = [
     items: [],
   ),
   Collection(
-    id: 'clearance',
-    title: 'Clearance',
+    id: 'sale',
+    title: 'Sale',
     description: 'Great deals on selected items',
     imageUrl:
         'https://images.unsplash.com/photo-1552062407-291ce3f93c4f?w=500&h=500&fit=crop',
