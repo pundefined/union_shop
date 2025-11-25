@@ -44,88 +44,122 @@ class _CarouselState extends State<Carousel> {
 
     final slide = widget.slides[_currentIndex];
 
-    return SizedBox(
-      height: 400,
-      width: double.infinity,
-      child: Stack(
-        children: [
-          // Background image
-          Positioned.fill(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
-              child: Image.network(
-                slide.imageUrl,
-                key: ValueKey<String>(slide.imageUrl),
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(color: Colors.grey[200]);
-                },
-              ),
-            ),
-          ),
-          // Semi-transparent overlay
-          Positioned.fill(
-            child: Container(
-              color: Colors.black.withValues(alpha: 0.7),
-            ),
-          ),
-          // Content overlay
-          Positioned(
-            left: 24,
-            right: 24,
-            top: 80,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  slide.title,
-                  style: TextStyles.heroTitle,
-                  key: ValueKey<String>('title-${_currentIndex}'),
+    return Column(
+      children: [
+        SizedBox(
+          height: 400,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              // Background image
+              Positioned.fill(
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  child: Image.network(
+                    slide.imageUrl,
+                    key: ValueKey<String>(slide.imageUrl),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(color: Colors.grey[200]);
+                    },
+                  ),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  slide.subtitle,
-                  style: TextStyles.heroSubtitle,
-                  textAlign: TextAlign.center,
-                  key: ValueKey<String>('subtitle-${_currentIndex}'),
+              ),
+              // Semi-transparent overlay
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.7),
                 ),
-              ],
-            ),
+              ),
+              // Content overlay
+              Positioned(
+                left: 24,
+                right: 24,
+                top: 80,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      slide.title,
+                      style: TextStyles.heroTitle,
+                      key: ValueKey<String>('title-${_currentIndex}'),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      slide.subtitle,
+                      style: TextStyles.heroSubtitle,
+                      textAlign: TextAlign.center,
+                      key: ValueKey<String>('subtitle-${_currentIndex}'),
+                    ),
+                  ],
+                ),
+              ),
+              // Previous button
+              Positioned(
+                left: 16,
+                top: 0,
+                bottom: 0,
+                child: Center(
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    color: Colors.white,
+                    iconSize: 32,
+                    onPressed: _previousSlide,
+                    tooltip: 'Previous slide',
+                  ),
+                ),
+              ),
+              // Next button
+              Positioned(
+                right: 16,
+                top: 0,
+                bottom: 0,
+                child: Center(
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    color: Colors.white,
+                    iconSize: 32,
+                    onPressed: _nextSlide,
+                    tooltip: 'Next slide',
+                  ),
+                ),
+              ),
+            ],
           ),
-          // Previous button
-          Positioned(
-            left: 16,
-            top: 0,
-            bottom: 0,
-            child: Center(
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                color: Colors.white,
-                iconSize: 32,
-                onPressed: _previousSlide,
-                tooltip: 'Previous slide',
+        ),
+        // Indicator dots
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              widget.slides.length,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                  child: Container(
+                    width: 12,
+                    height: 12,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: index == _currentIndex
+                          ? const Color(0xFF4d2963)
+                          : Colors.grey[400],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-          // Next button
-          Positioned(
-            right: 16,
-            top: 0,
-            bottom: 0,
-            child: Center(
-              child: IconButton(
-                icon: const Icon(Icons.arrow_forward),
-                color: Colors.white,
-                iconSize: 32,
-                onPressed: _nextSlide,
-                tooltip: 'Next slide',
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
