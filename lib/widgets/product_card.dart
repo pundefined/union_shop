@@ -68,10 +68,30 @@ class ProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),
-                  Text(
-                    '£${product.price.toStringAsFixed(2)}',
-                    style: TextStyles.productPrice,
-                  ),
+                  if (product.discountedPrice != null)
+                    Row(
+                      children: [
+                        Text(
+                          '£${product.price.toStringAsFixed(2)}',
+                          style: TextStyles.productPrice.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          '£${product.discountedPrice!.toStringAsFixed(2)}',
+                          style: TextStyles.productPrice.copyWith(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Text(
+                      '£${product.price.toStringAsFixed(2)}',
+                      style: TextStyles.productPrice,
+                    ),
                 ],
               ),
             ),
