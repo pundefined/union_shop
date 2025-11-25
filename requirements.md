@@ -810,7 +810,7 @@ Convert the static homepage banner into an interactive carousel component that d
 
 ### Testing Requirements
 
-#### 3.10 Manual Testing
+#### 3.9 Manual Testing
 - [ ] Test navigation with mouse clicks
 - [ ] Test navigation with keyboard arrow keys
 - [ ] Test indicator dot selection
@@ -818,13 +818,13 @@ Convert the static homepage banner into an interactive carousel component that d
 - [ ] Test auto-play pause/resume (if implemented)
 - [ ] Verify smooth transitions across all browsers
 
-#### 3.11 Accessibility Testing
+#### 3.10 Accessibility Testing
 - [ ] Test with screen reader (NVDA/JAWS/VoiceOver)
 - [ ] Verify keyboard navigation completeness
 - [ ] Validate color contrast with accessibility tools
 - [ ] Test focus states visibility
 
-#### 3.12 Responsive Testing
+#### 3.11 Responsive Testing
 - [ ] Test on mobile devices (iOS Safari, Chrome)
 - [ ] Test on tablets (iPad, Android)
 - [ ] Test on desktop at various resolutions
