@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
 /// A reusable top navigation bar used across the app.
@@ -68,14 +69,39 @@ class AppNavbar extends StatelessWidget {
                         label: 'Home',
                         button: true,
                         child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/'),
+                          onPressed: () => Navigator.pushNamed(context, '/'),
                           style: TextButton.styleFrom(
                             minimumSize: const Size(48, 48),
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             foregroundColor: Colors.black,
                           ),
                           child: const Text('Home'),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Expanded(
+                    child: Center(
+                      child: Semantics(
+                        label: 'Sale',
+                        button: true,
+                        child: TextButton(
+                          onPressed: () {
+                            final saleCollection = sampleCollections
+                                .firstWhere((c) => c.id == 'sale');
+                            Navigator.pushNamed(
+                              context,
+                              '/collection',
+                              arguments: saleCollection,
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size(48, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            foregroundColor: Colors.black,
+                          ),
+                          child: const Text('Sale'),
                         ),
                       ),
                     ),
