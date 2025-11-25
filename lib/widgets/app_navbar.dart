@@ -65,6 +65,25 @@ class AppNavbar extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Semantics(
+                        label: 'Home',
+                        button: true,
+                        child: TextButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, '/'),
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size(48, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            foregroundColor: Colors.black,
+                          ),
+                          child: const Text('Home'),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Expanded(
+                    child: Center(
+                      child: Semantics(
                         label: 'About',
                         button: true,
                         child: TextButton(
