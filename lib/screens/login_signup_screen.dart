@@ -106,39 +106,162 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Placeholder for logo/branding (Phase 2)
-                const SizedBox(height: 40),
+    final isMobile = MediaQuery.of(context).size.width < 600;
 
-                // Email/Username input field (Phase 2)
-                const SizedBox(height: 32),
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: isMobile ? 20.0 : 32.0,
+          vertical: 24.0,
+        ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // ============================================================
+              // BRANDING SECTION
+              // ============================================================
+              _buildBrandingSection(),
+              const SizedBox(height: 40),
 
-                // Password input field (Phase 2)
-                const SizedBox(height: 32),
+              // ============================================================
+              // EMAIL/USERNAME INPUT FIELD
+              // ============================================================
+              _buildEmailField(),
+              const SizedBox(height: 20),
 
-                // Remember me checkbox (Phase 3)
-                const SizedBox(height: 16),
+              // ============================================================
+              // PASSWORD INPUT FIELD
+              // ============================================================
+              _buildPasswordField(),
+              const SizedBox(height: 16),
 
-                // Forgot password link (Phase 3)
-                const SizedBox(height: 32),
+              // Remember me checkbox (Phase 3)
+              const SizedBox(height: 8),
 
-                // Login/Signup button (Phase 4)
-                const SizedBox(height: 16),
+              // Forgot password link (Phase 3)
+              const SizedBox(height: 16),
 
-                // Mode toggle (Phase 3)
-                const SizedBox(height: 24),
-              ],
-            ),
+              // Login/Signup button (Phase 4)
+              const SizedBox(height: 24),
+
+              // Mode toggle (Phase 3)
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  // ============================================================================
+  // UI BUILDER METHODS
+  // ============================================================================
+
+  /// Builds the branding section at the top of the form
+  Widget _buildBrandingSection() {
+    return Column(
+      children: [
+        // App logo or title
+        Text(
+          'UNION SHOP',
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        // Subtitle based on mode
+        Text(
+          _isLoginMode ? 'Log in to your account' : 'Create a new account',
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Colors.grey[600],
+              ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  /// Builds the email/username input field
+  Widget _buildEmailField() {
+    return TextField(
+      controller: _emailController,
+      decoration: InputDecoration(
+        labelText: 'Username or Email',
+        hintText: 'Enter your username or email',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: Colors.grey[300]!,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 2,
+          ),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+        prefixIcon: const Icon(Icons.email_outlined),
+      ),
+      keyboardType: TextInputType.emailAddress,
+      onChanged: (value) {
+        // State updates automatically due to TextField controller binding
+      },
+    );
+  }
+
+  /// Builds the password input field with visibility toggle
+  Widget _buildPasswordField() {
+    return TextField(
+      controller: _passwordController,
+      obscureText: !_isPasswordVisible,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        hintText: 'Enter your password',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: Colors.grey[300]!,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 2,
+          ),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
+        prefixIcon: const Icon(Icons.lock_outlined),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.grey[600],
+          ),
+          onPressed: _togglePasswordVisibility,
+          tooltip: _isPasswordVisible ? 'Hide password' : 'Show password',
+        ),
+      ),
+      onChanged: (value) {
+        // State updates automatically due to TextField controller binding
+      },
     );
   }
 }
