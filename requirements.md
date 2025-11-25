@@ -703,3 +703,162 @@ Refactor the Flutter e-commerce app's collections feature to improve code mainta
 - [ ] App maintains responsive design on various screen sizes
 - [ ] No console errors or warnings
 - [ ] Code is properly formatted and documented
+
+# Homepage Banner Carousel - Requirements Document
+
+## 1. Feature Description
+
+### Purpose
+Convert the static homepage banner into an interactive carousel component that displays multiple slides sequentially. This allows the union shop to showcase multiple promotional content, featured products, or announcements in a single, space-efficient banner area while providing an engaging user experience.
+
+### Scope
+- Replace existing static banner with dynamic carousel
+- Support multiple slides with images, headings, and subtext
+- Implement navigation controls (previous/next buttons and indicator dots)
+- Optional auto-play functionality with user pause capability
+
+---
+
+## 2. User Stories
+
+### User Story 1: Basic Navigation
+**As a** website visitor  
+**I want to** browse through multiple carousel slides using navigation buttons  
+**So that** I can view different promotional content without leaving the homepage
+
+**Acceptance Criteria:**
+- Next button advances to the following slide
+- Previous button returns to the prior slide
+- Navigation loops (next from last slide goes to first; previous from first goes to last)
+- Transitions are smooth and visually clear
+
+### User Story 2: Direct Slide Selection
+**As a** website visitor  
+**I want to** jump directly to a specific slide by clicking indicator dots  
+**So that** I can quickly access content I'm interested in without sequential clicking
+
+**Acceptance Criteria:**
+- Indicator dots are visible below the carousel
+- Clicking a dot displays the corresponding slide
+- The active dot is visually distinguished from inactive dots
+- Transition to selected slide is smooth
+
+### User Story 3: Auto-Play Experience
+**As a** website visitor  
+**I want to** see carousel slides advance automatically  
+**So that** I can passively discover content without manual interaction
+
+**Acceptance Criteria:**
+- Carousel advances automatically every 5 seconds
+- Auto-play pauses on mouse hover
+- Auto-play resumes when mouse leaves the carousel area
+- User can still manually navigate during auto-play
+
+---
+
+## 3. Acceptance Criteria
+
+### Functional Requirements
+
+#### 3.1 Slide Display
+- [ ] Carousel displays one full-width slide at a time
+- [ ] Each slide contains a background image, primary heading text, and secondary subtext
+- [ ] Slides are properly sized and responsive across device sizes
+
+#### 3.2 Navigation Controls
+- [ ] "Previous" (left arrow) button is positioned on the left side
+- [ ] "Next" (right arrow) button is positioned on the right side
+- [ ] Buttons are clickable and styled appropriately
+- [ ] Buttons are always visible and accessible
+
+#### 3.3 Indicator Dots
+- [ ] One dot appears for each slide below the carousel
+- [ ] Active dot is highlighted/distinguished visually
+- [ ] Inactive dots have lighter styling
+- [ ] Each dot is clickable and navigates to the corresponding slide
+
+#### 3.4 Transition Behavior
+- [ ] All slide transitions are smooth (no jarring visual jumps)
+- [ ] Carousel loops correctly (last slide → first slide, first slide → last slide)
+- [ ] Navigation state updates correctly after transitions
+
+#### 3.5 Auto-Play Functionality (Optional)
+- [ ] Carousel auto-advances every 5 seconds by default
+- [ ] Auto-play pauses on mouse hover over carousel
+- [ ] Auto-play resumes 2 seconds after mouse leaves carousel
+- [ ] Manual navigation resets the auto-play timer
+
+### Non-Functional Requirements
+
+#### 3.6 Performance
+- [ ] Carousel loads without noticeable delay
+- [ ] Transitions are smooth (60fps target)
+- [ ] Memory usage is optimal with multiple slides
+
+#### 3.7 Accessibility
+- [ ] WCAG 2.1 Level AA compliance achieved
+- [ ] Color contrast ratio ≥ 4.5:1 for text and buttons
+- [ ] All interactive elements have appropriate ARIA labels
+- [ ] Keyboard navigation fully supported
+- [ ] Screen reader announces slide changes and current position
+
+#### 3.8 Responsiveness
+- [ ] Carousel displays correctly on mobile devices (320px+)
+- [ ] Carousel displays correctly on tablets (768px+)
+- [ ] Carousel displays correctly on desktop (1024px+)
+- [ ] Touch gestures supported on mobile (swipe left/right - optional)
+
+### Testing Requirements
+
+#### 3.10 Manual Testing
+- [ ] Test navigation with mouse clicks
+- [ ] Test navigation with keyboard arrow keys
+- [ ] Test indicator dot selection
+- [ ] Test looping behavior at carousel boundaries
+- [ ] Test auto-play pause/resume (if implemented)
+- [ ] Verify smooth transitions across all browsers
+
+#### 3.11 Accessibility Testing
+- [ ] Test with screen reader (NVDA/JAWS/VoiceOver)
+- [ ] Verify keyboard navigation completeness
+- [ ] Validate color contrast with accessibility tools
+- [ ] Test focus states visibility
+
+#### 3.12 Responsive Testing
+- [ ] Test on mobile devices (iOS Safari, Chrome)
+- [ ] Test on tablets (iPad, Android)
+- [ ] Test on desktop at various resolutions
+- [ ] Verify layout integrity at breakpoints
+
+---
+
+## 4. Subtasks
+
+### Development Phase
+- [ ] Design carousel HTML structure and markup
+- [ ] Implement carousel CSS styling and transitions
+- [ ] Develop JavaScript carousel logic (slide navigation)
+- [ ] Implement indicator dots functionality
+- [ ] Add auto-play functionality (optional)
+- [ ] Add keyboard navigation support
+- [ ] Implement responsive design
+
+### Accessibility Phase
+- [ ] Add ARIA labels to buttons and dots
+- [ ] Add focus management and visible focus states
+- [ ] Audit color contrast ratios
+- [ ] Test with screen readers
+- [ ] Document keyboard shortcuts
+
+### Testing Phase
+- [ ] Unit test carousel logic
+- [ ] Integration test with homepage
+- [ ] Cross-browser testing
+- [ ] Accessibility audit with tools (axe, Lighthouse)
+- [ ] Manual testing on real devices
+- [ ] Performance optimization
+
+### Documentation Phase
+- [ ] Document carousel API/props (if component-based)
+- [ ] Create usage guide for content team
+- [ ] Document maintenance and future enhancements
