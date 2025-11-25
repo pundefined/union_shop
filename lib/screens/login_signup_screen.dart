@@ -152,6 +152,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               // ============================================================
               // ACTION BUTTONS (Phase 4)
               // ============================================================
+              if (_isLoginMode) _buildLoginButton() else _buildSignupButton(),
               const SizedBox(height: 24),
 
               // ============================================================
@@ -350,6 +351,60 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Builds the login button (shown in login mode)
+  Widget _buildLoginButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 56,
+      child: ElevatedButton(
+        onPressed: _handleLogin,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          elevation: 2,
+        ),
+        child: const Text(
+          'LOG IN',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the signup button (shown in signup mode)
+  Widget _buildSignupButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 56,
+      child: ElevatedButton(
+        onPressed: _handleSignup,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          elevation: 2,
+        ),
+        child: const Text(
+          'SIGN UP',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+          ),
+        ),
       ),
     );
   }
