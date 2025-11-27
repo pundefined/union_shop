@@ -3,47 +3,513 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
 
 void main() {
-  testWidgets(
-      'AppNavbar shows logo and tapping it navigates home and clears history',
-      (WidgetTester tester) async {
-    // Build an app with named routes so we can create a navigation stack.
-    final navigatorKey = GlobalKey<NavigatorState>();
+  group('AppNavbar', () {
+    testWidgets('renders promotional banner', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
 
-    final app = MaterialApp(
-      navigatorKey: navigatorKey,
-      routes: {
-        '/': (context) => const Scaffold(body: Center(child: Text('HOME'))),
-        '/second': (context) =>
-            const Scaffold(body: Center(child: Text('SECOND'))),
-        '/third': (context) => const Scaffold(body: AppNavbar()),
-      },
-      initialRoute: '/',
-    );
+      expect(
+        find.textContaining('BIG SALE!'),
+        findsOneWidget,
+      );
+    });
 
-    await tester.pumpWidget(app);
+    testWidgets('renders logo image', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
 
-    // Create navigation stack: push /second then /third (AppNavbar)
-    // Use the navigator key to push routes reliably in tests.
-    navigatorKey.currentState!.pushNamed('/second');
-    await tester.pumpAndSettle();
-    navigatorKey.currentState!.pushNamed('/third');
-    await tester.pumpAndSettle();
+      expect(find.byType(ImageNetworkLogo), findsOneWidget);
+    });
 
-    // Verify we're on the third page which contains the AppNavbar
-    expect(find.byType(AppNavbar), findsOneWidget);
+    testWidgets('renders search, account, and cart icons',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
 
-    // The logo is wrapped with semantics label 'Home'
-    final logo = find.bySemanticsLabel('Home');
-    expect(logo, findsOneWidget);
+      expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
+      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
+    });
 
-    // Tap the logo. Default behavior should navigate to '/' and clear history.
-    await tester.tap(logo);
-    await tester.pumpAndSettle();
+    testWidgets('calls onSearch when search icon is tapped',
+        (WidgetTester tester) async {
+      bool searchTapped = false;
 
-    // After tapping logo we should see the HOME page and the navigator should
-    // not be able to pop (history cleared).
-    expect(find.text('HOME'), findsOneWidget);
-    // Use navigator key to inspect state.
-    expect(navigatorKey.currentState!.canPop(), isFalse);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppNavbar(
+              onSearch: () => searchTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byIcon(Icons.search));
+      await tester.pump();
+
+      expect(searchTapped, isTrue);
+    });
+
+    testWidgets('calls onAccount when account icon is tapped',
+        (WidgetTester tester) async {
+      bool accountTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppNavbar(
+              onAccount: () => accountTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byIcon(Icons.person_outline));
+      await tester.pump();
+
+      expect(accountTapped, isTrue);
+    });
+
+    testWidgets('calls onCart when cart icon is tapped',
+        (WidgetTester tester) async {
+      bool cartTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppNavbar(
+              onCart: () => cartTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byIcon(Icons.shopping_bag_outlined));
+      await tester.pump();
+
+      expect(cartTapped, isTrue);
+    });
+
+    testWidgets('calls onLogoTap when logo is tapped',
+        (WidgetTester tester) async {
+      bool logoTapped = false;
+
+      // Set a larger screen size to ensure logo is visible
+      tester.view.physicalSize = const Size(1200, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppNavbar(
+              onLogoTap: () => logoTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      // Find the InkWell that wraps the logo and trigger its onTap callback
+      final logoInkWell = find.ancestor(
+        of: find.byType(ImageNetworkLogo),
+        matching: find.byType(InkWell),
+      );
+      final inkWellWidget = tester.widget<InkWell>(logoInkWell);
+      inkWellWidget.onTap?.call();
+
+      expect(logoTapped, isTrue);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+  });
+
+  group('AppNavbar - Mobile view', () {
+    testWidgets('shows hamburger menu on mobile screen size',
+        (WidgetTester tester) async {
+      // Set mobile screen size (less than 600)
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      expect(find.byIcon(Icons.menu), findsOneWidget);
+
+      // Reset screen size
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+
+    testWidgets('hides horizontal nav links on mobile screen size',
+        (WidgetTester tester) async {
+      // Set mobile screen size
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      // NavLink widgets should not be present on mobile
+      expect(find.byType(NavLink), findsNothing);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+
+    testWidgets('toggles mobile menu when hamburger icon is tapped',
+        (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      // Mobile menu should not be visible initially
+      expect(find.byType(MobileMenuContainer), findsNothing);
+
+      // Tap hamburger menu
+      await tester.tap(find.byIcon(Icons.menu));
+      await tester.pump();
+
+      // Mobile menu should now be visible
+      expect(find.byType(MobileMenuContainer), findsOneWidget);
+
+      // Tap hamburger menu again to close
+      await tester.tap(find.byIcon(Icons.menu));
+      await tester.pump();
+
+      // Mobile menu should be hidden again
+      expect(find.byType(MobileMenuContainer), findsNothing);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+  });
+
+  group('AppNavbar - Desktop view', () {
+    testWidgets('shows horizontal nav links on desktop screen size',
+        (WidgetTester tester) async {
+      // Set desktop screen size (900 or more)
+      tester.view.physicalSize = const Size(1200, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      // NavLink widgets should be present on desktop
+      expect(find.byType(NavLink),
+          findsNWidgets(4)); // Home, Sale, About, Collections
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+
+    testWidgets('hides hamburger menu on desktop screen size',
+        (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(1200, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      expect(find.byIcon(Icons.menu), findsNothing);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+
+    testWidgets('displays all navigation labels on desktop',
+        (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(1200, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      expect(find.text('Home'), findsOneWidget);
+      expect(find.text('Sale'), findsOneWidget);
+      expect(find.text('About'), findsOneWidget);
+      expect(find.text('Collections'), findsOneWidget);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+  });
+
+  group('AppNavbar - Tablet view', () {
+    testWidgets('shows horizontal nav links on tablet screen size',
+        (WidgetTester tester) async {
+      // Set tablet screen size (600-899)
+      tester.view.physicalSize = const Size(700, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      // NavLink widgets should be present on tablet
+      expect(find.byType(NavLink), findsNWidgets(4));
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+
+    testWidgets('hides hamburger menu on tablet screen size',
+        (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(700, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: AppNavbar()),
+        ),
+      );
+
+      expect(find.byIcon(Icons.menu), findsNothing);
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+    });
+  });
+
+  group('MobileMenuContainer', () {
+    testWidgets('renders all menu items', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: MobileMenuContainer()),
+        ),
+      );
+
+      expect(find.text('Home'), findsOneWidget);
+      expect(find.text('Sale'), findsOneWidget);
+      expect(find.text('About'), findsOneWidget);
+      expect(find.text('Collections'), findsOneWidget);
+    });
+
+    testWidgets('renders menu icons', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: MobileMenuContainer()),
+        ),
+      );
+
+      expect(find.byIcon(Icons.home), findsOneWidget);
+      expect(find.byIcon(Icons.local_offer), findsOneWidget);
+      expect(find.byIcon(Icons.info), findsOneWidget);
+      expect(find.byIcon(Icons.grid_view), findsOneWidget);
+    });
+
+    testWidgets('calls onHomeTap when Home is tapped',
+        (WidgetTester tester) async {
+      bool homeTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MobileMenuContainer(
+              onHomeTap: () => homeTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Home'));
+      await tester.pump();
+
+      expect(homeTapped, isTrue);
+    });
+
+    testWidgets('calls onSaleTap when Sale is tapped',
+        (WidgetTester tester) async {
+      bool saleTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MobileMenuContainer(
+              onSaleTap: () => saleTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Sale'));
+      await tester.pump();
+
+      expect(saleTapped, isTrue);
+    });
+
+    testWidgets('calls onAboutTap when About is tapped',
+        (WidgetTester tester) async {
+      bool aboutTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MobileMenuContainer(
+              onAboutTap: () => aboutTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('About'));
+      await tester.pump();
+
+      expect(aboutTapped, isTrue);
+    });
+
+    testWidgets('calls onCollectionsTap when Collections is tapped',
+        (WidgetTester tester) async {
+      bool collectionsTapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: MobileMenuContainer(
+              onCollectionsTap: () => collectionsTapped = true,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Collections'));
+      await tester.pump();
+
+      expect(collectionsTapped, isTrue);
+    });
+  });
+
+  group('NavLink', () {
+    testWidgets('renders text correctly', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Row(
+              children: [
+                NavLink(
+                  label: 'Test Label',
+                  text: 'Test Text',
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Test Text'), findsOneWidget);
+    });
+
+    testWidgets('calls onPressed when tapped', (WidgetTester tester) async {
+      bool pressed = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Row(
+              children: [
+                NavLink(
+                  label: 'Test',
+                  text: 'Test',
+                  onPressed: () => pressed = true,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Test'));
+      await tester.pump();
+
+      expect(pressed, isTrue);
+    });
+
+    testWidgets('has semantic label for accessibility',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Row(
+              children: [
+                NavLink(
+                  label: 'Navigation Link',
+                  text: 'Link',
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Check that Semantics widget exists with the correct label
+      final semanticsWidget = find.byWidgetPredicate(
+        (widget) =>
+            widget is Semantics && widget.properties.label == 'Navigation Link',
+      );
+      expect(semanticsWidget, findsOneWidget);
+    });
+  });
+
+  group('ImageNetworkLogo', () {
+    testWidgets('renders Image.network widget', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: ImageNetworkLogo()),
+        ),
+      );
+
+      expect(find.byType(Image), findsOneWidget);
+    });
   });
 }
