@@ -1051,11 +1051,146 @@ Implement a login/signup page for the Flutter union_shop storefront application 
 - [ ] Ensure theme consistency with existing codebase
 - [ ] Final testing across all screen sizes
 
+# Responsive Navigation Bar with Mobile Menu - Requirements Document
+
+## 1. Feature Description and Purpose
+
+### Overview
+Implement a responsive navigation bar component that automatically adapts its layout and interaction model based on device screen width. The navigation bar should provide an optimal user experience across mobile devices, tablets, and desktop screens.
+
+### Purpose
+- Improve usability on mobile devices by reducing navbar clutter
+- Maintain a professional desktop navigation experience
+- Ensure consistent branding and navigation accessibility across all device sizes
+- Provide smooth, intuitive interactions without jarring layout shifts
+
 ---
 
-## 5. Success Metrics
+## 2. User Stories
 
-- All acceptance criteria marked as complete
-- No null safety warnings or errors
-- Responsive design verified on at least 3 different screen sizes
-- Ready for backend integration in next phase
+### Story 1: Mobile User Accessing Navigation
+**As a** mobile user with a screen width under 768px  
+**I want to** access the navigation menu through a hamburger icon  
+**So that** I can see available navigation options without cluttering my small screen
+
+**Acceptance Criteria:**
+- Hamburger menu icon is visible on screens < 768px
+- Tapping the icon triggers a smooth slide-down animation
+- Navigation links display vertically below the navbar
+- Page content shifts down to accommodate the expanded menu
+
+### Story 2: Mobile User Closing the Menu
+**As a** mobile user  
+**I want to** close the navigation menu by tapping the hamburger icon again  
+**So that** I can return to viewing the page content at full width
+
+**Acceptance Criteria:**
+- Tapping the hamburger icon again collapses the menu
+- Menu slides up smoothly with reverse animation
+- Page content slides back to its original position
+- All interactions are responsive and feel natural
+
+### Story 3: Desktop User Navigation
+**As a** desktop user with a screen width over 768px  
+**I want to** see navigation links displayed horizontally in the navbar  
+**So that** I can quickly navigate without additional clicks
+
+**Acceptance Criteria:**
+- Hamburger menu icon is hidden on screens ≥ 768px
+- Navigation links display horizontally in the navbar
+- Page content maintains normal positioning
+- No animation delays on desktop navigation
+
+### Story 4: Tablet User Layout Transition
+**As a** tablet user rotating their device  
+**I want to** see the navigation adapt automatically to the new screen orientation  
+**So that** the layout remains optimal without manual intervention
+
+**Acceptance Criteria:**
+- Navigation layout updates when device is rotated
+- Transition occurs without jarring layout shifts
+- Menu state is appropriately managed during orientation change
+
+---
+
+## 3. Acceptance Criteria
+
+### Functional Requirements
+
+#### 3.1 Responsive Breakpoint Detection
+- [ ] Implement MediaQuery to detect screen width >= 768px (desktop) and < 768px (mobile)
+- [ ] Navigation layout changes based on detected breakpoint
+- [ ] Breakpoint detection works on app startup and screen resize
+
+#### 3.2 Mobile Menu Behavior
+- [ ] Hamburger menu icon displays only on screens < 768px
+- [ ] Menu icon is positioned consistently within the navbar
+- [ ] Tapping hamburger icon toggles menu open/closed state
+- [ ] Menu state is maintained during widget rebuilds
+
+#### 3.3 Mobile Menu Animation
+- [ ] Menu slides down smoothly when opened (duration: 300ms recommended)
+- [ ] Menu slides up smoothly when closed (duration: 300ms recommended)
+- [ ] Page content animates down/up in sync with menu expansion/collapse
+- [ ] Animation uses easing curve for natural feel (e.g., Curves.easeInOut)
+
+#### 3.4 Desktop Navigation Display
+- [ ] Navigation links display horizontally in the navbar on desktop
+- [ ] Hamburger menu icon is completely hidden on desktop
+- [ ] Navigation links maintain consistent styling and spacing
+
+#### 3.5 Content Layout Adjustment
+- [ ] Page content shifts down when mobile menu opens
+- [ ] Shift distance equals the height of the expanded menu
+- [ ] Content returns to original position when menu closes
+- [ ] No overflow or layout issues during transitions
+
+### Visual & UX Requirements
+
+#### 3.6 Styling Consistency
+- [ ] Existing navbar styling and branding is maintained
+- [ ] Navigation links use consistent typography and colors
+- [ ] Hamburger icon style matches navbar aesthetic
+- [ ] Mobile menu background color complements navbar
+
+#### 3.7 User Experience
+- [ ] All interactions feel smooth and responsive
+- [ ] No lag or jank during animations
+- [ ] Visual feedback is provided when menu icon is tapped
+- [ ] Navigation remains accessible and intuitive
+
+### Technical Requirements
+
+#### 3.8 Code Structure
+- [ ] Use responsive widget layout (Row/Column based on screen size)
+- [ ] Menu state is managed using appropriate state management
+- [ ] Animations implemented using AnimatedContainer, AnimationController, or similar
+- [ ] Code is modular and reusable
+
+#### 3.9 Browser/Device Compatibility
+- [ ] Works on iOS devices (iPhone/iPad)
+- [ ] Works on Android devices (phones/tablets)
+- [ ] Works on desktop browsers (Chrome, Firefox, Safari, Edge)
+- [ ] Tested on multiple screen sizes and orientations
+
+#### 3.10 Performance
+- [ ] Animations run at 60 FPS without stuttering
+- [ ] No memory leaks from animation controllers
+- [ ] Smooth performance on low-end devices
+
+---
+
+## 4. Implementation Subtasks
+
+- [ ] Design and create hamburger menu icon widget
+- [ ] Implement MediaQuery for responsive breakpoint detection
+- [ ] Create mobile menu container with vertical navigation layout
+- [ ] Implement desktop navigation layout with horizontal links
+- [ ] Build animation controller for menu open/close transitions
+- [ ] Implement content shift animation using AnimatedContainer
+- [ ] Integrate menu state management with toggle functionality
+- [ ] Add styling and branding to match existing navbar
+- [ ] Test on multiple device sizes and orientations
+- [ ] Performance testing and optimization
+- [ ] Cross-browser/device validation
+- [ ] Documentation and code comments
