@@ -1069,12 +1069,12 @@ Implement a responsive navigation bar component that automatically adapts its la
 ## 2. User Stories
 
 ### Story 1: Mobile User Accessing Navigation
-**As a** mobile user with a screen width under 768px  
+**As a** mobile user with a small screen width 
 **I want to** access the navigation menu through a hamburger icon  
 **So that** I can see available navigation options without cluttering my small screen
 
 **Acceptance Criteria:**
-- Hamburger menu icon is visible on screens < 768px
+- Hamburger menu icon is visible on smaller screens
 - Tapping the icon triggers a smooth slide-down animation
 - Navigation links display vertically below the navbar
 - Page content shifts down to accommodate the expanded menu
@@ -1091,25 +1091,15 @@ Implement a responsive navigation bar component that automatically adapts its la
 - All interactions are responsive and feel natural
 
 ### Story 3: Desktop User Navigation
-**As a** desktop user with a screen width over 768px  
+**As a** desktop user 
 **I want to** see navigation links displayed horizontally in the navbar  
 **So that** I can quickly navigate without additional clicks
 
 **Acceptance Criteria:**
-- Hamburger menu icon is hidden on screens ≥ 768px
+- Hamburger menu icon is hidden on wider screens
 - Navigation links display horizontally in the navbar
 - Page content maintains normal positioning
 - No animation delays on desktop navigation
-
-### Story 4: Tablet User Layout Transition
-**As a** tablet user rotating their device  
-**I want to** see the navigation adapt automatically to the new screen orientation  
-**So that** the layout remains optimal without manual intervention
-
-**Acceptance Criteria:**
-- Navigation layout updates when device is rotated
-- Transition occurs without jarring layout shifts
-- Menu state is appropriately managed during orientation change
 
 ---
 
@@ -1118,12 +1108,12 @@ Implement a responsive navigation bar component that automatically adapts its la
 ### Functional Requirements
 
 #### 3.1 Responsive Breakpoint Detection
-- [ ] Implement MediaQuery to detect screen width >= 768px (desktop) and < 768px (mobile)
+- [ ] Implement MediaQuery to detect screen width
 - [ ] Navigation layout changes based on detected breakpoint
 - [ ] Breakpoint detection works on app startup and screen resize
 
 #### 3.2 Mobile Menu Behavior
-- [ ] Hamburger menu icon displays only on screens < 768px
+- [ ] Hamburger menu icon displays only on small screens
 - [ ] Menu icon is positioned consistently within the navbar
 - [ ] Tapping hamburger icon toggles menu open/closed state
 - [ ] Menu state is maintained during widget rebuilds
@@ -1132,7 +1122,7 @@ Implement a responsive navigation bar component that automatically adapts its la
 - [ ] Menu slides down smoothly when opened (duration: 300ms recommended)
 - [ ] Menu slides up smoothly when closed (duration: 300ms recommended)
 - [ ] Page content animates down/up in sync with menu expansion/collapse
-- [ ] Animation uses easing curve for natural feel (e.g., Curves.easeInOut)
+- [ ] Animation uses easing curve for natural feel
 
 #### 3.4 Desktop Navigation Display
 - [ ] Navigation links display horizontally in the navbar on desktop
@@ -1167,17 +1157,6 @@ Implement a responsive navigation bar component that automatically adapts its la
 - [ ] Animations implemented using AnimatedContainer, AnimationController, or similar
 - [ ] Code is modular and reusable
 
-#### 3.9 Browser/Device Compatibility
-- [ ] Works on iOS devices (iPhone/iPad)
-- [ ] Works on Android devices (phones/tablets)
-- [ ] Works on desktop browsers (Chrome, Firefox, Safari, Edge)
-- [ ] Tested on multiple screen sizes and orientations
-
-#### 3.10 Performance
-- [ ] Animations run at 60 FPS without stuttering
-- [ ] No memory leaks from animation controllers
-- [ ] Smooth performance on low-end devices
-
 ---
 
 ## 4. Implementation Subtasks
@@ -1192,5 +1171,4 @@ Implement a responsive navigation bar component that automatically adapts its la
 - [ ] Add styling and branding to match existing navbar
 - [ ] Test on multiple device sizes and orientations
 - [ ] Performance testing and optimization
-- [ ] Cross-browser/device validation
 - [ ] Documentation and code comments
