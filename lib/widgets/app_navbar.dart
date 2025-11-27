@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
-/// A reusable top navigation bar used across the app.
-class AppNavbar extends StatelessWidget {
+/// Responsive breakpoint constants for adaptive navigation layout.
+const double _mobileBreakpoint = 600.0;
+const double _tabletBreakpoint = 900.0;
+
+/// Enumeration for screen size categories.
+enum ScreenSize { mobile, tablet, desktop }
+
+/// A reusable top navigation bar used across the app with responsive design.
+/// On mobile screens, displays a hamburger menu; on desktop, displays horizontal links.
+class AppNavbar extends StatefulWidget {
   final VoidCallback? onLogoTap;
   final VoidCallback? onSearch;
   final VoidCallback? onAccount;
   final VoidCallback? onCart;
-  final VoidCallback? onMenu;
 
   const AppNavbar({
     Key? key,
@@ -16,8 +23,23 @@ class AppNavbar extends StatelessWidget {
     this.onSearch,
     this.onAccount,
     this.onCart,
-    this.onMenu,
   }) : super(key: key);
+
+  @override
+  State<AppNavbar> createState() => _AppNavbarState();
+}
+
+class _AppNavbarState extends State<AppNavbar> {
+  /// Determines the screen size category based on media query width.
+  ScreenSize _getScreenSize(double width) {
+    if (width < _mobileBreakpoint) {
+      return ScreenSize.mobile;
+    } else if (width < _tabletBreakpoint) {
+      return ScreenSize.tablet;
+    } else {
+      return ScreenSize.desktop;
+    }
+  }
 
   void _navigateHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -25,6 +47,8 @@ class AppNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenSize = _getScreenSize(screenWidth);
     return Container(
       height: 100,
       color: Colors.white,
@@ -47,13 +71,14 @@ class AppNavbar extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Logo with semantic label and minimum tappable area
                   Semantics(
                     label: 'Home',
                     button: true,
                     child: InkWell(
-                      onTap: onLogoTap ?? () => _navigateHome(context),
+                      onTap: widget.onLogoTap ?? () => _navigateHome(context),
                       child: const SizedBox(
                         height: 48,
                         child: Center(
@@ -63,35 +88,38 @@ class AppNavbar extends StatelessWidget {
                     ),
                   ),
 
-                  NavLink(
-                    label: 'Home',
-                    text: 'Home',
-                    onPressed: () => Navigator.pushNamed(context, '/'),
-                  ),
-                  NavLink(
-                    label: 'Sale',
-                    text: 'Sale',
-                    onPressed: () {
-                      final saleCollection =
-                          sampleCollections.firstWhere((c) => c.id == 'sale');
-                      Navigator.pushNamed(
-                        context,
-                        '/collection',
-                        arguments: saleCollection,
-                      );
-                    },
-                  ),
-                  NavLink(
-                    label: 'About',
-                    text: 'About',
-                    onPressed: () => Navigator.pushNamed(context, '/about'),
-                  ),
-                  NavLink(
-                    label: 'Collections',
-                    text: 'Collections',
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/collections'),
-                  ),
+                  // Show/hide nav links based on screen size
+                  if (screenSize != ScreenSize.mobile) ...[
+                    NavLink(
+                      label: 'Home',
+                      text: 'Home',
+                      onPressed: () => Navigator.pushNamed(context, '/'),
+                    ),
+                    NavLink(
+                      label: 'Sale',
+                      text: 'Sale',
+                      onPressed: () {
+                        final saleCollection =
+                            sampleCollections.firstWhere((c) => c.id == 'sale');
+                        Navigator.pushNamed(
+                          context,
+                          '/collection',
+                          arguments: saleCollection,
+                        );
+                      },
+                    ),
+                    NavLink(
+                      label: 'About',
+                      text: 'About',
+                      onPressed: () => Navigator.pushNamed(context, '/about'),
+                    ),
+                    NavLink(
+                      label: 'Collections',
+                      text: 'Collections',
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/collections'),
+                    ),
+                  ],
 
                   // Right-side icons constrained in width
                   ConstrainedBox(
@@ -110,7 +138,7 @@ class AppNavbar extends StatelessWidget {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: onSearch ?? () {},
+                          onPressed: widget.onSearch ?? () {},
                         ),
                         IconButton(
                           icon: const Icon(
@@ -123,7 +151,7 @@ class AppNavbar extends StatelessWidget {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: onAccount ??
+                          onPressed: widget.onAccount ??
                               () => Navigator.pushNamed(context, '/login'),
                         ),
                         IconButton(
@@ -137,21 +165,25 @@ class AppNavbar extends StatelessWidget {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: onCart ?? () {},
+                          onPressed: widget.onCart ?? () {},
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.menu,
-                            size: 18,
-                            color: Colors.grey,
+                        // Hamburger menu icon shown only on mobile
+                        if (screenSize == ScreenSize.mobile)
+                          IconButton(
+                            icon: const Icon(
+                              Icons.menu,
+                              size: 18,
+                              color: Colors.grey,
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            constraints: const BoxConstraints(
+                              minWidth: 48,
+                              minHeight: 48,
+                            ),
+                            onPressed: () {
+                              // TODO: Implement menu toggle in subtask 6
+                            },
                           ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 48,
-                            minHeight: 48,
-                          ),
-                          onPressed: onMenu ?? () {},
-                        ),
                       ],
                     ),
                   ),
