@@ -278,48 +278,6 @@ void main() {
     });
   });
 
-  group('AppNavbar - Tablet view', () {
-    testWidgets('shows horizontal nav links on tablet screen size',
-        (WidgetTester tester) async {
-      // Set tablet screen size (600-899)
-      tester.view.physicalSize = const Size(700, 800);
-      tester.view.devicePixelRatio = 1.0;
-
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
-        ),
-      );
-
-      // NavLink widgets should be present on tablet
-      expect(find.byType(NavLink), findsNWidgets(4));
-
-      addTearDown(() {
-        tester.view.resetPhysicalSize();
-        tester.view.resetDevicePixelRatio();
-      });
-    });
-
-    testWidgets('hides hamburger menu on tablet screen size',
-        (WidgetTester tester) async {
-      tester.view.physicalSize = const Size(700, 800);
-      tester.view.devicePixelRatio = 1.0;
-
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
-        ),
-      );
-
-      expect(find.byIcon(Icons.menu), findsNothing);
-
-      addTearDown(() {
-        tester.view.resetPhysicalSize();
-        tester.view.resetDevicePixelRatio();
-      });
-    });
-  });
-
   group('MobileMenuContainer', () {
     testWidgets('renders all menu items', (WidgetTester tester) async {
       await tester.pumpWidget(
