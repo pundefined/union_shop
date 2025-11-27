@@ -63,86 +63,34 @@ class AppNavbar extends StatelessWidget {
                     ),
                   ),
 
-                  Expanded(
-                    child: Center(
-                      child: Semantics(
-                        label: 'Home',
-                        button: true,
-                        child: TextButton(
-                          onPressed: () => Navigator.pushNamed(context, '/'),
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('Home'),
-                        ),
-                      ),
-                    ),
+                  NavLink(
+                    label: 'Home',
+                    text: 'Home',
+                    onPressed: () => Navigator.pushNamed(context, '/'),
                   ),
-
-                  Expanded(
-                    child: Center(
-                      child: Semantics(
-                        label: 'Sale',
-                        button: true,
-                        child: TextButton(
-                          onPressed: () {
-                            final saleCollection = sampleCollections
-                                .firstWhere((c) => c.id == 'sale');
-                            Navigator.pushNamed(
-                              context,
-                              '/collection',
-                              arguments: saleCollection,
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('Sale'),
-                        ),
-                      ),
-                    ),
+                  NavLink(
+                    label: 'Sale',
+                    text: 'Sale',
+                    onPressed: () {
+                      final saleCollection =
+                          sampleCollections.firstWhere((c) => c.id == 'sale');
+                      Navigator.pushNamed(
+                        context,
+                        '/collection',
+                        arguments: saleCollection,
+                      );
+                    },
                   ),
-
-                  Expanded(
-                    child: Center(
-                      child: Semantics(
-                        label: 'About',
-                        button: true,
-                        child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/about'),
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('About'),
-                        ),
-                      ),
-                    ),
+                  NavLink(
+                    label: 'About',
+                    text: 'About',
+                    onPressed: () => Navigator.pushNamed(context, '/about'),
                   ),
-
-                  Expanded(
-                    child: Center(
-                      child: Semantics(
-                        label: 'Collections',
-                        button: true,
-                        child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/collections'),
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            foregroundColor: Colors.black,
-                          ),
-                          child: const Text('Collections'),
-                        ),
-                      ),
-                    ),
+                  NavLink(
+                    label: 'Collections',
+                    text: 'Collections',
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/collections'),
                   ),
 
                   // Right-side icons constrained in width
@@ -212,6 +160,42 @@ class AppNavbar extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Reusable navigation link widget with consistent styling and accessibility.
+/// Displays a navigation link as an expanded centered button with semantic labels.
+class NavLink extends StatelessWidget {
+  final String label;
+  final String text;
+  final VoidCallback onPressed;
+
+  const NavLink({
+    Key? key,
+    required this.label,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: Semantics(
+          label: label,
+          button: true,
+          child: TextButton(
+            onPressed: onPressed,
+            style: TextButton.styleFrom(
+              minimumSize: const Size(48, 48),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              foregroundColor: Colors.black,
+            ),
+            child: Text(text),
+          ),
+        ),
       ),
     );
   }
