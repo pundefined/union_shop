@@ -4,10 +4,9 @@ import 'package:union_shop/styles/text_styles.dart';
 
 /// Responsive breakpoint constants for adaptive navigation layout.
 const double _mobileBreakpoint = 600.0;
-const double _tabletBreakpoint = 900.0;
 
 /// Enumeration for screen size categories.
-enum ScreenSize { mobile, tablet, desktop }
+enum ScreenSize { mobile, desktop }
 
 /// A reusable top navigation bar used across the app with responsive design.
 /// On mobile screens, displays a hamburger menu; on desktop, displays horizontal links.
@@ -37,8 +36,6 @@ class _AppNavbarState extends State<AppNavbar> {
   ScreenSize _getScreenSize(double width) {
     if (width < _mobileBreakpoint) {
       return ScreenSize.mobile;
-    } else if (width < _tabletBreakpoint) {
-      return ScreenSize.tablet;
     } else {
       return ScreenSize.desktop;
     }
