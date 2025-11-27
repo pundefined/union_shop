@@ -30,6 +30,9 @@ class AppNavbar extends StatefulWidget {
 }
 
 class _AppNavbarState extends State<AppNavbar> {
+  /// Tracks whether the mobile menu is open or closed.
+  bool _isMenuOpen = false;
+
   /// Determines the screen size category based on media query width.
   ScreenSize _getScreenSize(double width) {
     if (width < _mobileBreakpoint) {
@@ -41,6 +44,13 @@ class _AppNavbarState extends State<AppNavbar> {
     }
   }
 
+  /// Toggles the mobile menu open/closed state.
+  void _toggleMenu() {
+    setState(() {
+      _isMenuOpen = !_isMenuOpen;
+    });
+  }
+
   void _navigateHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
@@ -50,9 +60,9 @@ class _AppNavbarState extends State<AppNavbar> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenSize = _getScreenSize(screenWidth);
     return Container(
-      height: 100,
       color: Colors.white,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           // Top banner
           Container(
@@ -67,7 +77,8 @@ class _AppNavbarState extends State<AppNavbar> {
           ),
 
           // Main header row
-          Expanded(
+          SizedBox(
+            height: 56,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
@@ -180,9 +191,7 @@ class _AppNavbarState extends State<AppNavbar> {
                               minWidth: 48,
                               minHeight: 48,
                             ),
-                            onPressed: () {
-                              // TODO: Implement menu toggle in subtask 6
-                            },
+                            onPressed: _toggleMenu,
                           ),
                       ],
                     ),
@@ -191,6 +200,33 @@ class _AppNavbarState extends State<AppNavbar> {
               ),
             ),
           ),
+
+          // Mobile menu - shown only on mobile screens when menu is open
+          if (screenSize == ScreenSize.mobile && _isMenuOpen)
+            MobileMenuContainer(
+              onHomeTap: () {
+                Navigator.pushNamed(context, '/');
+                _toggleMenu();
+              },
+              onSaleTap: () {
+                final saleCollection =
+                    sampleCollections.firstWhere((c) => c.id == 'sale');
+                Navigator.pushNamed(
+                  context,
+                  '/collection',
+                  arguments: saleCollection,
+                );
+                _toggleMenu();
+              },
+              onAboutTap: () {
+                Navigator.pushNamed(context, '/about');
+                _toggleMenu();
+              },
+              onCollectionsTap: () {
+                Navigator.pushNamed(context, '/collections');
+                _toggleMenu();
+              },
+            ),
         ],
       ),
     );
@@ -278,10 +314,9 @@ class MobileMenuContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Mobile menu background color - complements the navbar
-      color: Colors.white,
       // Border at the bottom for visual separation
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border(
           bottom: BorderSide(
             color: Colors.grey[300]!,
