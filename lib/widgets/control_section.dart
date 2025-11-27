@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 /// A control section widget that displays filter and sort dropdown UI.
 ///
 /// This widget provides a side-by-side layout for filter and sort dropdowns.
-/// Currently non-functional - intended for future implementation.
+/// Allows users to select sort type
 class ControlSection extends StatelessWidget {
-  const ControlSection({super.key});
+  final String currentSort;
+  final Function(String) onSortChanged;
+
+  const ControlSection({
+    super.key,
+    this.currentSort = 'name',
+    required this.onSortChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,7 @@ class ControlSection extends StatelessWidget {
           // Sort By Dropdown
           Expanded(
             child: DropdownButtonFormField<String>(
+              initialValue: currentSort,
               decoration: InputDecoration(
                 labelText: 'Sort By',
                 border: OutlineInputBorder(
@@ -66,7 +74,9 @@ class ControlSection extends StatelessWidget {
                 ),
               ],
               onChanged: (value) {
-                // TODO: Implement sort functionality
+                if (value != null) {
+                  onSortChanged(value);
+                }
               },
             ),
           ),
