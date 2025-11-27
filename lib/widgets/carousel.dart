@@ -84,14 +84,14 @@ class _CarouselState extends State<Carousel> {
                     Text(
                       slide.title,
                       style: TextStyles.heroTitle,
-                      key: ValueKey<String>('title-${_currentIndex}'),
+                      key: ValueKey<String>('title-$_currentIndex'),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       slide.subtitle,
                       style: TextStyles.heroSubtitle,
                       textAlign: TextAlign.center,
-                      key: ValueKey<String>('subtitle-${_currentIndex}'),
+                      key: ValueKey<String>('subtitle-$_currentIndex'),
                     ),
                     if (slide.ctaText != null && slide.onCtaPressed != null) ...[
                       const SizedBox(height: 32),
