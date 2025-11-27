@@ -257,3 +257,120 @@ class ImageNetworkLogo extends StatelessWidget {
     );
   }
 }
+
+/// Mobile menu container that displays navigation links vertically.
+/// Designed to slide down below the navbar on mobile screens.
+class MobileMenuContainer extends StatelessWidget {
+  /// Callback when a menu item is tapped
+  final VoidCallback? onHomeTap;
+  final VoidCallback? onSaleTap;
+  final VoidCallback? onAboutTap;
+  final VoidCallback? onCollectionsTap;
+
+  const MobileMenuContainer({
+    Key? key,
+    this.onHomeTap,
+    this.onSaleTap,
+    this.onAboutTap,
+    this.onCollectionsTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // Mobile menu background color - complements the navbar
+      color: Colors.white,
+      // Border at the bottom for visual separation
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey[300]!,
+            width: 1,
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Mobile menu item for Home
+          _MobileMenuItem(
+            icon: Icons.home,
+            label: 'Home',
+            onTap: onHomeTap,
+          ),
+          // Mobile menu item for Sale
+          _MobileMenuItem(
+            icon: Icons.local_offer,
+            label: 'Sale',
+            onTap: onSaleTap,
+          ),
+          // Mobile menu item for About
+          _MobileMenuItem(
+            icon: Icons.info,
+            label: 'About',
+            onTap: onAboutTap,
+          ),
+          // Mobile menu item for Collections
+          _MobileMenuItem(
+            icon: Icons.grid_view,
+            label: 'Collections',
+            onTap: onCollectionsTap,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Individual menu item widget for mobile menu.
+/// Displays an icon, label, and tap feedback.
+class _MobileMenuItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback? onTap;
+
+  const _MobileMenuItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          // Padding for comfortable touch target and spacing
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              // Icon for visual identification
+              Icon(
+                icon,
+                size: 20,
+                color: Colors.grey[700],
+              ),
+              // Space between icon and label
+              const SizedBox(width: 16),
+              // Menu item label text
+              Semantics(
+                label: label,
+                button: true,
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
