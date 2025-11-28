@@ -238,3 +238,36 @@ Implement a responsive navbar that displays horizontal links on desktop and a ha
 - [ ] Implement desktop horizontal layout.
 - [ ] Integrate menu state toggle.
 - [ ] Test on multiple device sizes.
+
+---
+
+## 9. Shopping Cart
+
+### Description
+Implement a shopping cart feature that allows users to add products to a cart, view cart contents on a dedicated page, and proceed to checkout. The cart state persists during the session. Checkout is UI-only with no backend integration.
+
+### User Stories
+- As a user, I want to add products to my cart so I can purchase them later.
+- As a user, I want to view all items in my cart on a dedicated page.
+- As a user, I want to see a checkout button so I can proceed to purchase.
+
+### Acceptance Criteria
+- [ ] Cart state management stores added items during the session.
+- [ ] "Add to Cart" action adds the current product to the cart.
+- [ ] Cart page displays list of all items in the cart (image, name, price).
+- [ ] Cart page shows total price of all items.
+- [ ] Empty cart displays a friendly message with link to continue shopping.
+- [ ] Cart icon in navbar shows item count badge; navigates to cart page.
+- [ ] "Checkout" button is visible and styled (UI-only; no backend action).
+- [ ] Route registered and accessible via deep link.
+- [ ] Responsive layout on mobile/tablet/desktop.
+
+### Subtasks
+- [ ] Create cart state management (provider/model).
+- [ ] Create cart page component.
+- [ ] Implement cart item list display.
+- [ ] Implement total price calculation.
+- [ ] Add cart icon with badge to navbar.
+- [ ] Implement "Checkout" button (dummy action).
+- [ ] Register cart route.
+- [ ] Add widget tests for cart page.
