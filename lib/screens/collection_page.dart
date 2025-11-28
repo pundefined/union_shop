@@ -26,14 +26,34 @@ class CollectionPage extends StatefulWidget {
 }
 
 class _CollectionPageState extends State<CollectionPage> {
-  late List<Product> _sortedProducts;
+  late List<Product> _displayedProducts;
+  late List<Product> _allProducts;
   String _currentSort = 'name';
+  String _currentFilter = 'all';
 
   @override
   void initState() {
     super.initState();
-    _sortedProducts = List.from(widget.collection.items);
+    _allProducts = List.from(widget.collection.items);
+    _displayedProducts = List.from(_allProducts);
     _applySorting(_currentSort);
+  }
+
+  void _applyFiltering(String filterOption) {
+    setState(() {
+      _currentFilter = filterOption;
+      _displayedProducts = _allProducts.where((product) {
+        if (filterOption == 'all') {
+          return true;
+        } else if (filterOption == 'product') {
+          return product.category == ProductCategory.product;
+        } else if (filterOption == 'merchandise') {
+          return product.category == ProductCategory.merchandise;
+        }
+        return true;
+      }).toList();
+      _applySorting(_currentSort);
+    });
   }
 
   void _applySorting(String sortOption) {
@@ -41,17 +61,17 @@ class _CollectionPageState extends State<CollectionPage> {
       _currentSort = sortOption;
       switch (sortOption) {
         case 'name':
-          _sortedProducts.sort((a, b) => a.name.compareTo(b.name));
+          _displayedProducts.sort((a, b) => a.name.compareTo(b.name));
           break;
         case 'price_low':
-          _sortedProducts.sort((a, b) {
+          _displayedProducts.sort((a, b) {
             final priceA = a.discountedPrice ?? a.price;
             final priceB = b.discountedPrice ?? b.price;
             return priceA.compareTo(priceB);
           });
           break;
         case 'price_high':
-          _sortedProducts.sort((a, b) {
+          _displayedProducts.sort((a, b) {
             final priceA = a.discountedPrice ?? a.price;
             final priceB = b.discountedPrice ?? b.price;
             return priceB.compareTo(priceA);
@@ -88,7 +108,9 @@ class _CollectionPageState extends State<CollectionPage> {
           // Control Section
           ControlSection(
             currentSort: _currentSort,
+            currentFilter: _currentFilter,
             onSortChanged: _applySorting,
+            onFilterChanged: _applyFiltering,
           ),
           // Products Grid
           Padding(
@@ -122,9 +144,9 @@ class _CollectionPageState extends State<CollectionPage> {
         crossAxisSpacing: 16,
         childAspectRatio: 0.75,
       ),
-      itemCount: _sortedProducts.length,
+      itemCount: _displayedProducts.length,
       itemBuilder: (context, index) {
-        final product = _sortedProducts[index];
+        final product = _displayedProducts[index];
         return ProductCard(product: product);
       },
     );
