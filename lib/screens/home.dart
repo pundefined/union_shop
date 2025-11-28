@@ -62,86 +62,19 @@ class HomeScreen extends StatelessWidget {
                 // Summer Range Section
                 ProductSection(
                   title: 'Summer Range',
-                  products: [
-                    Product(
-                      id: 'home-product-1',
-                      name: 'Placeholder Product 1',
-                      price: 10.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Placeholder Product 1',
-                    ),
-                    Product(
-                      id: 'home-product-2',
-                      name: 'Placeholder Product 2',
-                      price: 15.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Placeholder Product 2',
-                    ),
-                  ],
+                  products: summerRangeProducts,
                 ),
                 const SizedBox(height: 64),
                 // New Arrivals Section
                 ProductSection(
                   title: 'New Arrivals',
-                  products: [
-                    Product(
-                      id: 'home-product-3',
-                      name: 'Placeholder Product 3',
-                      price: 20.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Placeholder Product 3',
-                    ),
-                    Product(
-                      id: 'home-product-4',
-                      name: 'Placeholder Product 4',
-                      price: 25.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Placeholder Product 4',
-                    ),
-                  ],
+                  products: newArrivalsProducts,
                 ),
                 const SizedBox(height: 64),
                 // Featured Collection Section
                 ProductSection(
                   title: 'Featured Collection',
-                  products: [
-                    Product(
-                      id: 'collection-product-1',
-                      name: 'Collection Product 1',
-                      price: 12.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Collection Product 1',
-                    ),
-                    Product(
-                      id: 'collection-product-2',
-                      name: 'Collection Product 2',
-                      price: 18.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Collection Product 2',
-                    ),
-                    Product(
-                      id: 'collection-product-3',
-                      name: 'Collection Product 3',
-                      price: 22.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Collection Product 3',
-                    ),
-                    Product(
-                      id: 'collection-product-4',
-                      name: 'Collection Product 4',
-                      price: 28.00,
-                      imageUrl:
-                          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                      description: 'Collection Product 4',
-                    ),
-                  ],
+                  products: featuredCollectionProducts,
                   showViewAll: true,
                   onViewAllPressed: () {
                     Navigator.pushNamed(context, '/collections');
