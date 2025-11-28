@@ -14,16 +14,16 @@ Extract the top navigation bar into a reusable component and introduce an applic
 - As a user, I want tappable controls to be easy to tap on touch devices.
 
 ### Acceptance Criteria
-- Reusable navbar component with logo and navigation buttons.
-- App shell component accepting child content and optional title, floating action, bottom nav.
-- All routes wrapped by app shell.
-- Named routes resolve correctly; deep links work.
-- Logo tap navigates home and clears navigation history.
-- Product navigation pushes normally; back button pops as expected.
-- Navbar layout matches pre-refactor at mobile/tablet sizes.
-- Tappable controls meet 48x48 logical pixel minimum.
-- Images include semantic labels.
-- Widget tests verify logo presence, tap navigation, and shell wrapping.
+- [ ] Reusable navbar component with logo and navigation buttons.
+- [ ] App shell component accepting child content and optional title, floating action, bottom nav.
+- [ ] All routes wrapped by app shell.
+- [ ] Named routes resolve correctly; deep links work.
+- [ ] Logo tap navigates home and clears navigation history.
+- [ ] Product navigation pushes normally; back button pops as expected.
+- [ ] Navbar layout matches pre-refactor at mobile/tablet sizes.
+- [ ] Tappable controls meet 48x48 logical pixel minimum.
+- [ ] Images include semantic labels.
+- [ ] Widget tests verify logo presence, tap navigation, and shell wrapping.
 
 ### Subtasks
 - [ ] Create reusable navbar component.
@@ -47,13 +47,13 @@ Add a simple, accessible, responsive "About us" page with organization informati
 - As a user, I want to navigate back from the About page to where I was before.
 
 ### Acceptance Criteria
-- About page component displays organization information.
-- Route registered and accessible via deep link.
-- Page shows centered "About us" title using theme headline style.
-- Page contains 4–6 paragraphs; content is scrollable on small screens.
-- Navbar includes "About" link that navigates without clearing history.
-- Back button returns to previous page normally.
-- Widget test verifies title and paragraph presence.
+- [ ] About page component displays organization information.
+- [ ] Route registered and accessible via deep link.
+- [ ] Page shows centered "About us" title using theme headline style.
+- [ ] Page contains 4–6 paragraphs; content is scrollable on small screens.
+- [ ] Navbar includes "About" link that navigates without clearing history.
+- [ ] Back button returns to previous page normally.
+- [ ] Widget test verifies title and paragraph presence.
 
 ### Subtasks
 - [ ] Create About page component.
@@ -75,14 +75,14 @@ Display product collections as an interactive grid of image tiles with overlaid 
 - As a user, I want to see each collection's title overlaid on its image.
 
 ### Acceptance Criteria
-- Responsive grid: 2 columns (<600px), 3 columns (600–900px), 4 columns (>900px).
-- Tiles maintain square aspect ratio with consistent padding.
-- Background image covers tile; text overlay has gradient for contrast.
-- Placeholder shown while loading; fallback on error.
-- Tap feedback (ripple); tap triggers navigation to collection detail.
-- 6–8 sample collections with title and image.
-- Collection tile extracted as reusable component.
-- Widget tests verify tile count, tap callback, and responsive columns.
+- [ ] Responsive grid: 2 columns (<600px), 3 columns (600–900px), 4 columns (>900px).
+- [ ] Tiles maintain square aspect ratio with consistent padding.
+- [ ] Background image covers tile; text overlay has gradient for contrast.
+- [ ] Placeholder shown while loading; fallback on error.
+- [ ] Tap feedback (ripple); tap triggers navigation to collection detail.
+- [ ] 6–8 sample collections with title and image.
+- [ ] Collection tile extracted as reusable component.
+- [ ] Widget tests verify tile count, tap callback, and responsive columns.
 
 ### Subtasks
 - [ ] Create collections page component.
@@ -105,13 +105,13 @@ Display a single collection's products in a responsive grid with header (title/d
 - As a user, I want to see filter and sort options for future use.
 
 ### Acceptance Criteria
-- Page displays collection data (title, description, items).
-- Header shows collection title and description with appropriate spacing.
-- "Filter By" and "Sort By" dropdowns render side-by-side (UI-only).
-- Responsive grid: 2 columns (<600px), 3 columns (≥600px).
-- Product cards show image, name, price; cards have tap feedback.
-- Minimum 44x44dp tap targets; responsive on mobile/tablet/desktop.
-- Reusable components for container, grid item cards, dropdowns.
+- [ ] Page displays collection data (title, description, items).
+- [ ] Header shows collection title and description with appropriate spacing.
+- [ ] "Filter By" and "Sort By" dropdowns render side-by-side (UI-only).
+- [ ] Responsive grid: 2 columns (<600px), 3 columns (≥600px).
+- [ ] Product cards show image, name, price; cards have tap feedback.
+- [ ] Minimum 44x44dp tap targets; responsive on mobile/tablet/desktop.
+- [ ] Reusable components for container, grid item cards, dropdowns.
 
 ### Subtasks
 - [ ] Create collection detail page component.
@@ -135,14 +135,14 @@ Comprehensive product detail page displaying product info (image, name, price, d
 - As a user, I want to return to the collection view from the product page.
 
 ### Acceptance Criteria
-- Product image displays with placeholder fallback.
-- Name, price, discounted price (if applicable), and description are visible.
-- Color dropdown renders only when colors available; size dropdown only when sizes available.
-- Quantity selector defaults to 1; cannot go below 1.
-- "Add to Cart" button validates quantity > 0 and required selections.
-- "Back to Collection" button navigates to parent collection.
-- Route receives product and collection as parameters.
-- Product model includes description, discounted price, colors, sizes.
+- [ ] Product image displays with placeholder fallback.
+- [ ] Name, price, discounted price (if applicable), and description are visible.
+- [ ] Color dropdown renders only when colors available; size dropdown only when sizes available.
+- [ ] Quantity selector defaults to 1; cannot go below 1.
+- [ ] "Add to Cart" button validates quantity > 0 and required selections.
+- [ ] "Back to Collection" button navigates to parent collection.
+- [ ] Route receives product and collection as parameters.
+- [ ] Product model includes description, discounted price, colors, sizes.
 
 ### Subtasks
 - [ ] Update product model with new fields.
@@ -165,13 +165,13 @@ Convert the static homepage banner into an interactive carousel displaying multi
 - As a user, I want slides to advance automatically so I can passively discover content.
 
 ### Acceptance Criteria
-- Carousel displays one full-width slide at a time (image, heading, subtext).
-- Previous/next buttons positioned on left/right sides; always visible.
-- Indicator dots below carousel; active dot visually distinguished; dots are clickable.
-- Smooth transitions; carousel loops at boundaries.
-- Auto-play advances every 5 seconds; pauses on hover; resumes after mouse leaves.
-- Responsive on mobile/tablet/desktop.
-- Keyboard navigation and ARIA labels for accessibility.
+- [ ] Carousel displays one full-width slide at a time (image, heading, subtext).
+- [ ] Previous/next buttons positioned on left/right sides; always visible.
+- [ ] Indicator dots below carousel; active dot visually distinguished; dots are clickable.
+- [ ] Smooth transitions; carousel loops at boundaries.
+- [ ] Auto-play advances every 5 seconds; pauses on hover; resumes after mouse leaves.
+- [ ] Responsive on mobile/tablet/desktop.
+- [ ] Keyboard navigation and ARIA labels for accessibility.
 
 ### Subtasks
 - [ ] Create carousel component structure.
@@ -195,14 +195,14 @@ Implement a login/signup page with form fields for username/email and password, 
 - As a user, I want the login/signup page to be usable on any device.
 
 ### Acceptance Criteria
-- Login/signup page component with stateful form.
-- Form fields for email/username and password with proper state management.
-- Password field has show/hide toggle icon.
-- Mode toggle switches between login and signup; fields clear on switch.
-- "Remember me" checkbox and "Forgot password?" link present (optional).
-- Login/signup buttons styled and functional (UI-ready).
-- Responsive layout; 48x48dp minimum touch targets.
-- Form state properly cleaned up on dispose.
+- [ ] Login/signup page component with stateful form.
+- [ ] Form fields for email/username and password with proper state management.
+- [ ] Password field has show/hide toggle icon.
+- [ ] Mode toggle switches between login and signup; fields clear on switch.
+- [ ] "Remember me" checkbox and "Forgot password?" link present (optional).
+- [ ] Login/signup buttons styled and functional (UI-ready).
+- [ ] Responsive layout; 48x48dp minimum touch targets.
+- [ ] Form state properly cleaned up on dispose.
 
 ### Subtasks
 - [ ] Create login/signup page component.
@@ -225,12 +225,12 @@ Implement a responsive navbar that displays horizontal links on desktop and a ha
 - As a user, I want to see navigation links displayed horizontally on larger screens.
 
 ### Acceptance Criteria
-- Screen width detection; layout changes at breakpoint.
-- Hamburger icon visible only on small screens; hidden on desktop.
-- Tapping hamburger toggles menu open/closed
-- Page content animates down/up in sync with menu.
-- Desktop shows horizontal navigation links; no hamburger icon.
-- Existing navbar styling and branding maintained.
+- [ ] Screen width detection; layout changes at breakpoint.
+- [ ] Hamburger icon visible only on small screens; hidden on desktop.
+- [ ] Tapping hamburger toggles menu open/closed
+- [ ] Page content animates down/up in sync with menu.
+- [ ] Desktop shows horizontal navigation links; no hamburger icon.
+- [ ] Existing navbar styling and branding maintained.
 
 ### Subtasks
 - [ ] Implement responsive breakpoint detection.
