@@ -1,3 +1,9 @@
+/// Enum for product categories.
+enum ProductCategory {
+  product,
+  merchandise,
+}
+
 /// Model class representing a product within a collection.
 class Product {
   final String id;
@@ -5,6 +11,7 @@ class Product {
   final double price;
   final String imageUrl;
   final String description;
+  final ProductCategory category;
   final double? discountedPrice;
   final List<String>? colors;
   final List<String>? sizes;
@@ -15,6 +22,7 @@ class Product {
     required this.price,
     required this.imageUrl,
     required this.description,
+    required this.category,
     this.discountedPrice,
     this.colors,
     this.sizes,
@@ -31,6 +39,7 @@ final List<Product> sampleProducts = [
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description:
         'A vibrant magnet featuring Portsmouth landmarks and the UPSU logo.',
+    category: ProductCategory.merchandise,
   ),
   Product(
     id: 'product-2',
@@ -39,6 +48,7 @@ final List<Product> sampleProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
     description: 'Beautiful postcard showcasing Portsmouth city views.',
+    category: ProductCategory.merchandise,
   ),
   Product(
     id: 'product-3',
@@ -48,6 +58,7 @@ final List<Product> sampleProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Cozy hoodie with UPSU branding',
+    category: ProductCategory.product,
     colors: ['Navy', 'Grey', 'Black'],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
   ),
@@ -58,6 +69,7 @@ final List<Product> sampleProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
     description: 'Ceramic mug with UPSU logo.',
+    category: ProductCategory.merchandise,
     colors: ['White', 'Black'],
   ),
   Product(
@@ -67,6 +79,7 @@ final List<Product> sampleProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Set of 5 vinyl stickers featuring Portsmouth landmarks.',
+    category: ProductCategory.merchandise,
   ),
   Product(
     id: 'product-6',
@@ -75,6 +88,7 @@ final List<Product> sampleProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
     description: 'Spacious tote bag perfect for campus life.',
+    category: ProductCategory.product,
     colors: ['Navy', 'Natural'],
   ),
 ];
@@ -88,6 +102,7 @@ final List<Product> summerRangeProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Placeholder Product 1',
+    category: ProductCategory.product,
   ),
   Product(
     id: 'home-product-2',
@@ -96,6 +111,7 @@ final List<Product> summerRangeProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Placeholder Product 2',
+    category: ProductCategory.product,
   ),
 ];
 
@@ -108,6 +124,7 @@ final List<Product> newArrivalsProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Placeholder Product 3',
+    category: ProductCategory.product,
   ),
   Product(
     id: 'home-product-4',
@@ -116,6 +133,7 @@ final List<Product> newArrivalsProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Placeholder Product 4',
+    category: ProductCategory.product,
   ),
 ];
 
@@ -128,6 +146,7 @@ final List<Product> featuredCollectionProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Collection Product 1',
+    category: ProductCategory.product,
   ),
   Product(
     id: 'collection-product-2',
@@ -136,6 +155,7 @@ final List<Product> featuredCollectionProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Collection Product 2',
+    category: ProductCategory.product,
   ),
   Product(
     id: 'collection-product-3',
@@ -144,6 +164,7 @@ final List<Product> featuredCollectionProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Collection Product 3',
+    category: ProductCategory.product,
   ),
   Product(
     id: 'collection-product-4',
@@ -152,5 +173,6 @@ final List<Product> featuredCollectionProducts = [
     imageUrl:
         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
     description: 'Collection Product 4',
+    category: ProductCategory.product,
   ),
 ];
