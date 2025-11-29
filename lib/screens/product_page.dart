@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/cart.dart';
 import '../models/product.dart';
 import '../styles/text_styles.dart';
 import '../widgets/color_selector.dart';
@@ -161,7 +163,12 @@ class _ProductPageState extends State<ProductPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Implement add to cart functionality
+                    context.read<CartProvider>().addItem(
+                          product: widget.product,
+                          quantity: quantity,
+                          selectedColor: selectedColour,
+                          selectedSize: selectedSize,
+                        );
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
