@@ -25,6 +25,21 @@ class _ProductPageState extends State<ProductPage> {
   int quantity = 1;
 
   @override
+  void initState() {
+    super.initState();
+    // Set default color to first available
+    if (widget.product.colors != null && widget.product.colors!.isNotEmpty) {
+      selectedColour = widget.product.colors!.first;
+    }
+    // Set default size to 'M' if available, otherwise first available
+    if (widget.product.sizes != null && widget.product.sizes!.isNotEmpty) {
+      selectedSize = widget.product.sizes!.contains('M')
+          ? 'M'
+          : widget.product.sizes!.first;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
