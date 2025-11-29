@@ -173,7 +173,8 @@ class _AppNavbarState extends State<AppNavbar> {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: widget.onCart ?? () {},
+                          onPressed: widget.onCart ??
+                              () => Navigator.pushNamed(context, '/cart'),
                         ),
                         // Hamburger menu icon shown only on mobile
                         if (screenSize == ScreenSize.mobile)
