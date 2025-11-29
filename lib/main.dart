@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/screens/cart_page.dart';
@@ -11,7 +13,12 @@ import 'package:union_shop/widgets/app_shell.dart';
 import 'package:union_shop/screens/home.dart';
 
 void main() {
-  runApp(const UnionShopApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: const UnionShopApp(),
+    ),
+  );
 }
 
 class UnionShopApp extends StatelessWidget {
