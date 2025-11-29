@@ -70,17 +70,6 @@ class CartPage extends StatelessWidget {
                   child: const Text('Checkout'),
                 ),
               ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/collections'),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: const Text('Continue Shopping'),
-                ),
-              ),
             ],
           ),
         ),
@@ -89,30 +78,24 @@ class CartPage extends StatelessWidget {
   }
 
   Widget _buildEmptyCart(BuildContext context) {
-    return Center(
+    return const Center(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.shopping_cart_outlined,
-                size: 80, color: Colors.grey),
-            const SizedBox(height: 24),
-            const Text(
+            Icon(Icons.shopping_cart_outlined, size: 80, color: Colors.grey),
+            SizedBox(height: 24),
+            Text(
               'Your cart is empty',
               style: TextStyles.productHeading,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 12),
-            const Text(
+            SizedBox(height: 12),
+            Text(
               'Looks like you haven\'t added any items yet.',
               style: TextStyles.bodyText,
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/collections'),
-              child: const Text('Continue Shopping'),
             ),
           ],
         ),
