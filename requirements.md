@@ -271,3 +271,43 @@ Implement a shopping cart feature that allows users to add products to a cart, v
 - [ ] Implement "Checkout" button (dummy action).
 - [ ] Register cart route.
 - [ ] Add widget tests for cart page.
+
+---
+
+## 10. Personalisation - The Print Shack
+
+### Description
+Implement "The Print Shack" feature that allows users to configure personalisation on their items with up to 4 printed lines of custom text. This includes a personalisation form page with a dynamic form that updates based on line count selection, and an about page describing the service. Both pages are accessible via a new collapsible navbar section. This is a UI-only feature; personalisation is not implemented as a purchasable product.
+
+### User Stories
+- As a user, I want to configure custom text for my items so I can personalise my merchandise.
+- As a user, I want to choose how many lines of text (1-4) to add so I have flexibility in my personalisation.
+- As a user, I want the form to update dynamically based on my line count selection so I only see relevant fields.
+- As a user, I want to learn about the personalisation service on a dedicated about page.
+- As a user, I want to access Print Shack pages from a dedicated section in the navbar.
+
+### Acceptance Criteria
+- [ ] Personalisation form page displays with dynamic text input fields (1-4 lines).
+- [ ] Line count selector updates the number of visible text input fields in real-time.
+- [ ] Text input fields have appropriate labels and character limits.
+- [ ] Preview section shows entered text as it will appear.
+- [ ] Submit button triggers placeholder action (snackbar/dialog).
+- [ ] Print Shack about page displays service description, guidelines, and pricing info.
+- [ ] Navbar includes collapsible "The Print Shack" section with sub-items.
+- [ ] Desktop navbar shows dropdown menu; mobile menu shows expandable section.
+- [ ] Routes registered: `/print-shack` (form) and `/print-shack/about`.
+- [ ] Pages use consistent layout structure with product pages (refactor if needed).
+- [ ] Responsive layout on mobile/tablet/desktop.
+- [ ] Minimum 48x48dp tap targets; proper accessibility labels on form fields.
+
+### Subtasks
+- [ ] Create personalisation form page component.
+- [ ] Implement dynamic form with line count selector.
+- [ ] Implement text input fields with validation.
+- [ ] Implement preview section.
+- [ ] Create Print Shack about page component.
+- [ ] Add collapsible "The Print Shack" section to navbar.
+- [ ] Implement navbar expand/collapse behaviour for mobile and desktop.
+- [ ] Register routes for both pages.
+- [ ] Refactor shared page layout from product page (if applicable).
+- [ ] Add widget tests for form page and about page.
