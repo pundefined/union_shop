@@ -30,8 +30,7 @@ Implement "The Print Shack" feature that allows users to configure personalisati
 ### Widgets/Files to Create
 1. **Personalisation Form Page** (`/lib/screens/print_shack_form_page.dart`):
    - Line count selector (1-4 lines)
-   - Dynamic text input fields based on selection
-   - Preview section showing entered text
+   - Dynamic text input fields based on 
    - Submit button (UI-only, placeholder action)
    - Use same layout structure as product pages
 
@@ -67,7 +66,6 @@ Implement "The Print Shack" feature that allows users to configure personalisati
 - Subtitle: "Add up to 4 lines of custom text"
 - Line count options: 1, 2, 3, 4
 - Placeholder text for inputs: "Enter line 1", "Enter line 2", etc.
-- Submit button: "Preview Personalisation"
 - Submit action: Display snackbar or dialog placeholder
 
 #### Print Shack About Page

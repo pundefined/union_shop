@@ -290,7 +290,6 @@ Implement "The Print Shack" feature that allows users to configure personalisati
 - [ ] Personalisation form page displays with dynamic text input fields (1-4 lines).
 - [ ] Line count selector updates the number of visible text input fields in real-time.
 - [ ] Text input fields have appropriate labels and character limits.
-- [ ] Preview section shows entered text as it will appear.
 - [ ] Submit button triggers placeholder action (snackbar/dialog).
 - [ ] Print Shack about page displays service description, guidelines, and pricing info.
 - [ ] Navbar includes collapsible "The Print Shack" section with sub-items.
@@ -304,7 +303,6 @@ Implement "The Print Shack" feature that allows users to configure personalisati
 - [ ] Create personalisation form page component.
 - [ ] Implement dynamic form with line count selector.
 - [ ] Implement text input fields with validation.
-- [ ] Implement preview section.
 - [ ] Create Print Shack about page component.
 - [ ] Add collapsible "The Print Shack" section to navbar.
 - [ ] Implement navbar expand/collapse behaviour for mobile and desktop.
