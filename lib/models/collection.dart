@@ -33,81 +33,49 @@ class Collection {
   }
 }
 
-/// Sample data for demonstration and testing.
-final Collection sampleCollection = Collection(
-  id: 'collection-1',
-  title: 'New Arrivals',
+// =============================================================================
+// SAMPLE COLLECTIONS
+// =============================================================================
+
+/// Essentials collection - everyday items students need.
+final Collection essentialsCollection = Collection(
+  id: 'essentials',
+  title: 'Essentials',
   description:
-      'Discover the latest additions to our store. Fresh products handpicked for you.',
+      'Everything you need for student life. From bags to basics, we\'ve got you covered with quality everyday items.',
   imageUrl:
-      'https://images.unsplash.com/photo-1505695511574-73f5e69a7b2e?w=500&h=500&fit=crop',
-  items: sampleProducts,
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
+  items: essentialsProducts,
 );
 
-/// Sample collections data with 8 curated product groups for the collections grid.
+/// Summer Sale collection - seasonal discounts.
+final Collection summerSaleCollection = Collection(
+  id: 'summer-sale',
+  title: 'Summer Sale',
+  description:
+      'Beat the heat with our summer essentials! Grab these hot deals before they\'re gone.',
+  imageUrl:
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=500&fit=crop',
+  items: summerSaleProducts,
+);
+
+/// New Arrivals collection - latest products.
+final Collection newArrivalsCollection = Collection(
+  id: 'new-arrivals',
+  title: 'New Arrivals',
+  description:
+      'Fresh finds just landed! Check out our latest additions to the store.',
+  imageUrl:
+      'https://images.unsplash.com/photo-1505695511574-73f5e69a7b2e?w=500&h=500&fit=crop',
+  items: newArrivalsProducts,
+);
+
+/// All collections available in the store.
 final List<Collection> sampleCollections = [
-  Collection(
-    id: 'summer',
-    title: 'Summer Sale',
-    description: 'Beat the heat with our summer collection',
-    imageUrl:
-        'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'arrivals',
-    title: 'New Arrivals',
-    description: 'Discover what\'s new this season',
-    imageUrl:
-        'https://images.unsplash.com/photo-1505695511574-73f5e69a7b2e?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'sale',
-    title: 'Sale',
-    description: 'Great deals on selected items',
-    imageUrl:
-        'https://images.unsplash.com/photo-1552062407-291ce3f93c4f?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'musthaves',
-    title: 'Must Haves',
-    description: 'Customer favorites and bestsellers',
-    imageUrl:
-        'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'premium',
-    title: 'Premium Collection',
-    description: 'Luxury items for the discerning shopper',
-    imageUrl:
-        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'essentials',
-    title: 'Essentials',
-    description: 'The basics you always need',
-    imageUrl:
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'limited',
-    title: 'Limited Edition',
-    description: 'Exclusive items available for a limited time',
-    imageUrl:
-        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop',
-    items: [],
-  ),
-  Collection(
-    id: 'gifts',
-    title: 'Gift Ideas',
-    description: 'Perfect presents for every occasion',
-    imageUrl:
-        'https://images.unsplash.com/photo-1513225357062-080301f385cf?w=500&h=500&fit=crop',
-    items: [],
-  ),
+  essentialsCollection,
+  summerSaleCollection,
+  newArrivalsCollection,
 ];
+
+/// Default collection for backwards compatibility.
+final Collection sampleCollection = essentialsCollection;

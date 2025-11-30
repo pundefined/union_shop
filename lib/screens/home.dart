@@ -87,27 +87,18 @@ class HomeScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: 32),
-                // Category Links Grid (4 columns)
+                // Category Links Grid
                 GridView.count(
-                  crossAxisCount: 4,
+                  crossAxisCount:
+                      MediaQuery.of(context).size.width > 600 ? 3 : 1,
                   mainAxisSpacing: 16.0,
                   crossAxisSpacing: 16.0,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    CollectionTile(
-                      collection: sampleCollections[0], // Summer Sale
-                    ),
-                    CollectionTile(
-                      collection: sampleCollections[1], // New Arrivals
-                    ),
-                    CollectionTile(
-                      collection: sampleCollections[3], // Must Haves
-                    ),
-                    CollectionTile(
-                      collection: sampleCollections[2], // Sale
-                    ),
-                  ],
+                  children: sampleCollections
+                      .map((collection) =>
+                          CollectionTile(collection: collection))
+                      .toList(),
                 ),
               ],
             ),
