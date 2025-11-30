@@ -13,8 +13,33 @@ class PrintShackFormPage extends StatefulWidget {
 }
 
 class _PrintShackFormPageState extends State<PrintShackFormPage> {
+  /// Maximum characters allowed per line
+  static const int _maxCharactersPerLine = 20;
+
   /// Currently selected number of lines (1-4)
   int _selectedLineCount = 1;
+
+  /// Controllers for each text input line
+  late List<TextEditingController> _lineControllers;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize controllers for all 4 possible lines
+    _lineControllers = List.generate(
+      4,
+      (index) => TextEditingController(),
+    );
+  }
+
+  @override
+  void dispose() {
+    // Clean up controllers to prevent memory leaks
+    for (final controller in _lineControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,15 +100,54 @@ class _PrintShackFormPageState extends State<PrintShackFormPage> {
                 onChanged: (value) {
                   if (value != null) {
                     setState(() {
+                      // Clear text from lines that will be hidden
+                      for (int i = value; i < 4; i++) {
+                        _lineControllers[i].clear();
+                      }
                       _selectedLineCount = value;
                     });
                   }
                 },
               ),
 
-              // TODO: Text input fields will be added in subtask 3
+              // Text input fields
+              const SizedBox(height: 24),
+              const Text(
+                'Your Text',
+                style: TextStyles.subHeading,
+              ),
+              const SizedBox(height: 8),
+              for (int i = 0; i < _selectedLineCount; i++) ...[
+                if (i > 0) const SizedBox(height: 16),
+                TextFormField(
+                  controller: _lineControllers[i],
+                  maxLength: _maxCharactersPerLine,
+                  decoration: InputDecoration(
+                    labelText: 'Line ${i + 1}',
+                    hintText: 'Enter text for line ${i + 1}',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
+                  textInputAction: i < _selectedLineCount - 1
+                      ? TextInputAction.next
+                      : TextInputAction.done,
+                ),
+              ],
 
-              // TODO: Submit button will be added in subtask 3
+              // Submit button (action not yet implemented)
+              const SizedBox(height: 32),
+              const SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: null, // TODO: Hook up submit action
+                  child: Text('Preview Personalisation'),
+                ),
+              ),
             ],
           ),
         ),
