@@ -62,56 +62,24 @@ void main() {
 
       expect(result, isNull);
     });
-  });
 
-  group('Product slug uniqueness', () {
-    test('products with same name generate same slug', () {
-      final product1 = Product(
-        id: '1',
-        name: 'Test Product',
-        price: 10.00,
-        imageUrl: 'https://example.com/1.jpg',
-        description: 'First product',
-        category: ProductCategory.product,
-      );
+    test('uses custom slug when provided', () {
+      final products = [
+        Product(
+          id: '1',
+          name: 'Portsmouth Magnet',
+          price: 2.50,
+          imageUrl: 'https://example.com/magnet.jpg',
+          description: 'A magnet',
+          category: ProductCategory.merchandise,
+          slug: 'custom-magnet',
+        ),
+      ];
 
-      final product2 = Product(
-        id: '2',
-        name: 'Test Product',
-        price: 15.00,
-        imageUrl: 'https://example.com/2.jpg',
-        description: 'Second product',
-        category: ProductCategory.product,
-      );
+      final result = Product.findBySlug(products, 'custom-magnet');
 
-      // Note: This test documents that auto-generated slugs may collide.
-      // For global uniqueness, custom slugs should be provided or
-      // a uniqueness check should be implemented at a higher level.
-      expect(product1.slug, equals(product2.slug));
-    });
-
-    test('custom slugs can ensure uniqueness', () {
-      final product1 = Product(
-        id: '1',
-        name: 'Test Product',
-        price: 10.00,
-        imageUrl: 'https://example.com/1.jpg',
-        description: 'First product',
-        category: ProductCategory.product,
-        slug: 'test-product-1',
-      );
-
-      final product2 = Product(
-        id: '2',
-        name: 'Test Product',
-        price: 15.00,
-        imageUrl: 'https://example.com/2.jpg',
-        description: 'Second product',
-        category: ProductCategory.product,
-        slug: 'test-product-2',
-      );
-
-      expect(product1.slug, isNot(equals(product2.slug)));
+      expect(result, isNotNull);
+      expect(result!.id, equals('1'));
     });
   });
 }
