@@ -18,6 +18,7 @@ import 'package:union_shop/widgets/app_shell.dart';
 ///
 /// Uses ShellRoute to wrap all routes with AppShell for consistent
 /// navigation bar and footer across all pages.
+/// Uses NoTransitionPage to prevent overflow during page transitions.
 final GoRouter router = GoRouter(
   initialLocation: '/',
   routes: [
@@ -28,59 +29,79 @@ final GoRouter router = GoRouter(
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomeScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: HomeScreen(),
+          ),
         ),
         GoRoute(
           path: '/about',
-          builder: (context, state) => const AboutPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: AboutPage(),
+          ),
         ),
         GoRoute(
           path: '/cart',
-          builder: (context, state) => const CartPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: CartPage(),
+          ),
         ),
         GoRoute(
           path: '/login',
-          builder: (context, state) => const LoginSignupScreen(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: LoginSignupScreen(),
+          ),
         ),
         GoRoute(
           path: '/checkout',
-          builder: (context, state) => const CheckoutPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: CheckoutPage(),
+          ),
         ),
         GoRoute(
           path: '/print-shack',
-          builder: (context, state) => const PrintShackFormPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: PrintShackFormPage(),
+          ),
         ),
         GoRoute(
           path: '/print-shack/about',
-          builder: (context, state) => const PrintShackAboutPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: PrintShackAboutPage(),
+          ),
         ),
         GoRoute(
           path: '/collections',
-          builder: (context, state) => const CollectionsPage(),
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: CollectionsPage(),
+          ),
           routes: [
             GoRoute(
               path: ':collectionSlug',
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 final slug = state.pathParameters['collectionSlug']!;
                 final collection =
                     Collection.findBySlug(sampleCollections, slug);
                 if (collection == null) {
                   throw Exception('Collection not found: $slug');
                 }
-                return CollectionPage(collection: collection);
+                return NoTransitionPage(
+                  child: CollectionPage(collection: collection),
+                );
               },
             ),
           ],
         ),
         GoRoute(
           path: '/products/:productSlug',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final slug = state.pathParameters['productSlug']!;
             // Search all collections for the product
             for (final collection in sampleCollections) {
               final product = Product.findBySlug(collection.items, slug);
               if (product != null) {
-                return ProductPage(product: product);
+                return NoTransitionPage(
+                  child: ProductPage(product: product),
+                );
               }
             }
             throw Exception('Product not found: $slug');
