@@ -12,6 +12,7 @@ import 'package:union_shop/screens/login_signup_screen.dart';
 import 'package:union_shop/screens/print_shack_about_page.dart';
 import 'package:union_shop/screens/print_shack_form_page.dart';
 import 'package:union_shop/screens/product_page.dart';
+import 'package:union_shop/screens/search_page.dart';
 import 'package:union_shop/widgets/app_shell.dart';
 
 /// Application router configuration using go_router.
@@ -67,6 +68,12 @@ final GoRouter router = GoRouter(
           path: '/print-shack/about',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: PrintShackAboutPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/search',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: SearchPage(),
           ),
         ),
         GoRoute(
