@@ -65,37 +65,26 @@ final GoRouter router = GoRouter(
                 final collection =
                     Collection.findBySlug(sampleCollections, slug);
                 if (collection == null) {
-                  // Will be handled by errorBuilder
                   throw Exception('Collection not found: $slug');
                 }
                 return CollectionPage(collection: collection);
               },
-              routes: [
-                GoRoute(
-                  path: 'products/:productSlug',
-                  builder: (context, state) {
-                    final collectionSlug =
-                        state.pathParameters['collectionSlug']!;
-                    final productSlug = state.pathParameters['productSlug']!;
-
-                    final collection = Collection.findBySlug(
-                        sampleCollections, collectionSlug);
-                    if (collection == null) {
-                      throw Exception('Collection not found: $collectionSlug');
-                    }
-
-                    final product =
-                        Product.findBySlug(collection.items, productSlug);
-                    if (product == null) {
-                      throw Exception('Product not found: $productSlug');
-                    }
-
-                    return ProductPage(product: product);
-                  },
-                ),
-              ],
             ),
           ],
+        ),
+        GoRoute(
+          path: '/products/:productSlug',
+          builder: (context, state) {
+            final slug = state.pathParameters['productSlug']!;
+            // Search all collections for the product
+            for (final collection in sampleCollections) {
+              final product = Product.findBySlug(collection.items, slug);
+              if (product != null) {
+                return ProductPage(product: product);
+              }
+            }
+            throw Exception('Product not found: $slug');
+          },
         ),
       ],
     ),
