@@ -41,13 +41,11 @@ void main() {
       expect(match.pathParameters['collectionSlug'], equals('summer-sale'));
     });
 
-    test('router matches /collections/:slug/products/:slug path', () {
-      final match = router.configuration.findMatch(
-          Uri.parse('/collections/summer-sale/products/test-product'));
-      expect(match.uri.path,
-          equals('/collections/summer-sale/products/test-product'));
-      expect(match.pathParameters['collectionSlug'], equals('summer-sale'));
-      expect(match.pathParameters['productSlug'], equals('test-product'));
+    test('router matches /products/:slug path', () {
+      final match = router.configuration
+          .findMatch(Uri.parse('/products/canvas-tote-bag'));
+      expect(match.uri.path, equals('/products/canvas-tote-bag'));
+      expect(match.pathParameters['productSlug'], equals('canvas-tote-bag'));
     });
 
     test('router matches /cart path', () {
