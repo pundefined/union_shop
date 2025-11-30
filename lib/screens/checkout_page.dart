@@ -38,7 +38,10 @@ class CheckoutPage extends StatelessWidget {
                 // Order items
                 _buildOrderItemsList(cart),
 
-                // TODO: Price breakdown will be added in subsequent subtask
+                const SizedBox(height: 24),
+
+                // Total
+                _buildTotal(cart),
 
                 // TODO: Place Order button will be added in subsequent subtask
               ],
@@ -161,6 +164,37 @@ class CheckoutPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTotal(CartProvider cart) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Total',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          Text(
+            '£${cart.totalPrice.toStringAsFixed(2)}',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF4d2963),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
