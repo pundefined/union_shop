@@ -43,8 +43,7 @@ final Collection essentialsCollection = Collection(
   title: 'Essentials',
   description:
       'Everything you need for student life. From bags to basics, we\'ve got you covered with quality everyday items.',
-  imageUrl:
-      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
+  imageUrl: 'assets/images/backpack.png',
   items: essentialsProducts,
 );
 
@@ -54,8 +53,7 @@ final Collection summerSaleCollection = Collection(
   title: 'Summer Sale',
   description:
       'Beat the heat with our summer essentials! Grab these hot deals before they\'re gone.',
-  imageUrl:
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=500&fit=crop',
+  imageUrl: 'assets/images/retro_sunglasses.png',
   items: summerSaleProducts,
 );
 
@@ -65,8 +63,7 @@ final Collection newArrivalsCollection = Collection(
   title: 'New Arrivals',
   description:
       'Fresh finds just landed! Check out our latest additions to the store.',
-  imageUrl:
-      'https://images.unsplash.com/photo-1505695511574-73f5e69a7b2e?w=500&h=500&fit=crop',
+  imageUrl: 'assets/images/wireless_earbuds.png',
   items: newArrivalsProducts,
 );
 
@@ -76,8 +73,7 @@ final Collection signatureRangeCollection = Collection(
   title: 'Signature Range',
   description:
       'Our premium collection featuring high-quality items with elegant university branding. Perfect for alumni and special occasions.',
-  imageUrl:
-      'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop',
+  imageUrl: 'assets/images/premium_leather_jacket.png',
   items: signatureRangeProducts,
 );
 
@@ -87,8 +83,7 @@ final Collection winterFavouritesCollection = Collection(
   title: 'Winter Favourites',
   description:
       'Stay warm and cozy with our winter essentials. From puffer jackets to thermal socks, we\'ve got you covered.',
-  imageUrl:
-      'https://images.unsplash.com/photo-1544923246-77307dd628b5?w=500&h=500&fit=crop',
+  imageUrl: 'assets/images/puffer_jacket.png',
   items: winterFavouritesProducts,
 );
 
