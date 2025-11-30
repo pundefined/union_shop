@@ -1,5 +1,18 @@
 import 'product.dart';
 
+/// Generates a URL-safe slug from a string.
+///
+/// Converts to lowercase, replaces spaces and special characters with hyphens,
+/// removes consecutive hyphens, and trims hyphens from start/end.
+String generateSlug(String input) {
+  return input
+      .toLowerCase()
+      .replaceAll(RegExp(r'[^a-z0-9\s-]'), '') // Remove special characters
+      .replaceAll(RegExp(r'\s+'), '-') // Replace spaces with hyphens
+      .replaceAll(RegExp(r'-+'), '-') // Remove consecutive hyphens
+      .replaceAll(RegExp(r'^-|-$'), ''); // Trim hyphens from start/end
+}
+
 /// Model class representing a product collection.
 class Collection {
   final String id;
@@ -8,13 +21,28 @@ class Collection {
   final String imageUrl;
   final List<Product> items;
 
+  /// URL-safe slug for deep linking, auto-generated from title.
+  final String slug;
+
   Collection({
     required this.id,
     required this.title,
     required this.description,
     required this.imageUrl,
     required this.items,
-  });
+    String? slug,
+  }) : slug = slug ?? generateSlug(title);
+
+  /// Finds a collection by its slug from a list of collections.
+  ///
+  /// Returns `null` if no collection with the given slug is found.
+  static Collection? findBySlug(List<Collection> collections, String slug) {
+    try {
+      return collections.firstWhere((c) => c.slug == slug);
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 /// Sample data for demonstration and testing.
