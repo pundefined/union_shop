@@ -43,7 +43,10 @@ class CheckoutPage extends StatelessWidget {
                 // Total
                 _buildTotal(cart),
 
-                // TODO: Place Order button will be added in subsequent subtask
+                const SizedBox(height: 32),
+
+                // Place Order button
+                PlaceOrderButton(cart: cart),
               ],
             ),
           ),
@@ -196,5 +199,48 @@ class CheckoutPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Button widget that places the order, clears cart, and navigates home.
+class PlaceOrderButton extends StatelessWidget {
+  final CartProvider cart;
+
+  const PlaceOrderButton({Key? key, required this.cart}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () => _placeOrder(context),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF4d2963),
+          foregroundColor: Colors.white,
+        ),
+        child: const Text(
+          'Place Order',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+      ),
+    );
+  }
+
+  void _placeOrder(BuildContext context) {
+    // Clear the cart
+    cart.clear();
+
+    // Show confirmation SnackBar
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content:
+            Text('Order placed successfully! Thank you for your purchase.'),
+        duration: Duration(seconds: 3),
+      ),
+    );
+
+    // Navigate to home and clear navigation stack
+    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
   }
 }
