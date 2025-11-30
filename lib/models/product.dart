@@ -1,4 +1,4 @@
-import 'collection.dart' show generateSlug;
+import '../utils/slug.dart';
 
 /// Enum for product categories.
 enum ProductCategory {
