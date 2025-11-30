@@ -55,8 +55,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-1',
     name: 'Canvas Tote Bag',
     price: 14.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/canvas_tote_bag.png',
     description:
         'Durable canvas tote bag perfect for carrying books, groceries, or everyday essentials. Features reinforced handles and a spacious interior.',
     category: ProductCategory.product,
@@ -66,8 +65,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-2',
     name: 'Classic Hoodie',
     price: 34.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/classic_hoodie.png',
     description:
         'Soft and cozy hoodie made from premium cotton blend. Perfect for chilly days on campus or lounging at home.',
     category: ProductCategory.product,
@@ -78,8 +76,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-3',
     name: 'Basic T-Shirt',
     price: 18.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/basic_tshirt.png',
     description:
         'Classic fit t-shirt made from 100% organic cotton. A wardrobe staple that goes with everything.',
     category: ProductCategory.product,
@@ -90,8 +87,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-4',
     name: 'Lanyard with Card Holder',
     price: 6.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/lanyard_with_card_holder.png',
     description:
         'Convenient lanyard with detachable card holder. Keep your ID and cards easily accessible.',
     category: ProductCategory.merchandise,
@@ -101,8 +97,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-5',
     name: 'Notebook Set',
     price: 12.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/notebook_set.png',
     description:
         'Set of 3 lined notebooks perfect for lectures, meetings, or journaling. 80 pages each.',
     category: ProductCategory.merchandise,
@@ -111,8 +106,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-6',
     name: 'Water Bottle',
     price: 16.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/water_bottle.png',
     description:
         'Stainless steel insulated water bottle. Keeps drinks cold for 24 hours or hot for 12 hours.',
     category: ProductCategory.merchandise,
@@ -122,8 +116,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-7',
     name: 'Backpack',
     price: 44.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/backpack.png',
     description:
         'Versatile backpack with laptop compartment, multiple pockets, and padded straps for comfort.',
     category: ProductCategory.product,
@@ -133,8 +126,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-8',
     name: 'Pen Set',
     price: 8.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/pen_set.png',
     description:
         'Premium ballpoint pen set with smooth ink flow. Includes 5 pens in assorted colours.',
     category: ProductCategory.merchandise,
@@ -143,8 +135,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-9',
     name: 'Zip-Up Hoodie',
     price: 39.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/zip_up_hoodie.png',
     description:
         'Full zip hoodie with front pockets. Easy to layer and perfect for unpredictable weather.',
     category: ProductCategory.product,
@@ -155,8 +146,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-10',
     name: 'Baseball Cap',
     price: 15.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/baseball_cap.png',
     description:
         'Classic baseball cap with adjustable strap. Protects from sun while looking stylish.',
     category: ProductCategory.product,
@@ -166,8 +156,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-11',
     name: 'Sweatpants',
     price: 32.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/sweatpants.png',
     description:
         'Comfortable jogger-style sweatpants with elastic cuffs and drawstring waist. Perfect for lounging or gym.',
     category: ProductCategory.product,
@@ -178,8 +167,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-12',
     name: 'Umbrella',
     price: 18.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1534309466160-70b22cc6252c?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/umbrella.png',
     description:
         'Compact folding umbrella with automatic open/close. Fits easily in your bag for rainy days.',
     category: ProductCategory.merchandise,
@@ -189,8 +177,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-13',
     name: 'Mug',
     price: 9.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/mug.png',
     description:
         'Ceramic mug with university branding. Holds 350ml of your favourite hot beverage.',
     category: ProductCategory.merchandise,
@@ -200,8 +187,7 @@ final List<Product> essentialsProducts = [
     id: 'essentials-14',
     name: 'Beanie',
     price: 14.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/beanie.png',
     description:
         'Warm knitted beanie for cold days. One size fits most with stretchy ribbed design.',
     category: ProductCategory.product,
