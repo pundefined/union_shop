@@ -31,6 +31,10 @@ class _CollectionPageState extends State<CollectionPage> {
   String _currentSort = 'name';
   String _currentFilter = 'all';
 
+  // Pagination state
+  int _currentPage = 1;
+  static const int _itemsPerPage = 6;
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +46,7 @@ class _CollectionPageState extends State<CollectionPage> {
   void _applyFiltering(String filterOption) {
     setState(() {
       _currentFilter = filterOption;
+      _currentPage = 1; // Reset to first page when filtering
       _displayedProducts = _allProducts.where((product) {
         if (filterOption == 'all') {
           return true;
@@ -79,6 +84,46 @@ class _CollectionPageState extends State<CollectionPage> {
           break;
       }
     });
+  }
+
+  /// Returns the total number of pages based on displayed products.
+  int get _totalPages => (_displayedProducts.length / _itemsPerPage).ceil();
+
+  /// Returns the products for the current page.
+  List<Product> get _paginatedProducts {
+    final startIndex = (_currentPage - 1) * _itemsPerPage;
+    final endIndex = startIndex + _itemsPerPage;
+    return _displayedProducts.sublist(
+      startIndex,
+      endIndex > _displayedProducts.length ? _displayedProducts.length : endIndex,
+    );
+  }
+
+  /// Navigate to the previous page.
+  void _goToPreviousPage() {
+    if (_currentPage > 1) {
+      setState(() {
+        _currentPage--;
+      });
+    }
+  }
+
+  /// Navigate to the next page.
+  void _goToNextPage() {
+    if (_currentPage < _totalPages) {
+      setState(() {
+        _currentPage++;
+      });
+    }
+  }
+
+  /// Navigate to a specific page.
+  void _goToPage(int page) {
+    if (page >= 1 && page <= _totalPages) {
+      setState(() {
+        _currentPage = page;
+      });
+    }
   }
 
   @override
@@ -133,6 +178,8 @@ class _CollectionPageState extends State<CollectionPage> {
       columnCount = 3;
     }
 
+    final products = _paginatedProducts;
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -142,7 +189,7 @@ class _CollectionPageState extends State<CollectionPage> {
         crossAxisSpacing: 16,
         childAspectRatio: 0.75,
       ),
-      itemCount: _displayedProducts.length,
+      itemCount: products.length,
       itemBuilder: (context, index) {
         final product = _displayedProducts[index];
         return ProductCard(product: product);
