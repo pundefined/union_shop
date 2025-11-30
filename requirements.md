@@ -343,3 +343,42 @@ Implement a checkout screen that displays an order summary before purchase. User
 - [ ] Update cart page checkout button to navigate to checkout.
 - [ ] Register checkout route.
 - [ ] Add widget tests for checkout page.
+
+---
+
+## 12. Deep Linking with URL-Based Routing
+
+### Description
+Implement deep linking with human-readable, hierarchical URLs so that collections and products are directly accessible via URL paths. Collections are available at `/collections/{slug}` and products at `/collections/{collection-slug}/products/{product-slug}`. This enables bookmarking, sharing, and SEO-friendly navigation.
+
+### User Stories
+- As a user, I want to bookmark a collection page and return to it directly via URL.
+- As a user, I want to share a product link with a friend so they can view the same item.
+- As a user, I want URLs to reflect my current location in the app for easy navigation.
+- As a user, I want browser back/forward buttons to work correctly when navigating the store.
+
+### Acceptance Criteria
+- [ ] Collection model includes `slug` field (auto-generated or explicit).
+- [ ] Product model includes `slug` field (auto-generated or explicit).
+- [ ] Route `/collections` displays the collections list page.
+- [ ] Route `/collections/{slug}` displays the corresponding collection page.
+- [ ] Route `/collections/{collection-slug}/products/{product-slug}` displays the product page.
+- [ ] Clicking a collection tile navigates to `/collections/{slug}` and updates browser URL.
+- [ ] Clicking a product card navigates to full product path and updates browser URL.
+- [ ] Direct URL entry in browser loads the correct page.
+- [ ] Browser back/forward buttons navigate correctly.
+- [ ] Invalid collection slug shows error or redirects to `/collections`.
+- [ ] Invalid product slug shows error or redirects to collection page.
+- [ ] Slugs are URL-safe (lowercase, hyphens, no special characters).
+- [ ] All existing navigation flows continue to work.
+
+### Subtasks
+- [ ] Add `slug` field to `Collection` model with generation/lookup methods.
+- [ ] Add `slug` field to `Product` model with generation/lookup methods.
+- [ ] Create slug generation utility function.
+- [ ] Update routing configuration with path parameter support.
+- [ ] Update navigation calls to use path-based routes.
+- [ ] Implement 404/error handling for invalid slugs.
+- [ ] Configure Flutter web URL strategy (path-based).
+- [ ] Add widget tests for slug generation and route parsing.
+- [ ] Add integration tests for deep link navigation.
