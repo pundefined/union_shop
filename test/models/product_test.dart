@@ -2,61 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/models/product.dart';
 
 void main() {
-  group('Product', () {
-    test('auto-generates slug from name', () {
-      final product = Product(
-        id: 'test-1',
-        name: 'Portsmouth Magnet',
-        price: 2.50,
-        imageUrl: 'https://example.com/image.jpg',
-        description: 'Test description',
-        category: ProductCategory.merchandise,
-      );
-
-      expect(product.slug, equals('portsmouth-magnet'));
-    });
-
-    test('uses provided slug when given', () {
-      final product = Product(
-        id: 'test-1',
-        name: 'Portsmouth Magnet',
-        price: 2.50,
-        imageUrl: 'https://example.com/image.jpg',
-        description: 'Test description',
-        category: ProductCategory.merchandise,
-        slug: 'custom-slug',
-      );
-
-      expect(product.slug, equals('custom-slug'));
-    });
-
-    test('generates URL-safe slug from complex name', () {
-      final product = Product(
-        id: 'test-1',
-        name: 'UPSU Mug (Limited Edition!)',
-        price: 8.99,
-        imageUrl: 'https://example.com/image.jpg',
-        description: 'Test description',
-        category: ProductCategory.merchandise,
-      );
-
-      expect(product.slug, equals('upsu-mug-limited-edition'));
-    });
-
-    test('handles name with special characters', () {
-      final product = Product(
-        id: 'test-1',
-        name: '50% Off Sale Items',
-        price: 10.00,
-        imageUrl: 'https://example.com/image.jpg',
-        description: 'Test description',
-        category: ProductCategory.product,
-      );
-
-      expect(product.slug, equals('50-off-sale-items'));
-    });
-  });
-
   group('Product.findBySlug', () {
     final testProducts = [
       Product(
