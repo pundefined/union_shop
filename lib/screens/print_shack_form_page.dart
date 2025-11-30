@@ -13,6 +13,9 @@ class PrintShackFormPage extends StatefulWidget {
 }
 
 class _PrintShackFormPageState extends State<PrintShackFormPage> {
+  /// Currently selected number of lines (1-4)
+  int _selectedLineCount = 1;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +47,39 @@ class _PrintShackFormPageState extends State<PrintShackFormPage> {
                 style: TextStyles.bodyText,
               ),
 
-              // TODO: Line count selector will be added in subtask 2
+              // Line count selector
+              const SizedBox(height: 24),
+              const Text(
+                'Number of Lines',
+                style: TextStyles.subHeading,
+              ),
+              const SizedBox(height: 8),
+              DropdownButtonFormField<int>(
+                initialValue: _selectedLineCount,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                ),
+                items: List.generate(
+                  4,
+                  (index) => DropdownMenuItem<int>(
+                    value: index + 1,
+                    child: Text('${index + 1} line${index == 0 ? '' : 's'}'),
+                  ),
+                ),
+                onChanged: (value) {
+                  if (value != null) {
+                    setState(() {
+                      _selectedLineCount = value;
+                    });
+                  }
+                },
+              ),
 
               // TODO: Text input fields will be added in subtask 3
 
