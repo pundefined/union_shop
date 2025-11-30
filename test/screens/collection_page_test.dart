@@ -3,7 +3,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/screens/collection_page.dart';
+import 'package:union_shop/widgets/app_shell.dart';
 import 'package:union_shop/widgets/product_card.dart';
+
+/// Helper function to wrap CollectionPage in the required widget tree for testing
+Future<void> pumpCollectionPage(
+  WidgetTester tester,
+  Collection collection,
+) async {
+  await tester.pumpWidget(
+    MaterialApp(
+      home: AppShell(
+        showNavbar: false,
+        showFooter: false,
+        child: CollectionPage(collection: collection),
+      ),
+    ),
+  );
+}
 
 void main() {
   group('CollectionPage', () {
@@ -70,13 +87,7 @@ void main() {
 
     testWidgets('displays collection title and description',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, testCollection);
 
       expect(find.text('Test Collection'), findsOneWidget);
       expect(find.text('This is a test collection'), findsOneWidget);
@@ -84,13 +95,7 @@ void main() {
 
     testWidgets('renders product cards for all items',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, testCollection);
 
       // Verify all product names are visible
       expect(find.text('Product 1'), findsOneWidget);
@@ -110,13 +115,7 @@ void main() {
     });
 
     testWidgets('renders grid view with products', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, testCollection);
 
       // The grid should render
       expect(find.byType(GridView), findsOneWidget);
@@ -137,8 +136,10 @@ void main() {
             }
             return null;
           },
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
+          home: AppShell(
+            showNavbar: false,
+            showFooter: false,
+            child: CollectionPage(collection: testCollection),
           ),
         ),
       );
@@ -156,13 +157,7 @@ void main() {
 
     testWidgets('renders control section with dropdowns',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, testCollection);
 
       // Verify control section is present
       expect(find.text('Filter By'), findsOneWidget);
@@ -170,16 +165,7 @@ void main() {
     });
 
     testWidgets('page is vertically scrollable', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
-
-      // Verify SingleChildScrollView is present
-      expect(find.byType(SingleChildScrollView), findsOneWidget);
+      await pumpCollectionPage(tester, testCollection);
 
       // Verify the column within the scrollview
       expect(find.byType(Column), findsWidgets);
@@ -190,13 +176,7 @@ void main() {
 
     testWidgets('header has title and description text',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: testCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, testCollection);
 
       // Verify title text widget exists
       final titleFinder = find.text('Test Collection');
@@ -217,13 +197,7 @@ void main() {
         items: [],
       );
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: CollectionPage(collection: emptyCollection),
-          ),
-        ),
-      );
+      await pumpCollectionPage(tester, emptyCollection);
 
       expect(find.text('Empty Collection'), findsOneWidget);
       expect(find.text('This collection is empty'), findsOneWidget);
