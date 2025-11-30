@@ -53,5 +53,23 @@ void main() {
       expect(result, isNotNull);
       expect(result!.id, equals('2'));
     });
+
+    test('uses custom slug when provided', () {
+      final collections = [
+        Collection(
+          id: '1',
+          title: 'Summer Sale',
+          description: 'Summer items',
+          imageUrl: 'https://example.com/summer.jpg',
+          items: [],
+          slug: 'custom-summer',
+        ),
+      ];
+
+      final result = Collection.findBySlug(collections, 'custom-summer');
+
+      expect(result, isNotNull);
+      expect(result!.id, equals('1'));
+    });
   });
 }
