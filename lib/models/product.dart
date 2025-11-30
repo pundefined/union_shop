@@ -162,6 +162,63 @@ final List<Product> essentialsProducts = [
     category: ProductCategory.product,
     colors: ['Black', 'Navy', 'White'],
   ),
+  Product(
+    id: 'essentials-11',
+    name: 'Sweatpants',
+    price: 32.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500&h=500&fit=crop',
+    description:
+        'Comfortable jogger-style sweatpants with elastic cuffs and drawstring waist. Perfect for lounging or gym.',
+    category: ProductCategory.product,
+    colors: ['Grey', 'Black', 'Navy'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  ),
+  Product(
+    id: 'essentials-12',
+    name: 'Crew Neck Sweatshirt',
+    price: 29.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=500&h=500&fit=crop',
+    description:
+        'Classic crew neck sweatshirt in soft fleece. A timeless layering piece for any wardrobe.',
+    category: ProductCategory.product,
+    colors: ['Grey', 'Black', 'Navy', 'Burgundy'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  ),
+  Product(
+    id: 'essentials-13',
+    name: 'Umbrella',
+    price: 18.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1534309466160-70b22cc6252c?w=500&h=500&fit=crop',
+    description:
+        'Compact folding umbrella with automatic open/close. Fits easily in your bag for rainy days.',
+    category: ProductCategory.merchandise,
+    colors: ['Black', 'Navy', 'Red'],
+  ),
+  Product(
+    id: 'essentials-14',
+    name: 'Mug',
+    price: 9.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&h=500&fit=crop',
+    description:
+        'Ceramic mug with university branding. Holds 350ml of your favourite hot beverage.',
+    category: ProductCategory.merchandise,
+    colors: ['White', 'Black'],
+  ),
+  Product(
+    id: 'essentials-15',
+    name: 'Beanie',
+    price: 14.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=500&h=500&fit=crop',
+    description:
+        'Warm knitted beanie for cold days. One size fits most with stretchy ribbed design.',
+    category: ProductCategory.product,
+    colors: ['Black', 'Grey', 'Navy', 'Burgundy'],
+  ),
 ];
 
 // =============================================================================
@@ -192,6 +249,55 @@ final List<Product> summerSaleProducts = [
         'Wide-brim straw hat for maximum sun protection. Lightweight and breathable for hot days.',
     category: ProductCategory.product,
     colors: ['Natural', 'Black Trim', 'White Trim'],
+  ),
+  Product(
+    id: 'summer-3',
+    name: 'Beach Towel',
+    price: 28.99,
+    discountedPrice: 18.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=500&h=500&fit=crop',
+    description:
+        'Oversized beach towel made from quick-dry microfibre. Lightweight and sand-resistant.',
+    category: ProductCategory.product,
+    colors: ['Striped Blue', 'Tropical', 'Coral'],
+  ),
+  Product(
+    id: 'summer-4',
+    name: 'Flip Flops',
+    price: 16.99,
+    discountedPrice: 9.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500&h=500&fit=crop',
+    description:
+        'Comfortable flip flops with cushioned soles. Perfect for the beach or poolside.',
+    category: ProductCategory.product,
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Black', 'Navy', 'White'],
+  ),
+  Product(
+    id: 'summer-5',
+    name: 'Portable Fan',
+    price: 12.99,
+    discountedPrice: 7.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop',
+    description:
+        'USB rechargeable mini fan with 3 speed settings. Stay cool anywhere you go.',
+    category: ProductCategory.merchandise,
+    colors: ['White', 'Pink', 'Blue'],
+  ),
+  Product(
+    id: 'summer-6',
+    name: 'Cooler Bag',
+    price: 34.99,
+    discountedPrice: 22.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1581888227599-779811939961?w=500&h=500&fit=crop',
+    description:
+        'Insulated cooler bag keeps drinks and snacks cold for hours. Perfect for picnics.',
+    category: ProductCategory.product,
+    colors: ['Navy', 'Grey', 'Red'],
   ),
 ];
 
@@ -253,6 +359,39 @@ final List<Product> newArrivalsProducts = [
         'Adjustable phone stand for hands-free viewing. Perfect for video calls and watching content.',
     category: ProductCategory.merchandise,
     colors: ['Silver', 'Black', 'Rose Gold'],
+  ),
+  Product(
+    id: 'arrivals-6',
+    name: 'LED Desk Lamp',
+    price: 34.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&h=500&fit=crop',
+    description:
+        'Adjustable LED desk lamp with multiple brightness levels and colour temperatures. USB charging port included.',
+    category: ProductCategory.merchandise,
+    colors: ['White', 'Black'],
+  ),
+  Product(
+    id: 'arrivals-7',
+    name: 'Wireless Charging Pad',
+    price: 24.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1591815302525-756a9bcc3425?w=500&h=500&fit=crop',
+    description:
+        'Fast wireless charging pad compatible with all Qi-enabled devices. Sleek minimalist design.',
+    category: ProductCategory.merchandise,
+    colors: ['Black', 'White'],
+  ),
+  Product(
+    id: 'arrivals-8',
+    name: 'Bluetooth Speaker',
+    price: 39.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop',
+    description:
+        'Portable Bluetooth speaker with 360° sound. Waterproof design with 12-hour battery life.',
+    category: ProductCategory.product,
+    colors: ['Black', 'Blue', 'Red'],
   ),
 ];
 
