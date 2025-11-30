@@ -12,6 +12,7 @@ void main() {
       price: 19.99,
       imageUrl: 'https://example.com/image.jpg',
       description: 'Test product description',
+      category: ProductCategory.product,
       discountedPrice: 14.99,
       colors: ['Red', 'Blue'],
       sizes: ['S', 'M', 'L'],
@@ -74,6 +75,7 @@ void main() {
         price: 9.99,
         imageUrl: 'https://example.com/image.jpg',
         description: 'Test product',
+        category: ProductCategory.product,
       );
 
       await tester.pumpWidget(
@@ -100,6 +102,7 @@ void main() {
         price: 9.99,
         imageUrl: 'https://example.com/image.jpg',
         description: 'Test product',
+        category: ProductCategory.product,
       );
 
       await tester.pumpWidget(
