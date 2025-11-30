@@ -385,3 +385,44 @@ Implement deep linking with human-readable, hierarchical URLs so that collection
 - [ ] Configure `usePathUrlStrategy()` in `main.dart`.
 - [ ] Add widget tests for slug generation and route parsing.
 - [ ] Add integration tests for deep link navigation.
+
+---
+
+## 13. Product Search
+
+### Description
+Implement a search feature with two entry points: a search icon in the navbar that opens a search overlay, and a search link in the footer that navigates to a dedicated search page. Both allow users to search for products by name or description and display matching results with prices.
+
+### User Stories
+- As a user, I want to quickly search for products from the navbar so I can find items without leaving my current page.
+- As a user, I want to access a full search page from the footer to perform detailed searches.
+- As a user, I want to see products that match my search term in their name or description.
+- As a user, I want to see product prices in search results so I can make informed decisions.
+- As a user, I want to share a search results link with others.
+
+### Acceptance Criteria
+- [ ] Navbar search icon opens an overlay search bar that covers the navbar.
+- [ ] Search overlay includes text input, submit action, and close button.
+- [ ] Submitting the overlay search navigates to `/search?q={term}` with term pre-filled.
+- [ ] Footer includes "Search" link that navigates to `/search`.
+- [ ] Search page displays text input for entering/modifying search terms.
+- [ ] Search results show products matching term in name or description (case-insensitive).
+- [ ] Each result displays product image, name, description excerpt, and price.
+- [ ] Empty state displays message when no results found.
+- [ ] Initial state displays prompt when no search term provided.
+- [ ] Search term is reflected in URL query parameter for sharing.
+- [ ] Results update with debounce as user types (300-500ms).
+- [ ] Route registered at `/search` with optional `q` query parameter.
+- [ ] Responsive layout on mobile/tablet/desktop.
+- [ ] Minimum 48x48dp tap targets; keyboard Enter submits search.
+
+### Subtasks
+- [ ] Create search page component with input and results display.
+- [ ] Create search overlay component for navbar.
+- [ ] Implement search utility function for filtering products.
+- [ ] Add search icon to navbar with overlay toggle.
+- [ ] Add search link to footer.
+- [ ] Register search route with query parameter support.
+- [ ] Implement debounce for real-time search.
+- [ ] Add widget tests for search page.
+- [ ] Add widget tests for search overlay.
