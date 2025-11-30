@@ -97,39 +97,46 @@ class _AppNavbarState extends State<AppNavbar> {
                   ),
 
                   // Show/hide nav links based on screen size
-                  if (screenSize != ScreenSize.mobile) ...[
-                    NavLink(
-                      label: 'Home',
-                      text: 'Home',
-                      onPressed: () => Navigator.pushNamed(context, '/'),
+                  if (screenSize != ScreenSize.mobile)
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          NavLink(
+                            label: 'Home',
+                            text: 'Home',
+                            onPressed: () => Navigator.pushNamed(context, '/'),
+                          ),
+                          NavLink(
+                            label: 'Sale',
+                            text: 'Sale',
+                            onPressed: () {
+                              final saleCollection = sampleCollections
+                                  .firstWhere((c) => c.id == 'sale');
+                              Navigator.pushNamed(
+                                context,
+                                '/collection',
+                                arguments: saleCollection,
+                              );
+                            },
+                          ),
+                          NavLink(
+                            label: 'About',
+                            text: 'About',
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/about'),
+                          ),
+                          NavLink(
+                            label: 'Collections',
+                            text: 'Collections',
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/collections'),
+                          ),
+                          // Print Shack dropdown for desktop
+                          const PrintShackDropdown(),
+                        ],
+                      ),
                     ),
-                    NavLink(
-                      label: 'Sale',
-                      text: 'Sale',
-                      onPressed: () {
-                        final saleCollection =
-                            sampleCollections.firstWhere((c) => c.id == 'sale');
-                        Navigator.pushNamed(
-                          context,
-                          '/collection',
-                          arguments: saleCollection,
-                        );
-                      },
-                    ),
-                    NavLink(
-                      label: 'About',
-                      text: 'About',
-                      onPressed: () => Navigator.pushNamed(context, '/about'),
-                    ),
-                    NavLink(
-                      label: 'Collections',
-                      text: 'Collections',
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/collections'),
-                    ),
-                    // Print Shack dropdown for desktop
-                    const PrintShackDropdown(),
-                  ],
 
                   // Right-side icons constrained in width
                   ConstrainedBox(
@@ -556,47 +563,43 @@ class PrintShackDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: PopupMenuButton<String>(
-          offset: const Offset(0, 40),
-          tooltip: 'The Print Shack',
-          popUpAnimationStyle: AnimationStyle.noAnimation,
-          onSelected: (value) {
-            if (value == 'personalise') {
-              Navigator.pushNamed(context, '/print-shack');
-            } else if (value == 'about') {
-              Navigator.pushNamed(context, '/print-shack/about');
-            }
-          },
-          itemBuilder: (context) => [
-            const PopupMenuItem<String>(
-              value: 'personalise',
-              child: Text('Personalise'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'about',
-              child: Text('About'),
-            ),
-          ],
-          child: Semantics(
-            label: 'The Print Shack',
-            button: true,
-            child: Container(
-              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Print Shack',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  SizedBox(width: 4),
-                  Icon(Icons.arrow_drop_down, size: 18),
-                ],
+    return PopupMenuButton<String>(
+      offset: const Offset(0, 40),
+      tooltip: 'The Print Shack',
+      popUpAnimationStyle: AnimationStyle.noAnimation,
+      onSelected: (value) {
+        if (value == 'personalise') {
+          Navigator.pushNamed(context, '/print-shack');
+        } else if (value == 'about') {
+          Navigator.pushNamed(context, '/print-shack/about');
+        }
+      },
+      itemBuilder: (context) => [
+        const PopupMenuItem<String>(
+          value: 'personalise',
+          child: Text('Personalise'),
+        ),
+        const PopupMenuItem<String>(
+          value: 'about',
+          child: Text('About'),
+        ),
+      ],
+      child: Semantics(
+        label: 'The Print Shack',
+        button: true,
+        child: Container(
+          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Print Shack',
+                style: TextStyle(color: Colors.black),
               ),
-            ),
+              SizedBox(width: 4),
+              Icon(Icons.arrow_drop_down, size: 18),
+            ],
           ),
         ),
       ),
