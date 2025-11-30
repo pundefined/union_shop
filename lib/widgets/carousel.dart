@@ -93,7 +93,8 @@ class _CarouselState extends State<Carousel> {
                       textAlign: TextAlign.center,
                       key: ValueKey<String>('subtitle-$_currentIndex'),
                     ),
-                    if (slide.ctaText != null && slide.onCtaPressed != null) ...[
+                    if (slide.ctaText != null &&
+                        slide.onCtaPressed != null) ...[
                       const SizedBox(height: 32),
                       ElevatedButton(
                         onPressed: slide.onCtaPressed,
@@ -124,7 +125,6 @@ class _CarouselState extends State<Carousel> {
                     color: Colors.white,
                     iconSize: 32,
                     onPressed: _previousSlide,
-                    tooltip: 'Previous slide',
                   ),
                 ),
               ),
@@ -139,7 +139,6 @@ class _CarouselState extends State<Carousel> {
                     color: Colors.white,
                     iconSize: 32,
                     onPressed: _nextSlide,
-                    tooltip: 'Next slide',
                   ),
                 ),
               ),
