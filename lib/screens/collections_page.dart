@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
-import 'package:union_shop/widgets/page_content.dart';
 
-/// CollectionsPage displays a responsive grid of product collections.
-/// Collections are shown as image tiles with overlaid text, allowing users
-/// to browse curated product categories.
+/// The collections page content widget.
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({super.key});
 
@@ -13,7 +10,7 @@ class CollectionsPage extends StatelessWidget {
   /// - 2 columns for screen width < 600px (mobile)
   /// - 3 columns for screen width 600–900px (tablet)
   /// - 4 columns for screen width > 900px (desktop)
-  static int getColumnCount(double width) {
+  int _getColumnCount(double width) {
     if (width < 600) {
       return 2;
     } else if (width < 900) {
@@ -27,28 +24,24 @@ class CollectionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final columnCount = getColumnCount(constraints.maxWidth);
+        final columnCount = _getColumnCount(constraints.maxWidth);
 
-        return PageContent(
-          children: [
-            GridView.builder(
-              padding: const EdgeInsets.all(12.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: columnCount,
-                crossAxisSpacing: 12.0,
-                mainAxisSpacing: 12.0,
-                childAspectRatio: 1.0, // Square tiles
-              ),
-              itemCount: sampleCollections.length,
-              itemBuilder: (context, index) {
-                return CollectionTile(
-                  collection: sampleCollections[index],
-                );
-              },
-            ),
-          ],
+        return GridView.builder(
+          padding: const EdgeInsets.all(12.0),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: columnCount,
+            crossAxisSpacing: 12.0,
+            mainAxisSpacing: 12.0,
+            childAspectRatio: 1.0, // Square tiles
+          ),
+          itemCount: sampleCollections.length,
+          itemBuilder: (context, index) {
+            return CollectionTile(
+              collection: sampleCollections[index],
+            );
+          },
         );
       },
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/widgets/page_content.dart';
 
 /// LoginSignupScreen provides a unified interface for user authentication.
 /// Users can toggle between login and signup modes, with form state management
@@ -109,66 +108,62 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 600;
 
-    return PageContent(
-      children: [
-        Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 20.0 : 32.0,
-              vertical: 24.0,
-            ),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // ============================================================
-                  // BRANDING SECTION
-                  // ============================================================
-                  _buildBrandingSection(),
-                  const SizedBox(height: 40),
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: isMobile ? 20.0 : 32.0,
+          vertical: 24.0,
+        ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // ============================================================
+              // BRANDING SECTION
+              // ============================================================
+              _buildBrandingSection(),
+              const SizedBox(height: 40),
 
-                  // ============================================================
-                  // EMAIL/USERNAME INPUT FIELD
-                  // ============================================================
-                  _buildEmailField(),
-                  const SizedBox(height: 20),
+              // ============================================================
+              // EMAIL/USERNAME INPUT FIELD
+              // ============================================================
+              _buildEmailField(),
+              const SizedBox(height: 20),
 
-                  // ============================================================
-                  // PASSWORD INPUT FIELD
-                  // ============================================================
-                  _buildPasswordField(),
-                  const SizedBox(height: 16),
+              // ============================================================
+              // PASSWORD INPUT FIELD
+              // ============================================================
+              _buildPasswordField(),
+              const SizedBox(height: 16),
 
-                  // ============================================================
-                  // REMEMBER ME CHECKBOX (if login mode)
-                  // ============================================================
-                  if (_isLoginMode) _buildRememberMeCheckbox(),
-                  if (_isLoginMode) const SizedBox(height: 8),
+              // ============================================================
+              // REMEMBER ME CHECKBOX (if login mode)
+              // ============================================================
+              if (_isLoginMode) _buildRememberMeCheckbox(),
+              if (_isLoginMode) const SizedBox(height: 8),
 
-                  // ============================================================
-                  // FORGOT PASSWORD LINK (if login mode)
-                  // ============================================================
-                  if (_isLoginMode) _buildForgotPasswordLink(),
-                  if (_isLoginMode) const SizedBox(height: 16),
+              // ============================================================
+              // FORGOT PASSWORD LINK (if login mode)
+              // ============================================================
+              if (_isLoginMode) _buildForgotPasswordLink(),
+              if (_isLoginMode) const SizedBox(height: 16),
 
-                  // ============================================================
-                  // ACTION BUTTONS (Phase 4)
-                  // ============================================================
-                  if (_isLoginMode) _buildLoginButton() else _buildSignupButton(),
-                  const SizedBox(height: 24),
+              // ============================================================
+              // ACTION BUTTONS (Phase 4)
+              // ============================================================
+              if (_isLoginMode) _buildLoginButton() else _buildSignupButton(),
+              const SizedBox(height: 24),
 
-                  // ============================================================
-                  // MODE TOGGLE (Login/Signup Switch)
-                  // ============================================================
-                  _buildModeToggle(),
-                  const SizedBox(height: 24),
-                ],
-              ),
-            ),
+              // ============================================================
+              // MODE TOGGLE (Login/Signup Switch)
+              // ============================================================
+              _buildModeToggle(),
+              const SizedBox(height: 24),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 

@@ -4,15 +4,11 @@ import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/widgets/carousel.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
-import 'package:union_shop/widgets/page_content.dart';
 import 'package:union_shop/widgets/product_section.dart';
 
+/// The home page content widget.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +45,7 @@ class HomeScreen extends StatelessWidget {
       ),
     ];
 
-    return PageContent(
+    return Column(
       children: [
         // Hero Section with Carousel
         Carousel(slides: carouselSlides),

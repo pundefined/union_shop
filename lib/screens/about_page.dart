@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/styles/text_styles.dart';
-import 'package:union_shop/widgets/page_content.dart';
 
+/// The about page content widget.
 class AboutPage extends StatelessWidget {
-  const AboutPage({Key? key}) : super(key: key);
+  const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,41 +18,37 @@ class AboutPage extends StatelessWidget {
       'Happy shopping!',
     ];
 
-    return PageContent(
-      children: [
-        Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: maxContentWidth),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Semantic header for screen readers.
-                  Semantics(
-                    header: true,
-                    child: const Text(
-                      'About us',
-                      style: TextStyles.aboutPageHeading,
-                    ),
-                  ),
-                  const SizedBox(height: 16.0),
-
-                  // Body paragraphs
-                  for (final p in paragraphs) ...[
-                    Text(
-                      p,
-                      style: TextStyles.bodyText,
-                    ),
-                    const SizedBox(height: 12.0),
-                  ],
-                ],
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: maxContentWidth),
+        child: Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Semantic header for screen readers.
+              Semantics(
+                header: true,
+                child: const Text(
+                  'About us',
+                  style: TextStyles.aboutPageHeading,
+                ),
               ),
-            ),
+              const SizedBox(height: 16.0),
+
+              // Body paragraphs
+              for (final p in paragraphs) ...[
+                Text(
+                  p,
+                  style: TextStyles.bodyText,
+                ),
+                const SizedBox(height: 12.0),
+              ],
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
 import 'package:union_shop/widgets/control_section.dart';
-import 'package:union_shop/widgets/page_content.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 /// A page widget that displays a collection of products in a responsive grid.
@@ -84,7 +83,8 @@ class _CollectionPageState extends State<CollectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageContent(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header Section
         Padding(
