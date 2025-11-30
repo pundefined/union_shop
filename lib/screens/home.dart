@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/carousel_slide.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                   products: featuredCollectionProducts,
                   showViewAll: true,
                   onViewAllPressed: () {
-                    Navigator.pushNamed(context, '/collections');
+                    context.go('/collections');
                   },
                 ),
                 const SizedBox(height: 64),

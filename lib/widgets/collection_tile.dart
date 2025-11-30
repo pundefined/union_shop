@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
@@ -6,7 +7,7 @@ import 'package:union_shop/styles/text_styles.dart';
 /// overlay text, and tap feedback via Material InkWell.
 ///
 /// When tapped, automatically navigates to the collection details page
-/// passing the collection data as an argument.
+/// using the collection's slug for the URL path.
 class CollectionTile extends StatelessWidget {
   final Collection collection;
 
@@ -22,11 +23,7 @@ class CollectionTile extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            '/collection',
-            arguments: collection,
-          );
+          context.go('/collections/${collection.slug}');
         },
         child: Stack(
           fit: StackFit.expand,

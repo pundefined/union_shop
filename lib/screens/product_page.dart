@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
@@ -198,7 +199,7 @@ class _ProductPageState extends State<ProductPage> {
             width: double.infinity,
             child: OutlinedButton(
               onPressed: () {
-                Navigator.pop(context);
+                context.pop();
               },
               child: const Text('Back to store'),
             ),

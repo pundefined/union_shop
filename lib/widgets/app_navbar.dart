@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
@@ -49,7 +50,7 @@ class _AppNavbarState extends State<AppNavbar> {
   }
 
   void _navigateHome(BuildContext context) {
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+    context.go('/');
   }
 
   @override
@@ -105,32 +106,26 @@ class _AppNavbarState extends State<AppNavbar> {
                           NavLink(
                             label: 'Home',
                             text: 'Home',
-                            onPressed: () => Navigator.pushNamed(context, '/'),
+                            onPressed: () => context.go('/'),
                           ),
                           NavLink(
                             label: 'Sale',
                             text: 'Sale',
                             onPressed: () {
                               final saleCollection = sampleCollections
-                                  .firstWhere((c) => c.id == 'sale');
-                              Navigator.pushNamed(
-                                context,
-                                '/collection',
-                                arguments: saleCollection,
-                              );
+                                  .firstWhere((c) => c.id == 'summer-sale');
+                              context.go('/collections/${saleCollection.slug}');
                             },
                           ),
                           NavLink(
                             label: 'About',
                             text: 'About',
-                            onPressed: () =>
-                                Navigator.pushNamed(context, '/about'),
+                            onPressed: () => context.go('/about'),
                           ),
                           NavLink(
                             label: 'Collections',
                             text: 'Collections',
-                            onPressed: () =>
-                                Navigator.pushNamed(context, '/collections'),
+                            onPressed: () => context.go('/collections'),
                           ),
                           // Print Shack dropdown for desktop
                           const PrintShackDropdown(),
@@ -168,8 +163,8 @@ class _AppNavbarState extends State<AppNavbar> {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: widget.onAccount ??
-                              () => Navigator.pushNamed(context, '/login'),
+                          onPressed:
+                              widget.onAccount ?? () => context.go('/login'),
                         ),
                         IconButton(
                           icon: const Icon(
@@ -182,8 +177,7 @@ class _AppNavbarState extends State<AppNavbar> {
                             minWidth: 48,
                             minHeight: 48,
                           ),
-                          onPressed: widget.onCart ??
-                              () => Navigator.pushNamed(context, '/cart'),
+                          onPressed: widget.onCart ?? () => context.go('/cart'),
                         ),
                         // Hamburger menu icon shown only on mobile
                         if (screenSize == ScreenSize.mobile)
@@ -212,33 +206,29 @@ class _AppNavbarState extends State<AppNavbar> {
           if (screenSize == ScreenSize.mobile && _isMenuOpen)
             MobileMenuContainer(
               onHomeTap: () {
-                Navigator.pushNamed(context, '/');
+                context.go('/');
                 _toggleMenu();
               },
               onSaleTap: () {
                 final saleCollection =
-                    sampleCollections.firstWhere((c) => c.id == 'sale');
-                Navigator.pushNamed(
-                  context,
-                  '/collection',
-                  arguments: saleCollection,
-                );
+                    sampleCollections.firstWhere((c) => c.id == 'summer-sale');
+                context.go('/collections/${saleCollection.slug}');
                 _toggleMenu();
               },
               onAboutTap: () {
-                Navigator.pushNamed(context, '/about');
+                context.go('/about');
                 _toggleMenu();
               },
               onCollectionsTap: () {
-                Navigator.pushNamed(context, '/collections');
+                context.go('/collections');
                 _toggleMenu();
               },
               onPrintShackPersonaliseTap: () {
-                Navigator.pushNamed(context, '/print-shack');
+                context.go('/print-shack');
                 _toggleMenu();
               },
               onPrintShackAboutTap: () {
-                Navigator.pushNamed(context, '/print-shack/about');
+                context.go('/print-shack/about');
                 _toggleMenu();
               },
             ),
@@ -569,9 +559,9 @@ class PrintShackDropdown extends StatelessWidget {
       popUpAnimationStyle: AnimationStyle.noAnimation,
       onSelected: (value) {
         if (value == 'personalise') {
-          Navigator.pushNamed(context, '/print-shack');
+          context.go('/print-shack');
         } else if (value == 'about') {
-          Navigator.pushNamed(context, '/print-shack/about');
+          context.go('/print-shack/about');
         }
       },
       itemBuilder: (context) => [

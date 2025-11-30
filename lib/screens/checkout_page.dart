@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/styles/text_styles.dart';
@@ -83,7 +84,7 @@ class CheckoutPage extends StatelessWidget {
             SizedBox(
               height: 48,
               child: ElevatedButton(
-                onPressed: () => Navigator.of(context).pushNamed('/'),
+                onPressed: () => context.go('/'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   backgroundColor: const Color(0xFF4d2963),
@@ -241,6 +242,6 @@ class PlaceOrderButton extends StatelessWidget {
     );
 
     // Navigate to home and clear navigation stack
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+    context.go('/');
   }
 }

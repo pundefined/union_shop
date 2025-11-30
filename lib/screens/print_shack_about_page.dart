@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../styles/text_styles.dart';
 
 /// The print shack about page content widget.
@@ -84,7 +85,7 @@ class PrintShackAboutPage extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/print-shack');
+                context.go('/print-shack');
               },
               child: const Text('Start Personalising'),
             ),
