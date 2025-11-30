@@ -13,6 +13,8 @@ Implement deep linking with human-readable, hierarchical URLs so that collection
 ### Slug Generation
 - Slugs are URL-safe identifiers derived from display names
 - Convert to lowercase, replace spaces with hyphens, remove special characters
+- Product slugs are globally unique (generated from product name)
+- Collection slugs are unique (generated from collection title)
 - Examples:
   - "New Arrivals" → `new-arrivals`
   - "Rainbow Lanyard" → `rainbow-lanyard`
@@ -37,10 +39,12 @@ Implement deep linking with human-readable, hierarchical URLs so that collection
 - "Back to Collection" uses path-based navigation
 
 ### Technical Implementation
-- Use `onGenerateRoute` to parse URL paths and extract slugs
-- Consider using a routing package (e.g., `go_router`) for cleaner path parameter handling
+- Use `go_router` package for declarative, path-based routing
+- Use `ShellRoute` to wrap all routes with `AppShell` (avoids repetition)
+- Configure `usePathUrlStrategy()` in `main.dart` for path-based URLs (not hash-based)
 - Ensure routes work with Flutter web's URL strategy
 - Support direct URL entry in browser
+- Product route includes collection context for meaningful URLs, but product lookup uses globally unique product slug
 
 ## Implementation Details
 
@@ -55,8 +59,8 @@ Parse incoming routes to extract path segments:
 ### Slug Utilities
 Create utility functions:
 - `String generateSlug(String name)` — Convert display name to URL slug
-- `Collection? findCollectionBySlug(String slug)` — Look up collection
-- `Product? findProductBySlug(String slug, Collection collection)` — Look up product within collection
+- `Collection? findCollectionBySlug(String slug)` — Look up collection by slug
+- `Product? findProductBySlug(String slug)` — Look up product by slug (globally unique)
 
 ### Error Handling
 - Invalid collection slug → Show "Collection not found" or redirect to `/collections`
@@ -64,13 +68,15 @@ Create utility functions:
 - Malformed URLs → Redirect to home or show 404
 
 ## Deliverables
-1. Updated `Collection` model with `slug` field and lookup method
-2. Updated `Product` model with `slug` field and lookup method
+1. Updated `Collection` model with `slug` field (generated from title) and lookup method
+2. Updated `Product` model with `slug` field (generated from name, globally unique) and lookup method
 3. Slug generation utility function
-4. Updated routing configuration with path parameter support
-5. Updated navigation calls throughout the app
-6. Error/404 handling for invalid slugs
-7. Widget tests verifying:
+4. Updated routing configuration using `go_router` with path parameter support
+5. `ShellRoute` wrapping all routes with `AppShell`
+6. `usePathUrlStrategy()` configured in `main.dart`
+7. Updated navigation calls throughout the app (use `context.go()` / `context.push()`)
+8. Error/404 handling for invalid slugs using `errorBuilder`
+9. Widget tests verifying:
    - Slug generation produces expected results
    - Route parsing extracts correct slugs
    - Navigation to `/collections/{slug}` loads correct collection
@@ -88,7 +94,9 @@ Create utility functions:
 - ✓ All existing navigation flows continue to work
 
 ## Notes
-- Use `go_router` package for cleaner declarative routing
-- Ensure Flutter web URL strategy is configured (path-based, not hash-based)
-- Slugs should be generated consistently to avoid lookup mismatches
-- For products with same name in different collections, the collection context disambiguates
+- Use `go_router` package for declarative routing with path parameters
+- Use `ShellRoute` to wrap routes with `AppShell` consistently
+- Configure `usePathUrlStrategy()` for path-based URLs on web (requires `flutter_web_plugins`)
+- Slugs are generated from names and must be globally unique for products
+- The product URL includes collection context (`/collections/{slug}/products/{slug}`) for SEO and user clarity, but lookup uses only the product slug since it's globally unique
+- Collection context in URL enables "Back to Collection" navigation without extra state

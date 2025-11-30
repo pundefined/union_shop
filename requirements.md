@@ -358,8 +358,8 @@ Implement deep linking with human-readable, hierarchical URLs so that collection
 - As a user, I want browser back/forward buttons to work correctly when navigating the store.
 
 ### Acceptance Criteria
-- [ ] Collection model includes `slug` field (auto-generated or explicit).
-- [ ] Product model includes `slug` field (auto-generated or explicit).
+- [ ] Collection model includes `slug` field (auto-generated from title).
+- [ ] Product model includes `slug` field (auto-generated from name, globally unique).
 - [ ] Route `/collections` displays the collections list page.
 - [ ] Route `/collections/{slug}` displays the corresponding collection page.
 - [ ] Route `/collections/{collection-slug}/products/{product-slug}` displays the product page.
@@ -371,14 +371,17 @@ Implement deep linking with human-readable, hierarchical URLs so that collection
 - [ ] Invalid product slug shows error or redirects to collection page.
 - [ ] Slugs are URL-safe (lowercase, hyphens, no special characters).
 - [ ] All existing navigation flows continue to work.
+- [ ] `go_router` used with `ShellRoute` for `AppShell` wrapping.
+- [ ] Path-based URL strategy configured (`usePathUrlStrategy()`).
 
 ### Subtasks
 - [ ] Add `slug` field to `Collection` model with generation/lookup methods.
-- [ ] Add `slug` field to `Product` model with generation/lookup methods.
+- [ ] Add `slug` field to `Product` model with generation/lookup methods (globally unique).
 - [ ] Create slug generation utility function.
+- [ ] Configure `go_router` with `ShellRoute` for `AppShell` wrapping.
 - [ ] Update routing configuration with path parameter support.
-- [ ] Update navigation calls to use path-based routes.
-- [ ] Implement 404/error handling for invalid slugs.
-- [ ] Configure Flutter web URL strategy (path-based).
+- [ ] Update navigation calls to use `context.go()` / `context.push()`.
+- [ ] Implement 404/error handling for invalid slugs using `errorBuilder`.
+- [ ] Configure `usePathUrlStrategy()` in `main.dart`.
 - [ ] Add widget tests for slug generation and route parsing.
 - [ ] Add integration tests for deep link navigation.
