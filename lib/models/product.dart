@@ -205,8 +205,7 @@ final List<Product> summerSaleProducts = [
     name: 'Retro Sunglasses',
     price: 24.99,
     discountedPrice: 14.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/retro_sunglasses.png',
     description:
         'Stylish retro-inspired sunglasses with UV400 protection. Perfect for sunny days.',
     category: ProductCategory.product,
@@ -217,8 +216,7 @@ final List<Product> summerSaleProducts = [
     name: 'Straw Sun Hat',
     price: 22.99,
     discountedPrice: 12.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/straw_sun_hat.png',
     description:
         'Wide-brim straw hat for maximum sun protection. Lightweight and breathable for hot days.',
     category: ProductCategory.product,
@@ -229,8 +227,7 @@ final List<Product> summerSaleProducts = [
     name: 'Beach Towel',
     price: 28.99,
     discountedPrice: 18.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/beach_towel.png',
     description:
         'Oversized beach towel made from quick-dry microfibre. Lightweight and sand-resistant.',
     category: ProductCategory.product,
@@ -241,8 +238,7 @@ final List<Product> summerSaleProducts = [
     name: 'Flip Flops',
     price: 16.99,
     discountedPrice: 9.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/flip_flops.png',
     description:
         'Comfortable flip flops with cushioned soles. Perfect for the beach or poolside.',
     category: ProductCategory.product,
@@ -254,8 +250,7 @@ final List<Product> summerSaleProducts = [
     name: 'Portable Fan',
     price: 12.99,
     discountedPrice: 7.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/portable_fan.png',
     description:
         'USB rechargeable mini fan with 3 speed settings. Stay cool anywhere you go.',
     category: ProductCategory.merchandise,
@@ -266,8 +261,7 @@ final List<Product> summerSaleProducts = [
     name: 'Cooler Bag',
     price: 34.99,
     discountedPrice: 22.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1581888227599-779811939961?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/cooler_bag.png',
     description:
         'Insulated cooler bag keeps drinks and snacks cold for hours. Perfect for picnics.',
     category: ProductCategory.product,
@@ -284,8 +278,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-1',
     name: 'Wireless Earbuds',
     price: 49.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/wireless_earbuds.png',
     description:
         'True wireless earbuds with noise cancellation and 24-hour battery life. Crystal clear audio.',
     category: ProductCategory.product,
@@ -295,8 +288,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-2',
     name: 'Desk Organiser',
     price: 19.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/desk_organiser.png',
     description:
         'Minimalist desk organiser with compartments for pens, phone, and small items. Keep your workspace tidy.',
     category: ProductCategory.merchandise,
@@ -306,8 +298,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-3',
     name: 'Laptop Sleeve',
     price: 29.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/laptop_sleeve.png',
     description:
         'Padded laptop sleeve fits up to 15" laptops. Water-resistant exterior with soft fleece lining.',
     category: ProductCategory.product,
@@ -317,8 +308,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-4',
     name: 'Motivational Poster Set',
     price: 24.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/motivational_poster_set.png',
     description:
         'Set of 4 inspirational posters to brighten up your room or study space. A4 size, unframed.',
     category: ProductCategory.merchandise,
@@ -327,8 +317,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-5',
     name: 'Phone Stand',
     price: 14.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/phone_stand.png',
     description:
         'Adjustable phone stand for hands-free viewing. Perfect for video calls and watching content.',
     category: ProductCategory.merchandise,
@@ -338,8 +327,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-6',
     name: 'LED Desk Lamp',
     price: 34.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/led_desk_lamp.png',
     description:
         'Adjustable LED desk lamp with multiple brightness levels and colour temperatures. USB charging port included.',
     category: ProductCategory.merchandise,
@@ -349,8 +337,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-7',
     name: 'Wireless Charging Pad',
     price: 24.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1591815302525-756a9bcc3425?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/wireless_charging_pad.png',
     description:
         'Fast wireless charging pad compatible with all Qi-enabled devices. Sleek minimalist design.',
     category: ProductCategory.merchandise,
@@ -360,8 +347,7 @@ final List<Product> newArrivalsProducts = [
     id: 'arrivals-8',
     name: 'Bluetooth Speaker',
     price: 39.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/bluetooth_speaker.png',
     description:
         'Portable Bluetooth speaker with 360° sound. Waterproof design with 12-hour battery life.',
     category: ProductCategory.product,
@@ -378,8 +364,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-1',
     name: 'Premium Leather Jacket',
     price: 149.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/premium_leather_jacket.png',
     description:
         'Handcrafted leather jacket with university crest embossed on the back. A statement piece for any occasion.',
     category: ProductCategory.product,
@@ -390,8 +375,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-2',
     name: 'Varsity Jacket',
     price: 89.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/varsity_jacket.png',
     description:
         'Classic varsity jacket with chenille lettering and striped cuffs. Show your school pride in style.',
     category: ProductCategory.product,
@@ -414,8 +398,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-4',
     name: 'Cashmere Scarf',
     price: 59.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/cashmere_scarf.png',
     description:
         'Luxuriously soft cashmere blend scarf with subtle university pattern. Elegant warmth for colder months.',
     category: ProductCategory.product,
@@ -425,8 +408,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-5',
     name: 'Executive Pen',
     price: 34.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/executive_pen.png',
     description:
         'Premium metal ballpoint pen with engraved university name. Comes in a presentation gift box.',
     category: ProductCategory.merchandise,
@@ -436,8 +418,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-6',
     name: 'Leather Messenger Bag',
     price: 119.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/leather_messenger_bag.png',
     description:
         'Full grain leather messenger bag with brass hardware. Fits laptops up to 15" with multiple organiser pockets.',
     category: ProductCategory.product,
@@ -447,8 +428,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-7',
     name: 'Silk Tie',
     price: 39.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1598879423532-39e1e9f21d03?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/silk_tie.png',
     description:
         'Pure silk tie with woven university crest. Perfect for formal events and interviews.',
     category: ProductCategory.product,
@@ -458,8 +438,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-8',
     name: 'Crystal Paperweight',
     price: 49.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1587467512961-120760940315?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/crystal_paperweight.png',
     description:
         'Hand-cut crystal paperweight with laser-etched university crest. A timeless desk accessory.',
     category: ProductCategory.merchandise,
@@ -468,8 +447,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-10',
     name: 'Graduation Frame',
     price: 54.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/graduation_frame.png',
     description:
         'Elegant wooden frame with gold university seal. Display your degree with pride.',
     category: ProductCategory.merchandise,
