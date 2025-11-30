@@ -396,6 +396,166 @@ final List<Product> newArrivalsProducts = [
 ];
 
 // =============================================================================
+// SIGNATURE RANGE COLLECTION PRODUCTS
+// =============================================================================
+
+final List<Product> signatureRangeProducts = [
+  Product(
+    id: 'signature-1',
+    name: 'Premium Leather Jacket',
+    price: 149.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop',
+    description:
+        'Handcrafted leather jacket with university crest embossed on the back. A statement piece for any occasion.',
+    category: ProductCategory.product,
+    colors: ['Black', 'Brown'],
+    sizes: ['S', 'M', 'L', 'XL'],
+  ),
+  Product(
+    id: 'signature-2',
+    name: 'Varsity Jacket',
+    price: 89.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=500&h=500&fit=crop',
+    description:
+        'Classic varsity jacket with chenille lettering and striped cuffs. Show your school pride in style.',
+    category: ProductCategory.product,
+    colors: ['Navy/White', 'Black/Gold', 'Burgundy/Grey'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  ),
+  Product(
+    id: 'signature-3',
+    name: 'Embroidered Polo Shirt',
+    price: 44.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1625910513413-5fc45e14bb72?w=500&h=500&fit=crop',
+    description:
+        'Premium cotton polo with embroidered university logo. Smart casual style for any setting.',
+    category: ProductCategory.product,
+    colors: ['White', 'Navy', 'Black', 'Burgundy'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  ),
+  Product(
+    id: 'signature-4',
+    name: 'Cashmere Scarf',
+    price: 59.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=500&h=500&fit=crop',
+    description:
+        'Luxuriously soft cashmere blend scarf with subtle university pattern. Elegant warmth for colder months.',
+    category: ProductCategory.product,
+    colors: ['Navy', 'Grey', 'Burgundy'],
+  ),
+  Product(
+    id: 'signature-5',
+    name: 'Executive Pen',
+    price: 34.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&h=500&fit=crop',
+    description:
+        'Premium metal ballpoint pen with engraved university name. Comes in a presentation gift box.',
+    category: ProductCategory.merchandise,
+    colors: ['Silver', 'Gold', 'Black'],
+  ),
+  Product(
+    id: 'signature-6',
+    name: 'Leather Messenger Bag',
+    price: 119.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop',
+    description:
+        'Full grain leather messenger bag with brass hardware. Fits laptops up to 15" with multiple organiser pockets.',
+    category: ProductCategory.product,
+    colors: ['Tan', 'Dark Brown', 'Black'],
+  ),
+  Product(
+    id: 'signature-7',
+    name: 'Silk Tie',
+    price: 39.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1598879423532-39e1e9f21d03?w=500&h=500&fit=crop',
+    description:
+        'Pure silk tie with woven university crest. Perfect for formal events and interviews.',
+    category: ProductCategory.product,
+    colors: ['Navy', 'Burgundy', 'Black'],
+  ),
+  Product(
+    id: 'signature-8',
+    name: 'Crystal Paperweight',
+    price: 49.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1587467512961-120760940315?w=500&h=500&fit=crop',
+    description:
+        'Hand-cut crystal paperweight with laser-etched university crest. A timeless desk accessory.',
+    category: ProductCategory.merchandise,
+  ),
+  Product(
+    id: 'signature-10',
+    name: 'Graduation Frame',
+    price: 54.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&h=500&fit=crop',
+    description:
+        'Elegant wooden frame with gold university seal. Display your degree with pride.',
+    category: ProductCategory.merchandise,
+    colors: ['Walnut', 'Black', 'Cherry'],
+  ),
+];
+
+// =============================================================================
+// WINTER FAVOURITES COLLECTION PRODUCTS
+// =============================================================================
+
+final List<Product> winterFavouritesProducts = [
+  Product(
+    id: 'winter-1',
+    name: 'Puffer Jacket',
+    price: 79.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1544923246-77307dd628b5?w=500&h=500&fit=crop',
+    description:
+        'Warm quilted puffer jacket with water-resistant shell. Hood included for extra protection.',
+    category: ProductCategory.product,
+    colors: ['Black', 'Navy', 'Burgundy'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+  ),
+  Product(
+    id: 'winter-2',
+    name: 'Fleece Lined Gloves',
+    price: 19.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1545170241-dd2c92a11f53?w=500&h=500&fit=crop',
+    description:
+        'Touch-screen compatible gloves with soft fleece lining. Keep your hands warm while using your phone.',
+    category: ProductCategory.product,
+    colors: ['Black', 'Grey', 'Navy'],
+    sizes: ['S/M', 'L/XL'],
+  ),
+  Product(
+    id: 'winter-3',
+    name: 'Thermal Socks Pack',
+    price: 16.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=500&h=500&fit=crop',
+    description:
+        'Pack of 3 thermal socks with extra cushioning. Keep your feet warm all winter long.',
+    category: ProductCategory.product,
+    sizes: ['4-7', '8-11'],
+  ),
+  Product(
+    id: 'winter-4',
+    name: 'Hot Chocolate Gift Set',
+    price: 24.99,
+    imageUrl:
+        'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&h=500&fit=crop',
+    description:
+        'Luxury hot chocolate set with mug, marshmallows, and premium cocoa. Perfect winter warmer.',
+    category: ProductCategory.merchandise,
+  ),
+];
+
+// =============================================================================
 // HOME PAGE PRODUCT LISTS (for display sections)
 // =============================================================================
 

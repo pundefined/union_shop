@@ -70,11 +70,35 @@ final Collection newArrivalsCollection = Collection(
   items: newArrivalsProducts,
 );
 
+/// Signature Range collection - premium products.
+final Collection signatureRangeCollection = Collection(
+  id: 'signature-range',
+  title: 'Signature Range',
+  description:
+      'Our premium collection featuring high-quality items with elegant university branding. Perfect for alumni and special occasions.',
+  imageUrl:
+      'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop',
+  items: signatureRangeProducts,
+);
+
+/// Winter Favourites collection - cold weather essentials.
+final Collection winterFavouritesCollection = Collection(
+  id: 'winter-favourites',
+  title: 'Winter Favourites',
+  description:
+      'Stay warm and cozy with our winter essentials. From puffer jackets to thermal socks, we\'ve got you covered.',
+  imageUrl:
+      'https://images.unsplash.com/photo-1544923246-77307dd628b5?w=500&h=500&fit=crop',
+  items: winterFavouritesProducts,
+);
+
 /// All collections available in the store.
 final List<Collection> sampleCollections = [
   essentialsCollection,
   summerSaleCollection,
   newArrivalsCollection,
+  signatureRangeCollection,
+  winterFavouritesCollection,
 ];
 
 /// Default collection for backwards compatibility.
