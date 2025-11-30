@@ -176,18 +176,6 @@ final List<Product> essentialsProducts = [
   ),
   Product(
     id: 'essentials-12',
-    name: 'Crew Neck Sweatshirt',
-    price: 29.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=500&h=500&fit=crop',
-    description:
-        'Classic crew neck sweatshirt in soft fleece. A timeless layering piece for any wardrobe.',
-    category: ProductCategory.product,
-    colors: ['Grey', 'Black', 'Navy', 'Burgundy'],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-  ),
-  Product(
-    id: 'essentials-13',
     name: 'Umbrella',
     price: 18.99,
     imageUrl:
@@ -198,7 +186,7 @@ final List<Product> essentialsProducts = [
     colors: ['Black', 'Navy', 'Red'],
   ),
   Product(
-    id: 'essentials-14',
+    id: 'essentials-13',
     name: 'Mug',
     price: 9.99,
     imageUrl:
@@ -209,7 +197,7 @@ final List<Product> essentialsProducts = [
     colors: ['White', 'Black'],
   ),
   Product(
-    id: 'essentials-15',
+    id: 'essentials-14',
     name: 'Beanie',
     price: 14.99,
     imageUrl:
