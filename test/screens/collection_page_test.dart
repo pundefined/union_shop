@@ -22,6 +22,7 @@ void main() {
             price: 10.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+1',
             description: 'Description for Product 1',
+            category: ProductCategory.product,
           ),
           Product(
             id: '2',
@@ -29,6 +30,7 @@ void main() {
             price: 20.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+2',
             description: 'Description for Product 2',
+            category: ProductCategory.product,
           ),
           Product(
             id: '3',
@@ -36,6 +38,7 @@ void main() {
             price: 30.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+3',
             description: 'Description for Product 3',
+            category: ProductCategory.product,
           ),
           Product(
             id: '4',
@@ -43,6 +46,7 @@ void main() {
             price: 40.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+4',
             description: 'Description for Product 4',
+            category: ProductCategory.merchandise,
           ),
           Product(
             id: '5',
@@ -50,6 +54,7 @@ void main() {
             price: 50.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+5',
             description: 'Description for Product 5',
+            category: ProductCategory.merchandise,
           ),
           Product(
             id: '6',
@@ -57,6 +62,7 @@ void main() {
             price: 60.00,
             imageUrl: 'https://via.placeholder.com/300x300?text=Product+6',
             description: 'Description for Product 6',
+            category: ProductCategory.merchandise,
           ),
         ],
       );
