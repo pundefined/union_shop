@@ -4,6 +4,7 @@ import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/widgets/carousel.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
+import 'package:union_shop/widgets/page_content.dart';
 import 'package:union_shop/widgets/product_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,7 +49,7 @@ class HomeScreen extends StatelessWidget {
       ),
     ];
 
-    return Column(
+    return PageContent(
       children: [
         // Hero Section with Carousel
         Carousel(slides: carouselSlides),

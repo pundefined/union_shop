@@ -4,6 +4,7 @@ import '../models/cart.dart';
 import '../models/product.dart';
 import '../styles/text_styles.dart';
 import '../widgets/color_selector.dart';
+import '../widgets/page_content.dart';
 import '../widgets/size_selector.dart';
 import '../widgets/quantity_selector.dart';
 
@@ -41,7 +42,7 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return PageContent(
       children: [
         // Product details
         Container(
@@ -209,8 +210,6 @@ class _ProductPageState extends State<ProductPage> {
             ],
           ),
         ),
-
-        // Footer is now provided by the shared AppShell footer widget.
       ],
     );
   }

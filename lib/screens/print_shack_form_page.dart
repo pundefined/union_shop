@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../styles/text_styles.dart';
+import '../widgets/page_content.dart';
 
 /// PrintShackFormPage provides a personalisation form allowing users to
 /// configure custom text for their items with 1-4 printed lines.
@@ -43,7 +44,7 @@ class _PrintShackFormPageState extends State<PrintShackFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return PageContent(
       children: [
         // Form content
         Container(
@@ -178,7 +179,8 @@ class _PrintShackFormPageState extends State<PrintShackFormPage> {
     final preview = lines
         .asMap()
         .entries
-        .map((e) => 'Line ${e.key + 1}: ${e.value.isEmpty ? "(empty)" : e.value}')
+        .map((e) =>
+            'Line ${e.key + 1}: ${e.value.isEmpty ? "(empty)" : e.value}')
         .join(', ');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

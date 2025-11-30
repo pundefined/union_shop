@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/widgets/page_content.dart';
 
 /// Shopping cart page displaying cart items, total price, and checkout button.
 class CartPage extends StatelessWidget {
@@ -15,91 +16,101 @@ class CartPage extends StatelessWidget {
       return _buildEmptyCart(context);
     }
 
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 800),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              const Text('Shopping Cart', style: TextStyles.productHeading),
-              const SizedBox(height: 8),
-              Text(
-                '${cart.itemCount} ${cart.itemCount == 1 ? 'item' : 'items'}',
-                style: TextStyles.bodyText,
-              ),
-              const SizedBox(height: 24),
-
-              // Cart items
-              for (final item in cart.items) ...[
-                _buildCartItem(context, item, cart),
-                const Divider(height: 32),
-              ],
-
-              // Total
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return PageContent(
+      children: [
+        Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Total', style: TextStyles.productHeading),
+                  // Header
+                  const Text('Shopping Cart', style: TextStyles.productHeading),
+                  const SizedBox(height: 8),
                   Text(
-                    '£${cart.totalPrice.toStringAsFixed(2)}',
-                    style: TextStyles.productHeading,
+                    '${cart.itemCount} ${cart.itemCount == 1 ? 'item' : 'items'}',
+                    style: TextStyles.bodyText,
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Cart items
+                  for (final item in cart.items) ...[
+                    _buildCartItem(context, item, cart),
+                    const Divider(height: 32),
+                  ],
+
+                  // Total
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Total', style: TextStyles.productHeading),
+                      Text(
+                        '£${cart.totalPrice.toStringAsFixed(2)}',
+                        style: TextStyles.productHeading,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Buttons
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text('Checkout functionality coming soon!'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: const Color(0xFF4d2963),
+                        foregroundColor: Colors.white,
+                      ),
+                      child: const Text('Checkout'),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-
-              // Buttons
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Checkout functionality coming soon!'),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    backgroundColor: const Color(0xFF4d2963),
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Checkout'),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
   Widget _buildEmptyCart(BuildContext context) {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.shopping_cart_outlined, size: 80, color: Colors.grey),
-            SizedBox(height: 24),
-            Text(
-              'Your cart is empty',
-              style: TextStyles.productHeading,
-              textAlign: TextAlign.center,
+    return const PageContent(
+      children: [
+        Center(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.shopping_cart_outlined,
+                    size: 80, color: Colors.grey),
+                SizedBox(height: 24),
+                Text(
+                  'Your cart is empty',
+                  style: TextStyles.productHeading,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 12),
+                Text(
+                  'Looks like you haven\'t added any items yet.',
+                  style: TextStyles.bodyText,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            SizedBox(height: 12),
-            Text(
-              'Looks like you haven\'t added any items yet.',
-              style: TextStyles.bodyText,
-              textAlign: TextAlign.center,
-            ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../styles/text_styles.dart';
+import '../widgets/page_content.dart';
 
 /// PrintShackAboutPage displays information about the personalisation service,
 /// including service description, guidelines, and pricing info.
@@ -8,7 +9,7 @@ class PrintShackAboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return PageContent(
       children: [
         // Page content
         Container(

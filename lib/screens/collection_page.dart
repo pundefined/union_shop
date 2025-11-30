@@ -3,6 +3,7 @@ import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
 import 'package:union_shop/widgets/control_section.dart';
+import 'package:union_shop/widgets/page_content.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 /// A page widget that displays a collection of products in a responsive grid.
@@ -83,42 +84,39 @@ class _CollectionPageState extends State<CollectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header Section
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.collection.title,
-                  style: TextStyles.collectionPageHeading,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  widget.collection.description,
-                  style: TextStyles.collectionPageDescription,
-                ),
-              ],
-            ),
+    return PageContent(
+      children: [
+        // Header Section
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.collection.title,
+                style: TextStyles.collectionPageHeading,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.collection.description,
+                style: TextStyles.collectionPageDescription,
+              ),
+            ],
           ),
-          // Control Section
-          ControlSection(
-            currentSort: _currentSort,
-            currentFilter: _currentFilter,
-            onSortChanged: _applySorting,
-            onFilterChanged: _applyFiltering,
-          ),
-          // Products Grid
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: _buildProductGrid(context),
-          ),
-        ],
-      ),
+        ),
+        // Control Section
+        ControlSection(
+          currentSort: _currentSort,
+          currentFilter: _currentFilter,
+          onSortChanged: _applySorting,
+          onFilterChanged: _applyFiltering,
+        ),
+        // Products Grid
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: _buildProductGrid(context),
+        ),
+      ],
     );
   }
 

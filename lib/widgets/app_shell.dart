@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
-import 'package:union_shop/widgets/app_footer.dart';
 
 /// AppShell composes the shared AppNavbar with page content.
 class AppShell extends StatelessWidget {
@@ -40,20 +39,10 @@ class AppShell extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // The page content widget is inserted here. Pages should no
-                  // longer include a top-level ScrollView to avoid nested
-                  // scrolling issues.
-                  child,
-                  const AppFooter(),
-                ],
-              ),
-            ),
-          ),
+          // Each page is responsible for its own scrolling behavior.
+          // Pages should use PageContent widget for consistent scroll + footer,
+          // or implement custom scroll logic as needed.
+          Expanded(child: child),
         ],
       ),
     );
