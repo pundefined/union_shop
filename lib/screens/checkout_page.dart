@@ -35,7 +35,8 @@ class CheckoutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
-                // TODO: Order items will be added in next subtask
+                // Order items
+                _buildOrderItemsList(cart),
 
                 // TODO: Price breakdown will be added in subsequent subtask
 
@@ -88,6 +89,78 @@ class CheckoutPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildOrderItemsList(CartProvider cart) {
+    return Column(
+      children: [
+        for (int i = 0; i < cart.items.length; i++) ...[
+          _buildOrderItem(cart.items[i]),
+          if (i < cart.items.length - 1) const Divider(height: 32),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildOrderItem(CartItem item) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Product image
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+            item.product.imageUrl,
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+            semanticLabel: item.product.name,
+            errorBuilder: (_, __, ___) => Container(
+              width: 80,
+              height: 80,
+              color: Colors.grey[200],
+              child: const Icon(Icons.image_not_supported, color: Colors.grey),
+            ),
+          ),
+        ),
+        const SizedBox(width: 16),
+
+        // Product details
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(item.product.name, style: TextStyles.subHeading),
+              if (item.selectedColor != null || item.selectedSize != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    [item.selectedColor, item.selectedSize]
+                        .where((e) => e != null)
+                        .join(' / '),
+                    style: TextStyles.bodySmall,
+                  ),
+                ),
+              const SizedBox(height: 4),
+              Text(
+                'Qty: ${item.quantity}',
+                style: TextStyles.bodySmall,
+              ),
+            ],
+          ),
+        ),
+
+        // Item total price
+        Text(
+          '£${item.totalPrice.toStringAsFixed(2)}',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF4d2963),
+          ),
+        ),
+      ],
     );
   }
 }
