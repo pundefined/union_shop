@@ -309,3 +309,37 @@ Implement "The Print Shack" feature that allows users to configure personalisati
 - [ ] Register routes for both pages.
 - [ ] Refactor shared page layout from product page (if applicable).
 - [ ] Add widget tests for form page and about page.
+
+---
+
+## 11. Checkout Screen
+
+### Description
+Implement a checkout screen that displays an order summary before purchase. Users navigate to checkout from the cart page, review their order, and place the order. Order placement is UI-only with dummy behaviour that shows a confirmation SnackBar and navigates back to the home page.
+
+### User Stories
+- As a user, I want to review my order before placing it so I can confirm my selections.
+- As a user, I want to see all items in my order with their details and prices.
+- As a user, I want to place my order and receive confirmation that it was successful.
+- As a user, I want to return to the home page after placing my order.
+
+### Acceptance Criteria
+- [ ] Checkout page displays order summary with all cart items.
+- [ ] Each item shows image, name, variants (if applicable), quantity, and price.
+- [ ] Price breakdown shows subtotal and total prominently.
+- [ ] "Place Order" button is visible and styled consistently with app design.
+- [ ] Tapping "Place Order" displays a SnackBar confirming order placement.
+- [ ] After order placement, cart is cleared and user navigates to home.
+- [ ] Route registered (`/checkout`) and accessible via navigation from cart.
+- [ ] Back navigation returns to cart page for order modifications.
+- [ ] Responsive layout on mobile/tablet/desktop.
+- [ ] Minimum 48x48dp tap targets.
+
+### Subtasks
+- [ ] Create checkout page component.
+- [ ] Implement order summary display with item details.
+- [ ] Implement price breakdown and total calculation.
+- [ ] Implement "Place Order" button with SnackBar and navigation.
+- [ ] Update cart page checkout button to navigate to checkout.
+- [ ] Register checkout route.
+- [ ] Add widget tests for checkout page.
