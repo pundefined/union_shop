@@ -226,6 +226,14 @@ class _AppNavbarState extends State<AppNavbar> {
                 Navigator.pushNamed(context, '/collections');
                 _toggleMenu();
               },
+              onPrintShackPersonaliseTap: () {
+                Navigator.pushNamed(context, '/print-shack');
+                _toggleMenu();
+              },
+              onPrintShackAboutTap: () {
+                Navigator.pushNamed(context, '/print-shack/about');
+                _toggleMenu();
+              },
             ),
         ],
       ),
@@ -296,12 +304,14 @@ class ImageNetworkLogo extends StatelessWidget {
 
 /// Mobile menu container that displays navigation links vertically.
 /// Designed to slide down below the navbar on mobile screens.
-class MobileMenuContainer extends StatelessWidget {
+class MobileMenuContainer extends StatefulWidget {
   /// Callback when a menu item is tapped
   final VoidCallback? onHomeTap;
   final VoidCallback? onSaleTap;
   final VoidCallback? onAboutTap;
   final VoidCallback? onCollectionsTap;
+  final VoidCallback? onPrintShackPersonaliseTap;
+  final VoidCallback? onPrintShackAboutTap;
 
   const MobileMenuContainer({
     Key? key,
@@ -309,7 +319,16 @@ class MobileMenuContainer extends StatelessWidget {
     this.onSaleTap,
     this.onAboutTap,
     this.onCollectionsTap,
+    this.onPrintShackPersonaliseTap,
+    this.onPrintShackAboutTap,
   }) : super(key: key);
+
+  @override
+  State<MobileMenuContainer> createState() => _MobileMenuContainerState();
+}
+
+class _MobileMenuContainerState extends State<MobileMenuContainer> {
+  bool _isPrintShackExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -331,26 +350,47 @@ class MobileMenuContainer extends StatelessWidget {
           _MobileMenuItem(
             icon: Icons.home,
             label: 'Home',
-            onTap: onHomeTap,
+            onTap: widget.onHomeTap,
           ),
           // Mobile menu item for Sale
           _MobileMenuItem(
             icon: Icons.local_offer,
             label: 'Sale',
-            onTap: onSaleTap,
+            onTap: widget.onSaleTap,
           ),
           // Mobile menu item for About
           _MobileMenuItem(
             icon: Icons.info,
             label: 'About',
-            onTap: onAboutTap,
+            onTap: widget.onAboutTap,
           ),
           // Mobile menu item for Collections
           _MobileMenuItem(
             icon: Icons.grid_view,
             label: 'Collections',
-            onTap: onCollectionsTap,
+            onTap: widget.onCollectionsTap,
           ),
+          // Expandable Print Shack section
+          _MobileMenuExpandableItem(
+            icon: Icons.edit,
+            label: 'The Print Shack',
+            isExpanded: _isPrintShackExpanded,
+            onTap: () {
+              setState(() {
+                _isPrintShackExpanded = !_isPrintShackExpanded;
+              });
+            },
+          ),
+          if (_isPrintShackExpanded) ...[
+            _MobileMenuSubItem(
+              label: 'Personalise',
+              onTap: widget.onPrintShackPersonaliseTap,
+            ),
+            _MobileMenuSubItem(
+              label: 'About',
+              onTap: widget.onPrintShackAboutTap,
+            ),
+          ],
         ],
       ),
     );
@@ -399,6 +439,105 @@ class _MobileMenuItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[800],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Expandable menu item for mobile menu with expand/collapse arrow.
+class _MobileMenuExpandableItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool isExpanded;
+  final VoidCallback? onTap;
+
+  const _MobileMenuExpandableItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.isExpanded,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                size: 20,
+                color: Colors.grey[700],
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Semantics(
+                  label: label,
+                  button: true,
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ),
+              ),
+              Icon(
+                isExpanded ? Icons.expand_less : Icons.expand_more,
+                size: 20,
+                color: Colors.grey[700],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Sub-item for expandable mobile menu sections.
+class _MobileMenuSubItem extends StatelessWidget {
+  final String label;
+  final VoidCallback? onTap;
+
+  const _MobileMenuSubItem({
+    Key? key,
+    required this.label,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          // Indent sub-items
+          margin: const EdgeInsets.only(left: 36),
+          child: Row(
+            children: [
+              Semantics(
+                label: label,
+                button: true,
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[700],
                   ),
                 ),
               ),
