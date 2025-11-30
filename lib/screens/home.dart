@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                 // New Arrivals Section
                 ProductSection(
                   title: 'New Arrivals',
-                  products: newArrivalsProducts,
+                  products: newArrivalsProducts.take(2).toList(),
                 ),
                 const SizedBox(height: 64),
                 // Featured Collection Section
