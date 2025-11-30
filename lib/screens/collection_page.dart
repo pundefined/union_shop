@@ -95,7 +95,9 @@ class _CollectionPageState extends State<CollectionPage> {
     final endIndex = startIndex + _itemsPerPage;
     return _displayedProducts.sublist(
       startIndex,
-      endIndex > _displayedProducts.length ? _displayedProducts.length : endIndex,
+      endIndex > _displayedProducts.length
+          ? _displayedProducts.length
+          : endIndex,
     );
   }
 
@@ -161,7 +163,108 @@ class _CollectionPageState extends State<CollectionPage> {
           padding: const EdgeInsets.all(16),
           child: _buildProductGrid(context),
         ),
+        // Pagination Controls
+        if (_totalPages > 1)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: _buildPaginationControls(),
+          ),
       ],
+    );
+  }
+
+  /// Builds pagination control buttons.
+  Widget _buildPaginationControls() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // Previous button
+        IconButton(
+          onPressed: _currentPage > 1 ? _goToPreviousPage : null,
+          icon: const Icon(Icons.chevron_left),
+          tooltip: 'Previous page',
+        ),
+        const SizedBox(width: 8),
+        // Page numbers
+        ..._buildPageNumbers(),
+        const SizedBox(width: 8),
+        // Next button
+        IconButton(
+          onPressed: _currentPage < _totalPages ? _goToNextPage : null,
+          icon: const Icon(Icons.chevron_right),
+          tooltip: 'Next page',
+        ),
+      ],
+    );
+  }
+
+  /// Builds the page number buttons with ellipsis for large page counts.
+  List<Widget> _buildPageNumbers() {
+    final List<Widget> pageButtons = [];
+
+    // For small number of pages, show all
+    if (_totalPages <= 5) {
+      for (int i = 1; i <= _totalPages; i++) {
+        pageButtons.add(_buildPageButton(i));
+      }
+    } else {
+      // Always show first page
+      pageButtons.add(_buildPageButton(1));
+
+      // Show ellipsis or pages around current
+      if (_currentPage > 3) {
+        pageButtons.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4),
+          child: Text('...'),
+        ));
+      }
+
+      // Pages around current page
+      for (int i = _currentPage - 1; i <= _currentPage + 1; i++) {
+        if (i > 1 && i < _totalPages) {
+          pageButtons.add(_buildPageButton(i));
+        }
+      }
+
+      // Show ellipsis before last page
+      if (_currentPage < _totalPages - 2) {
+        pageButtons.add(const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4),
+          child: Text('...'),
+        ));
+      }
+
+      // Always show last page
+      pageButtons.add(_buildPageButton(_totalPages));
+    }
+
+    return pageButtons;
+  }
+
+  /// Builds an individual page number button.
+  Widget _buildPageButton(int page) {
+    final isSelected = page == _currentPage;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: Material(
+        color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+        borderRadius: BorderRadius.circular(4),
+        child: InkWell(
+          onTap: () => _goToPage(page),
+          borderRadius: BorderRadius.circular(4),
+          child: Container(
+            constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+            alignment: Alignment.center,
+            child: Text(
+              '$page',
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.black87,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -191,7 +294,7 @@ class _CollectionPageState extends State<CollectionPage> {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        final product = _displayedProducts[index];
+        final product = products[index];
         return ProductCard(product: product);
       },
     );
