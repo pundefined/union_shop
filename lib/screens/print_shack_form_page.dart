@@ -139,19 +139,51 @@ class _PrintShackFormPageState extends State<PrintShackFormPage> {
                 ),
               ],
 
-              // Submit button (action not yet implemented)
+              // Submit button
               const SizedBox(height: 32),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: null, // TODO: Hook up submit action
-                  child: Text('Preview Personalisation'),
+                  onPressed: _handleSubmit,
+                  child: const Text('Preview Personalisation'),
                 ),
               ),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  void _handleSubmit() {
+    // Collect text from visible lines
+    final lines = <String>[];
+    for (int i = 0; i < _selectedLineCount; i++) {
+      lines.add(_lineControllers[i].text.trim());
+    }
+
+    // Check if at least one line has content
+    final hasContent = lines.any((line) => line.isNotEmpty);
+
+    if (!hasContent) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter text for at least one line'),
+        ),
+      );
+      return;
+    }
+
+    // Show preview snackbar with all lines
+    final preview = lines
+        .asMap()
+        .entries
+        .map((e) => 'Line ${e.key + 1}: ${e.value.isEmpty ? "(empty)" : e.value}')
+        .join(', ');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(preview),
+      ),
     );
   }
 }
