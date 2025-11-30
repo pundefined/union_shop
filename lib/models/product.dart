@@ -386,8 +386,7 @@ final List<Product> signatureRangeProducts = [
     id: 'signature-3',
     name: 'Embroidered Polo Shirt',
     price: 44.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1625910513413-5fc45e14bb72?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/embroidered_polo_shirt.png',
     description:
         'Premium cotton polo with embroidered university logo. Smart casual style for any setting.',
     category: ProductCategory.product,
@@ -464,8 +463,7 @@ final List<Product> winterFavouritesProducts = [
     id: 'winter-1',
     name: 'Puffer Jacket',
     price: 79.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1544923246-77307dd628b5?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/puffer_jacket.png',
     description:
         'Warm quilted puffer jacket with water-resistant shell. Hood included for extra protection.',
     category: ProductCategory.product,
@@ -476,8 +474,7 @@ final List<Product> winterFavouritesProducts = [
     id: 'winter-2',
     name: 'Fleece Lined Gloves',
     price: 19.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1545170241-dd2c92a11f53?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/fleece_lined_gloves.png',
     description:
         'Touch-screen compatible gloves with soft fleece lining. Keep your hands warm while using your phone.',
     category: ProductCategory.product,
@@ -488,8 +485,7 @@ final List<Product> winterFavouritesProducts = [
     id: 'winter-3',
     name: 'Thermal Socks Pack',
     price: 16.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/thermal_socks_pack.png',
     description:
         'Pack of 3 thermal socks with extra cushioning. Keep your feet warm all winter long.',
     category: ProductCategory.product,
@@ -499,8 +495,7 @@ final List<Product> winterFavouritesProducts = [
     id: 'winter-4',
     name: 'Hot Chocolate Gift Set',
     price: 24.99,
-    imageUrl:
-        'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=500&h=500&fit=crop',
+    imageUrl: 'assets/images/hot_chocolate_gift_set.png',
     description:
         'Luxury hot chocolate set with mug, marshmallows, and premium cocoa. Perfect winter warmer.',
     category: ProductCategory.merchandise,
