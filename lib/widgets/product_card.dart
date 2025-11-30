@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
@@ -7,21 +8,25 @@ import 'package:union_shop/styles/text_styles.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
 
+  /// The collection slug for URL-based navigation.
+  /// If not provided, tapping the card will not navigate.
+  final String? collectionSlug;
+
   const ProductCard({
     super.key,
     required this.product,
+    this.collectionSlug,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/product',
-          arguments: product,
-        );
-      },
+      onTap: collectionSlug != null
+          ? () {
+              context
+                  .go('/collections/$collectionSlug/products/${product.slug}');
+            }
+          : null,
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(
