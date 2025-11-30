@@ -1,3 +1,5 @@
+import 'collection.dart' show generateSlug;
+
 /// Enum for product categories.
 enum ProductCategory {
   product,
@@ -16,6 +18,9 @@ class Product {
   final List<String>? colors;
   final List<String>? sizes;
 
+  /// URL-safe slug for deep linking, auto-generated from name.
+  final String slug;
+
   Product({
     required this.id,
     required this.name,
@@ -26,7 +31,19 @@ class Product {
     this.discountedPrice,
     this.colors,
     this.sizes,
-  });
+    String? slug,
+  }) : slug = slug ?? generateSlug(name);
+
+  /// Finds a product by its slug from a list of products.
+  ///
+  /// Returns `null` if no product with the given slug is found.
+  static Product? findBySlug(List<Product> products, String slug) {
+    try {
+      return products.firstWhere((p) => p.slug == slug);
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 /// Sample products for the collection page.
