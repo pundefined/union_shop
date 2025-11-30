@@ -45,7 +45,7 @@ class ControlSection extends StatelessWidget {
                 ),
                 DropdownMenuItem(
                   value: 'product',
-                  child: Text('Product'),
+                  child: Text('Clothing'),
                 ),
                 DropdownMenuItem(
                   value: 'merchandise',
