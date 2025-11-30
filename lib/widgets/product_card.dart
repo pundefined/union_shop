@@ -4,29 +4,19 @@ import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
 /// A reusable widget that displays a single product card in a grid.
-/// Tapping the card navigates to the product detail page.
+/// Tapping the card navigates to the product detail page at /products/{slug}.
 class ProductCard extends StatelessWidget {
   final Product product;
-
-  /// The collection slug for URL-based navigation.
-  /// If not provided, tapping the card will not navigate.
-  final String? collectionSlug;
 
   const ProductCard({
     super.key,
     required this.product,
-    this.collectionSlug,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: collectionSlug != null
-          ? () {
-              context
-                  .go('/collections/$collectionSlug/products/${product.slug}');
-            }
-          : null,
+      onTap: () => context.go('/products/${product.slug}'),
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(

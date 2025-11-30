@@ -295,10 +295,7 @@ class _CollectionPageState extends State<CollectionPage> {
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];
-        return ProductCard(
-          product: product,
-          collectionSlug: widget.collection.slug,
-        );
+        return ProductCard(product: product);
       },
     );
   }
