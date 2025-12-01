@@ -17,12 +17,9 @@ Implement a search feature that allows users to search for products by name or d
 - **Search input**: Text field for entering or modifying search terms
 - **Results display**: List/grid of products matching the search term
 - **Product cards**: Each result shows product image, name, description excerpt, and price
-- **Empty state**: Friendly message when no results are found
-- **Initial state**: Friendly message prompting user to enter a search term (if no query provided)
 
 ### Search Logic
 - **Search scope**: Match search term against product name and description (case-insensitive)
-- **Real-time results**: Results update as the user types (with debounce for performance)
 - **URL sync**: Search term is reflected in the URL query parameter (`/search?q={term}`)
 
 ## Implementation Details

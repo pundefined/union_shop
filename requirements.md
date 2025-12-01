@@ -407,11 +407,8 @@ Implement a search feature with two entry points: a search icon in the navbar th
 - [ ] Footer includes "Search" link that navigates to `/search`.
 - [ ] Search page displays text input for entering/modifying search terms.
 - [ ] Search results show products matching term in name or description (case-insensitive).
-- [ ] Each result displays product image, name, description excerpt, and price.
-- [ ] Empty state displays message when no results found.
-- [ ] Initial state displays prompt when no search term provided.
+- [ ] Each result displays product image, name and price.
 - [ ] Search term is reflected in URL query parameter for sharing.
-- [ ] Results update with debounce as user types (300-500ms).
 - [ ] Route registered at `/search` with optional `q` query parameter.
 - [ ] Responsive layout on mobile/tablet/desktop.
 - [ ] Minimum 48x48dp tap targets; keyboard Enter submits search.
@@ -423,6 +420,5 @@ Implement a search feature with two entry points: a search icon in the navbar th
 - [ ] Add search icon to navbar with overlay toggle.
 - [ ] Add search link to footer.
 - [ ] Register search route with query parameter support.
-- [ ] Implement debounce for real-time search.
 - [ ] Add widget tests for search page.
 - [ ] Add widget tests for search overlay.
