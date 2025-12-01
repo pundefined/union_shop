@@ -63,6 +63,7 @@ class _SearchPageState extends State<SearchPage> {
     if (searchTerm.isEmpty) {
       setState(() {
         _searchResults = [];
+        _hasSearched = false;
       });
       return;
     }
