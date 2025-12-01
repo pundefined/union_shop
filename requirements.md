@@ -408,6 +408,7 @@ Implement a search feature with two entry points: a search icon in the navbar th
 - [ ] Search page displays text input for entering/modifying search terms.
 - [ ] Search results show products matching term in name or description (case-insensitive).
 - [ ] Each result displays product image, name and price.
+- [ ] Empty state displays message when no results found.
 - [ ] Search term is reflected in URL query parameter for sharing.
 - [ ] Route registered at `/search` with optional `q` query parameter.
 - [ ] Responsive layout on mobile/tablet/desktop.

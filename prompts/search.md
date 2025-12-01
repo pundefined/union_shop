@@ -17,6 +17,7 @@ Implement a search feature that allows users to search for products by name or d
 - **Search input**: Text field for entering or modifying search terms
 - **Results display**: List/grid of products matching the search term
 - **Product cards**: Each result shows product image, name, description excerpt, and price
+- **Empty state**: Message when no results are found
 
 ### Search Logic
 - **Search scope**: Match search term against product name and description (case-insensitive)
