@@ -15,6 +15,7 @@ dependencies:
   go_router: ^17.0.0
   flutter_web_plugins:
     sdk: flutter
+  firebase_core: ^4.2.1
 
 dev_dependencies:
   flutter_test:

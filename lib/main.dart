@@ -4,8 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/router.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+Future<void> main() async {
   usePathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => CartProvider(),
