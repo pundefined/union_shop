@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../models/auth_provider.dart';
 
 /// LoginSignupScreen provides a unified interface for user authentication.
 /// Users can toggle between login and signup modes, with form state management
@@ -73,6 +76,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   /// Switches between login and signup modes, clearing form fields
   void _switchMode() {
+    // Clear any existing auth errors when switching modes
+    context.read<AuthProvider>().clearError();
     setState(() {
       _isLoginMode = !_isLoginMode;
       _emailController.clear();
@@ -82,22 +87,46 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
     });
   }
 
-  /// Placeholder handler for login action
-  void _handleLogin() {
-    // TODO: Implement actual login logic with backend integration
-    final email = _emailController.text;
-    // ignore: unused_local_variable
+  /// Handles the login action using Firebase Auth
+  Future<void> _handleLogin() async {
+    final email = _emailController.text.trim();
     final password = _passwordController.text;
-    debugPrint('Login attempt: email=$email, rememberMe=$_rememberMe');
+
+    // Validate non-empty fields before submission
+    if (email.isEmpty || password.isEmpty) {
+      return;
+    }
+
+    final authProvider = context.read<AuthProvider>();
+    final success = await authProvider.signIn(
+      email: email,
+      password: password,
+    );
+
+    if (success && mounted) {
+      context.go('/');
+    }
   }
 
-  /// Placeholder handler for signup action
-  void _handleSignup() {
-    // TODO: Implement actual signup logic with backend integration
-    final email = _emailController.text;
-    // ignore: unused_local_variable
+  /// Handles the signup action using Firebase Auth
+  Future<void> _handleSignup() async {
+    final email = _emailController.text.trim();
     final password = _passwordController.text;
-    debugPrint('Signup attempt: email=$email');
+
+    // Validate non-empty fields before submission
+    if (email.isEmpty || password.isEmpty) {
+      return;
+    }
+
+    final authProvider = context.read<AuthProvider>();
+    final success = await authProvider.signUp(
+      email: email,
+      password: password,
+    );
+
+    if (success && mounted) {
+      context.go('/');
+    }
   }
 
   // ============================================================================
