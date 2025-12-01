@@ -138,11 +138,6 @@ class _AppNavbarState extends State<AppNavbar> {
                                   text: 'About',
                                   onPressed: () => context.go('/about'),
                                 ),
-                                NavLink(
-                                  label: 'Collections',
-                                  text: 'Collections',
-                                  onPressed: () => context.go('/collections'),
-                                ),
                                 // Shop dropdown for desktop - links to each collection
                                 const ShopDropdown(),
                                 // Print Shack dropdown for desktop
@@ -238,10 +233,6 @@ class _AppNavbarState extends State<AppNavbar> {
                 context.go('/about');
                 _toggleMenu();
               },
-              onCollectionsTap: () {
-                context.go('/collections');
-                _toggleMenu();
-              },
               onShopCollectionTap: (slug) {
                 context.go('/collections/$slug');
                 _toggleMenu();
@@ -329,7 +320,6 @@ class MobileMenuContainer extends StatefulWidget {
   final VoidCallback? onHomeTap;
   final VoidCallback? onSaleTap;
   final VoidCallback? onAboutTap;
-  final VoidCallback? onCollectionsTap;
   final VoidCallback? onPrintShackPersonaliseTap;
   final VoidCallback? onPrintShackAboutTap;
   final void Function(String slug)? onShopCollectionTap;
@@ -339,7 +329,6 @@ class MobileMenuContainer extends StatefulWidget {
     this.onHomeTap,
     this.onSaleTap,
     this.onAboutTap,
-    this.onCollectionsTap,
     this.onPrintShackPersonaliseTap,
     this.onPrintShackAboutTap,
     this.onShopCollectionTap,
@@ -386,12 +375,6 @@ class _MobileMenuContainerState extends State<MobileMenuContainer> {
             icon: Icons.info,
             label: 'About',
             onTap: widget.onAboutTap,
-          ),
-          // Mobile menu item for Collections
-          _MobileMenuItem(
-            icon: Icons.grid_view,
-            label: 'Collections',
-            onTap: widget.onCollectionsTap,
           ),
           // Expandable Shop section
           _MobileMenuExpandableItem(
