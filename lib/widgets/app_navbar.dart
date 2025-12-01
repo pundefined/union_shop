@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 import 'package:union_shop/widgets/search_overlay.dart';
@@ -165,19 +167,34 @@ class _AppNavbarState extends State<AppNavbar> {
                                 ),
                                 onPressed: widget.onSearch ?? _toggleSearch,
                               ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.person_outline,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 48,
-                                  minHeight: 48,
-                                ),
-                                onPressed: widget.onAccount ??
-                                    () => context.go('/login'),
+                              // Auth-aware account button
+                              Consumer<AuthProvider>(
+                                builder: (context, authProvider, child) {
+                                  final isAuthenticated =
+                                      authProvider.isAuthenticated;
+                                  return IconButton(
+                                    icon: Icon(
+                                      isAuthenticated
+                                          ? Icons.person
+                                          : Icons.person_outline,
+                                      size: 18,
+                                      color: isAuthenticated
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : Colors.grey,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 48,
+                                      minHeight: 48,
+                                    ),
+                                    tooltip:
+                                        isAuthenticated ? 'Account' : 'Login',
+                                    onPressed: widget.onAccount ??
+                                        () => context.go('/login'),
+                                  );
+                                },
                               ),
                               IconButton(
                                 icon: const Icon(
