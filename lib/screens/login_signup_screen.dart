@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../models/auth_provider.dart';
+import '../utils/auth_error_messages.dart';
 
 /// LoginSignupScreen provides a unified interface for user authentication.
 /// Users can toggle between login and signup modes, with form state management
@@ -171,6 +172,13 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   const SizedBox(height: 16),
 
                   // ============================================================
+                  // ERROR MESSAGE (if any)
+                  // ============================================================
+                  if (authProvider.error != null)
+                    _buildErrorMessage(authProvider.error!),
+                  if (authProvider.error != null) const SizedBox(height: 16),
+
+                  // ============================================================
                   // REMEMBER ME CHECKBOX (if login mode)
                   // ============================================================
                   if (_isLoginMode)
@@ -234,6 +242,40 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           textAlign: TextAlign.center,
         ),
       ],
+    );
+  }
+
+  /// Builds the error message display
+  Widget _buildErrorMessage(String errorCode) {
+    final errorMessage = getAuthErrorMessage(errorCode);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.error,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.error,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.error_outline,
+            color: Theme.of(context).colorScheme.error,
+            size: 20,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              errorMessage,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
