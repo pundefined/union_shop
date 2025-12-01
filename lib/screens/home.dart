@@ -17,31 +17,34 @@ class HomeScreen extends StatelessWidget {
       CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-        title: 'Placeholder Hero Title',
-        subtitle: 'This is placeholder text for the hero section.',
-        ctaText: 'BROWSE PRODUCTS',
+        title: 'Summer Sale',
+        subtitle:
+            'Hot deals on cool styles! Up to 50% off selected items while stocks last.',
+        ctaText: 'SHOP THE SALE',
         onCtaPressed: () {
-          // TODO: Implement navigation to products page
+          context.go('/collections/summer-sale');
         },
       ),
       CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-        title: 'Second Slide Title',
-        subtitle: 'This is placeholder text for the second slide.',
-        ctaText: 'BROWSE PRODUCTS',
+        title: 'Make It Yours',
+        subtitle:
+            'Add a personal touch with custom printing. Perfect for gifts, events, or treating yourself.',
+        ctaText: 'PERSONALISE NOW',
         onCtaPressed: () {
-          // TODO: Implement navigation to products page
+          context.go('/print-shack');
         },
       ),
       CarouselSlide(
         imageUrl:
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-        title: 'Third Slide Title',
-        subtitle: 'This is placeholder text for the third slide.',
-        ctaText: 'BROWSE PRODUCTS',
+        title: 'Explore Our Collections',
+        subtitle:
+            'From everyday essentials to statement pieces — find something for every occasion.',
+        ctaText: 'VIEW COLLECTIONS',
         onCtaPressed: () {
-          // TODO: Implement navigation to products page
+          context.go('/collections');
         },
       ),
     ];
