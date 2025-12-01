@@ -415,7 +415,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           elevation: 2,
           disabledBackgroundColor:
-              Theme.of(context).colorScheme.primary.withOpacity(0.6),
+              Theme.of(context).colorScheme.primary.withValues(alpha: 0.6),
         ),
         child: isLoading
             ? const SizedBox(
@@ -453,7 +453,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           elevation: 2,
           disabledBackgroundColor:
-              Theme.of(context).colorScheme.primary.withOpacity(0.6),
+              Theme.of(context).colorScheme.primary.withValues(alpha: .6),
         ),
         child: isLoading
             ? const SizedBox(
