@@ -190,10 +190,8 @@ class _AppNavbarState extends State<AppNavbar> {
                                       ),
                                       onSelected: (value) async {
                                         if (value == 'signout') {
+                                          context.go('/');
                                           await authProvider.signOut();
-                                          if (context.mounted) {
-                                            context.go('/');
-                                          }
                                         }
                                       },
                                       itemBuilder: (context) => [
@@ -312,11 +310,11 @@ class _AppNavbarState extends State<AppNavbar> {
               },
               onSignOutTap: () async {
                 final authProvider = context.read<AuthProvider>();
-                await authProvider.signOut();
+                // Navigate and close menu first, then sign out to avoid
+                // context issues during rebuild
+                context.go('/');
                 _toggleMenu();
-                if (context.mounted) {
-                  context.go('/');
-                }
+                await authProvider.signOut();
               },
             ),
         ],
