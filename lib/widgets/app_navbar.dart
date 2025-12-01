@@ -143,6 +143,8 @@ class _AppNavbarState extends State<AppNavbar> {
                                   text: 'Collections',
                                   onPressed: () => context.go('/collections'),
                                 ),
+                                // Shop dropdown for desktop - links to each collection
+                                const ShopDropdown(),
                                 // Print Shack dropdown for desktop
                                 const PrintShackDropdown(),
                               ],
@@ -240,6 +242,10 @@ class _AppNavbarState extends State<AppNavbar> {
                 context.go('/collections');
                 _toggleMenu();
               },
+              onShopCollectionTap: (slug) {
+                context.go('/collections/$slug');
+                _toggleMenu();
+              },
               onPrintShackPersonaliseTap: () {
                 context.go('/print-shack');
                 _toggleMenu();
@@ -326,6 +332,7 @@ class MobileMenuContainer extends StatefulWidget {
   final VoidCallback? onCollectionsTap;
   final VoidCallback? onPrintShackPersonaliseTap;
   final VoidCallback? onPrintShackAboutTap;
+  final void Function(String slug)? onShopCollectionTap;
 
   const MobileMenuContainer({
     Key? key,
@@ -335,6 +342,7 @@ class MobileMenuContainer extends StatefulWidget {
     this.onCollectionsTap,
     this.onPrintShackPersonaliseTap,
     this.onPrintShackAboutTap,
+    this.onShopCollectionTap,
   }) : super(key: key);
 
   @override
@@ -343,6 +351,7 @@ class MobileMenuContainer extends StatefulWidget {
 
 class _MobileMenuContainerState extends State<MobileMenuContainer> {
   bool _isPrintShackExpanded = false;
+  bool _isShopExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -384,6 +393,24 @@ class _MobileMenuContainerState extends State<MobileMenuContainer> {
             label: 'Collections',
             onTap: widget.onCollectionsTap,
           ),
+          // Expandable Shop section
+          _MobileMenuExpandableItem(
+            icon: Icons.shopping_bag,
+            label: 'Shop',
+            isExpanded: _isShopExpanded,
+            onTap: () {
+              setState(() {
+                _isShopExpanded = !_isShopExpanded;
+              });
+            },
+          ),
+          if (_isShopExpanded) ...[
+            for (final collection in sampleCollections)
+              _MobileMenuSubItem(
+                label: collection.title,
+                onTap: () => widget.onShopCollectionTap?.call(collection.slug),
+              ),
+          ],
           // Expandable Print Shack section
           _MobileMenuExpandableItem(
             icon: Icons.edit,
@@ -602,6 +629,51 @@ class PrintShackDropdown extends StatelessWidget {
             children: [
               Text(
                 'Print Shack',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 4),
+              Icon(Icons.arrow_drop_down, size: 18),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Desktop dropdown menu for Shop section.
+/// Shows a dropdown with links to each collection.
+class ShopDropdown extends StatelessWidget {
+  const ShopDropdown({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      offset: const Offset(0, 40),
+      tooltip: 'Shop',
+      popUpAnimationStyle: AnimationStyle.noAnimation,
+      onSelected: (value) {
+        context.go('/collections/$value');
+      },
+      itemBuilder: (context) => sampleCollections
+          .map(
+            (collection) => PopupMenuItem<String>(
+              value: collection.slug,
+              child: Text(collection.title),
+            ),
+          )
+          .toList(),
+      child: Semantics(
+        label: 'Shop',
+        button: true,
+        child: Container(
+          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Shop',
                 style: TextStyle(color: Colors.black),
               ),
               SizedBox(width: 4),
