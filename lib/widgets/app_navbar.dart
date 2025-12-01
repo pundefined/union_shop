@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/widgets/search_overlay.dart';
 
 /// Responsive breakpoint constants for adaptive navigation layout.
 const double _mobileBreakpoint = 600.0;
@@ -33,6 +34,9 @@ class _AppNavbarState extends State<AppNavbar> {
   /// Tracks whether the mobile menu is open or closed.
   bool _isMenuOpen = false;
 
+  /// Tracks whether the search overlay is open or closed.
+  bool _isSearchOpen = false;
+
   /// Determines the screen size category based on media query width.
   ScreenSize _getScreenSize(double width) {
     if (width < _mobileBreakpoint) {
@@ -46,6 +50,13 @@ class _AppNavbarState extends State<AppNavbar> {
   void _toggleMenu() {
     setState(() {
       _isMenuOpen = !_isMenuOpen;
+    });
+  }
+
+  /// Toggles the search overlay open/closed state.
+  void _toggleSearch() {
+    setState(() {
+      _isSearchOpen = !_isSearchOpen;
     });
   }
 
@@ -74,132 +85,138 @@ class _AppNavbarState extends State<AppNavbar> {
             ),
           ),
 
-          // Main header row
+          // Main header row - show search overlay or normal header
           SizedBox(
             height: 56,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Logo with semantic label and minimum tappable area
-                  Semantics(
-                    label: 'Home',
-                    button: true,
-                    child: InkWell(
-                      onTap: widget.onLogoTap ?? () => _navigateHome(context),
-                      child: const SizedBox(
-                        height: 48,
-                        child: Center(
-                          child: ImageNetworkLogo(),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Show/hide nav links based on screen size
-                  if (screenSize != ScreenSize.mobile)
-                    Flexible(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          NavLink(
-                            label: 'Home',
-                            text: 'Home',
-                            onPressed: () => context.go('/'),
-                          ),
-                          NavLink(
-                            label: 'Sale',
-                            text: 'Sale',
-                            onPressed: () {
-                              final saleCollection = sampleCollections
-                                  .firstWhere((c) => c.id == 'summer-sale');
-                              context.go('/collections/${saleCollection.slug}');
-                            },
-                          ),
-                          NavLink(
-                            label: 'About',
-                            text: 'About',
-                            onPressed: () => context.go('/about'),
-                          ),
-                          NavLink(
-                            label: 'Collections',
-                            text: 'Collections',
-                            onPressed: () => context.go('/collections'),
-                          ),
-                          // Print Shack dropdown for desktop
-                          const PrintShackDropdown(),
-                        ],
-                      ),
-                    ),
-
-                  // Right-side icons constrained in width
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
+            child: _isSearchOpen
+                ? SearchOverlay(onClose: _toggleSearch)
+                : Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.search,
-                            size: 18,
-                            color: Colors.grey,
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 48,
-                            minHeight: 48,
-                          ),
-                          onPressed: widget.onSearch ?? () {},
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.person_outline,
-                            size: 18,
-                            color: Colors.grey,
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 48,
-                            minHeight: 48,
-                          ),
-                          onPressed:
-                              widget.onAccount ?? () => context.go('/login'),
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 18,
-                            color: Colors.grey,
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          constraints: const BoxConstraints(
-                            minWidth: 48,
-                            minHeight: 48,
-                          ),
-                          onPressed: widget.onCart ?? () => context.go('/cart'),
-                        ),
-                        // Hamburger menu icon shown only on mobile
-                        if (screenSize == ScreenSize.mobile)
-                          IconButton(
-                            icon: const Icon(
-                              Icons.menu,
-                              size: 18,
-                              color: Colors.grey,
+                        // Logo with semantic label and minimum tappable area
+                        Semantics(
+                          label: 'Home',
+                          button: true,
+                          child: InkWell(
+                            onTap: widget.onLogoTap ??
+                                () => _navigateHome(context),
+                            child: const SizedBox(
+                              height: 48,
+                              child: Center(
+                                child: ImageNetworkLogo(),
+                              ),
                             ),
-                            padding: const EdgeInsets.all(8),
-                            constraints: const BoxConstraints(
-                              minWidth: 48,
-                              minHeight: 48,
-                            ),
-                            onPressed: _toggleMenu,
                           ),
+                        ),
+
+                        // Show/hide nav links based on screen size
+                        if (screenSize != ScreenSize.mobile)
+                          Flexible(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                NavLink(
+                                  label: 'Home',
+                                  text: 'Home',
+                                  onPressed: () => context.go('/'),
+                                ),
+                                NavLink(
+                                  label: 'Sale',
+                                  text: 'Sale',
+                                  onPressed: () {
+                                    final saleCollection =
+                                        sampleCollections.firstWhere(
+                                            (c) => c.id == 'summer-sale');
+                                    context.go(
+                                        '/collections/${saleCollection.slug}');
+                                  },
+                                ),
+                                NavLink(
+                                  label: 'About',
+                                  text: 'About',
+                                  onPressed: () => context.go('/about'),
+                                ),
+                                NavLink(
+                                  label: 'Collections',
+                                  text: 'Collections',
+                                  onPressed: () => context.go('/collections'),
+                                ),
+                                // Print Shack dropdown for desktop
+                                const PrintShackDropdown(),
+                              ],
+                            ),
+                          ),
+
+                        // Right-side icons constrained in width
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 600),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.search,
+                                  size: 18,
+                                  color: Colors.grey,
+                                ),
+                                padding: const EdgeInsets.all(8),
+                                constraints: const BoxConstraints(
+                                  minWidth: 48,
+                                  minHeight: 48,
+                                ),
+                                onPressed: widget.onSearch ?? _toggleSearch,
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.person_outline,
+                                  size: 18,
+                                  color: Colors.grey,
+                                ),
+                                padding: const EdgeInsets.all(8),
+                                constraints: const BoxConstraints(
+                                  minWidth: 48,
+                                  minHeight: 48,
+                                ),
+                                onPressed: widget.onAccount ??
+                                    () => context.go('/login'),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.shopping_bag_outlined,
+                                  size: 18,
+                                  color: Colors.grey,
+                                ),
+                                padding: const EdgeInsets.all(8),
+                                constraints: const BoxConstraints(
+                                  minWidth: 48,
+                                  minHeight: 48,
+                                ),
+                                onPressed:
+                                    widget.onCart ?? () => context.go('/cart'),
+                              ),
+                              // Hamburger menu icon shown only on mobile
+                              if (screenSize == ScreenSize.mobile)
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.menu,
+                                    size: 18,
+                                    color: Colors.grey,
+                                  ),
+                                  padding: const EdgeInsets.all(8),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 48,
+                                    minHeight: 48,
+                                  ),
+                                  onPressed: _toggleMenu,
+                                ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
           ),
 
           // Mobile menu - shown only on mobile screens when menu is open
