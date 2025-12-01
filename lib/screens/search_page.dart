@@ -6,15 +6,31 @@ import 'package:union_shop/widgets/product_card.dart';
 
 /// Search page that allows users to search for products by name or description.
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  /// Initial search query from URL parameter.
+  final String? initialQuery;
+
+  const SearchPage({super.key, this.initialQuery});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final TextEditingController _searchController = TextEditingController();
+  late TextEditingController _searchController;
   List<Product> _searchResults = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController(text: widget.initialQuery ?? '');
+    // If there's an initial query, perform the search
+    if (widget.initialQuery != null && widget.initialQuery!.isNotEmpty) {
+      // Use addPostFrameCallback to ensure widget is built
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _performSearch(widget.initialQuery!);
+      });
+    }
+  }
 
   @override
   void dispose() {
