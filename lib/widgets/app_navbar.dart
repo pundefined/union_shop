@@ -172,25 +172,69 @@ class _AppNavbarState extends State<AppNavbar> {
                                 builder: (context, authProvider, child) {
                                   final isAuthenticated =
                                       authProvider.isAuthenticated;
+
+                                  if (isAuthenticated) {
+                                    // Show popup menu for authenticated users
+                                    return PopupMenuButton<String>(
+                                      icon: Icon(
+                                        Icons.person,
+                                        size: 18,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      tooltip: 'Account',
+                                      constraints: const BoxConstraints(
+                                        minWidth: 48,
+                                        minHeight: 48,
+                                      ),
+                                      onSelected: (value) async {
+                                        if (value == 'signout') {
+                                          await authProvider.signOut();
+                                          if (context.mounted) {
+                                            context.go('/');
+                                          }
+                                        }
+                                      },
+                                      itemBuilder: (context) => [
+                                        PopupMenuItem<String>(
+                                          enabled: false,
+                                          child: Text(
+                                            authProvider.userEmail ?? 'Account',
+                                            style: TextStyle(
+                                              color: Colors.grey[600],
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        const PopupMenuDivider(),
+                                        const PopupMenuItem<String>(
+                                          value: 'signout',
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.logout, size: 18),
+                                              SizedBox(width: 8),
+                                              Text('Sign Out'),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }
+
+                                  // Show login button for unauthenticated users
                                   return IconButton(
-                                    icon: Icon(
-                                      isAuthenticated
-                                          ? Icons.person
-                                          : Icons.person_outline,
+                                    icon: const Icon(
+                                      Icons.person_outline,
                                       size: 18,
-                                      color: isAuthenticated
-                                          ? Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                          : Colors.grey,
+                                      color: Colors.grey,
                                     ),
                                     padding: const EdgeInsets.all(8),
                                     constraints: const BoxConstraints(
                                       minWidth: 48,
                                       minHeight: 48,
                                     ),
-                                    tooltip:
-                                        isAuthenticated ? 'Account' : 'Login',
+                                    tooltip: 'Login',
                                     onPressed: widget.onAccount ??
                                         () => context.go('/login'),
                                   );
@@ -261,6 +305,18 @@ class _AppNavbarState extends State<AppNavbar> {
               onPrintShackAboutTap: () {
                 context.go('/print-shack/about');
                 _toggleMenu();
+              },
+              onLoginTap: () {
+                context.go('/login');
+                _toggleMenu();
+              },
+              onSignOutTap: () async {
+                final authProvider = context.read<AuthProvider>();
+                await authProvider.signOut();
+                _toggleMenu();
+                if (context.mounted) {
+                  context.go('/');
+                }
               },
             ),
         ],
@@ -340,6 +396,8 @@ class MobileMenuContainer extends StatefulWidget {
   final VoidCallback? onPrintShackPersonaliseTap;
   final VoidCallback? onPrintShackAboutTap;
   final void Function(String slug)? onShopCollectionTap;
+  final VoidCallback? onLoginTap;
+  final VoidCallback? onSignOutTap;
 
   const MobileMenuContainer({
     Key? key,
@@ -349,6 +407,8 @@ class MobileMenuContainer extends StatefulWidget {
     this.onPrintShackPersonaliseTap,
     this.onPrintShackAboutTap,
     this.onShopCollectionTap,
+    this.onLoginTap,
+    this.onSignOutTap,
   }) : super(key: key);
 
   @override
@@ -432,6 +492,42 @@ class _MobileMenuContainerState extends State<MobileMenuContainer> {
               onTap: widget.onPrintShackAboutTap,
             ),
           ],
+          // Auth-aware menu item (Login or Sign Out)
+          Consumer<AuthProvider>(
+            builder: (context, authProvider, child) {
+              if (authProvider.isAuthenticated) {
+                return Column(
+                  children: [
+                    // Show user email as disabled item
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      width: double.infinity,
+                      child: Text(
+                        authProvider.userEmail ?? 'Account',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    _MobileMenuItem(
+                      icon: Icons.logout,
+                      label: 'Sign Out',
+                      onTap: widget.onSignOutTap,
+                    ),
+                  ],
+                );
+              }
+              return _MobileMenuItem(
+                icon: Icons.login,
+                label: 'Login',
+                onTap: widget.onLoginTap,
+              );
+            },
+          ),
         ],
       ),
     );
