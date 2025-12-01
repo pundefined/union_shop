@@ -454,7 +454,6 @@ Implement user authentication using Firebase Auth, enabling users to sign in, si
 - [ ] Widget tests verify auth-dependent UI states.
 
 ### Subtasks
-- [ ] Add `firebase_auth` package to `pubspec.yaml`.
 - [ ] Create auth service with sign in, sign up, sign out methods.
 - [ ] Create auth provider/state management with ChangeNotifier.
 - [ ] Implement error code mapping to user-friendly messages.

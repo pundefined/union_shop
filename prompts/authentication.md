@@ -83,7 +83,6 @@ Implement user authentication using Firebase Auth, enabling users to sign in, si
    - Pass auth state to route guards
 
 ### Technical Requirements
-- Add `firebase_auth` package to `pubspec.yaml`
 - Use `Provider` or `ChangeNotifierProvider` for auth state (consistent with existing cart)
 - Handle async operations with loading states
 - Dispose streams properly to prevent memory leaks
