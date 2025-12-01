@@ -252,10 +252,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.error,
+        color: Theme.of(context).colorScheme.error.withValues(alpha: .1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: Theme.of(context).colorScheme.error,
+          color: Theme.of(context).colorScheme.error.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
