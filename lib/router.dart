@@ -72,9 +72,12 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: '/search',
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: SearchPage(),
-          ),
+          pageBuilder: (context, state) {
+            final query = state.uri.queryParameters['q'];
+            return NoTransitionPage(
+              child: SearchPage(initialQuery: query),
+            );
+          },
         ),
         GoRoute(
           path: '/collections',
