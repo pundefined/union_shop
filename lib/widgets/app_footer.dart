@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
 /// Shared app footer used across pages.
@@ -39,7 +40,7 @@ class AppFooter extends StatelessWidget {
           const SizedBox(height: 12),
           // Clickable items (no links yet) — use same font settings but blue color for visual affordance.
           InkWell(
-            onTap: () {},
+            onTap: () => context.go('/search'),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6.0),
               child: Text('Search', style: TextStyles.footerLink),
