@@ -137,62 +137,73 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 600;
 
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: isMobile ? 20.0 : 32.0,
-          vertical: 24.0,
-        ),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // ============================================================
-              // BRANDING SECTION
-              // ============================================================
-              _buildBrandingSection(),
-              const SizedBox(height: 40),
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, child) {
+        final isLoading = authProvider.isLoading;
 
-              // ============================================================
-              // EMAIL/USERNAME INPUT FIELD
-              // ============================================================
-              _buildEmailField(),
-              const SizedBox(height: 20),
+        return Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 20.0 : 32.0,
+              vertical: 24.0,
+            ),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // ============================================================
+                  // BRANDING SECTION
+                  // ============================================================
+                  _buildBrandingSection(),
+                  const SizedBox(height: 40),
 
-              // ============================================================
-              // PASSWORD INPUT FIELD
-              // ============================================================
-              _buildPasswordField(),
-              const SizedBox(height: 16),
+                  // ============================================================
+                  // EMAIL/USERNAME INPUT FIELD
+                  // ============================================================
+                  _buildEmailField(isLoading: isLoading),
+                  const SizedBox(height: 20),
 
-              // ============================================================
-              // REMEMBER ME CHECKBOX (if login mode)
-              // ============================================================
-              if (_isLoginMode) _buildRememberMeCheckbox(),
-              if (_isLoginMode) const SizedBox(height: 8),
+                  // ============================================================
+                  // PASSWORD INPUT FIELD
+                  // ============================================================
+                  _buildPasswordField(isLoading: isLoading),
+                  const SizedBox(height: 16),
 
-              // ============================================================
-              // FORGOT PASSWORD LINK (if login mode)
-              // ============================================================
-              if (_isLoginMode) _buildForgotPasswordLink(),
-              if (_isLoginMode) const SizedBox(height: 16),
+                  // ============================================================
+                  // REMEMBER ME CHECKBOX (if login mode)
+                  // ============================================================
+                  if (_isLoginMode)
+                    _buildRememberMeCheckbox(isLoading: isLoading),
+                  if (_isLoginMode) const SizedBox(height: 8),
 
-              // ============================================================
-              // ACTION BUTTONS (Phase 4)
-              // ============================================================
-              if (_isLoginMode) _buildLoginButton() else _buildSignupButton(),
-              const SizedBox(height: 24),
+                  // ============================================================
+                  // FORGOT PASSWORD LINK (if login mode)
+                  // ============================================================
+                  if (_isLoginMode)
+                    _buildForgotPasswordLink(isLoading: isLoading),
+                  if (_isLoginMode) const SizedBox(height: 16),
 
-              // ============================================================
-              // MODE TOGGLE (Login/Signup Switch)
-              // ============================================================
-              _buildModeToggle(),
-              const SizedBox(height: 24),
-            ],
+                  // ============================================================
+                  // ACTION BUTTONS (Phase 4)
+                  // ============================================================
+                  if (_isLoginMode)
+                    _buildLoginButton(isLoading: isLoading)
+                  else
+                    _buildSignupButton(isLoading: isLoading),
+                  const SizedBox(height: 24),
+
+                  // ============================================================
+                  // MODE TOGGLE (Login/Signup Switch)
+                  // ============================================================
+                  _buildModeToggle(isLoading: isLoading),
+                  const SizedBox(height: 24),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -227,9 +238,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the email/username input field
-  Widget _buildEmailField() {
+  Widget _buildEmailField({required bool isLoading}) {
     return TextField(
       controller: _emailController,
+      enabled: !isLoading,
       decoration: InputDecoration(
         labelText: 'Username or Email',
         hintText: 'Enter your username or email',
@@ -263,10 +275,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the password input field with visibility toggle
-  Widget _buildPasswordField() {
+  Widget _buildPasswordField({required bool isLoading}) {
     return TextField(
       controller: _passwordController,
       obscureText: !_isPasswordVisible,
+      enabled: !isLoading,
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'Enter your password',
@@ -307,17 +320,18 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the "Remember me" checkbox (only shown in login mode)
-  Widget _buildRememberMeCheckbox() {
+  Widget _buildRememberMeCheckbox({required bool isLoading}) {
     return Row(
       children: [
         Checkbox(
           value: _rememberMe,
-          onChanged: (value) => _toggleRememberMe(value ?? false),
+          onChanged:
+              isLoading ? null : (value) => _toggleRememberMe(value ?? false),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         Expanded(
           child: GestureDetector(
-            onTap: () => _toggleRememberMe(!_rememberMe),
+            onTap: isLoading ? null : () => _toggleRememberMe(!_rememberMe),
             child: Text(
               'Remember me',
               style: Theme.of(context).textTheme.bodySmall,
@@ -329,14 +343,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the "Forgot password?" link (only shown in login mode)
-  Widget _buildForgotPasswordLink() {
+  Widget _buildForgotPasswordLink({required bool isLoading}) {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {
-          // TODO: Implement password recovery flow
-          debugPrint('Forgot password clicked');
-        },
+        onPressed: isLoading
+            ? null
+            : () {
+                // TODO: Implement password recovery flow
+                debugPrint('Forgot password clicked');
+              },
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 0),
           minimumSize: const Size(48, 48),
@@ -353,7 +369,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the mode toggle button (switches between login and signup)
-  Widget _buildModeToggle() {
+  Widget _buildModeToggle({required bool isLoading}) {
     return Center(
       child: Column(
         children: [
@@ -365,7 +381,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             textAlign: TextAlign.center,
           ),
           TextButton(
-            onPressed: _switchMode,
+            onPressed: isLoading ? null : _switchMode,
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 0),
               minimumSize: const Size(48, 48),
@@ -385,12 +401,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   }
 
   /// Builds the login button (shown in login mode)
-  Widget _buildLoginButton() {
+  Widget _buildLoginButton({required bool isLoading}) {
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: _handleLogin,
+        onPressed: isLoading ? null : _handleLogin,
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
@@ -398,26 +414,37 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             borderRadius: BorderRadius.circular(8),
           ),
           elevation: 2,
+          disabledBackgroundColor:
+              Theme.of(context).colorScheme.primary.withOpacity(0.6),
         ),
-        child: const Text(
-          'LOG IN',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),
-        ),
+        child: isLoading
+            ? const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            : const Text(
+                'LOG IN',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
       ),
     );
   }
 
   /// Builds the signup button (shown in signup mode)
-  Widget _buildSignupButton() {
+  Widget _buildSignupButton({required bool isLoading}) {
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: _handleSignup,
+        onPressed: isLoading ? null : _handleSignup,
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
@@ -425,15 +452,26 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             borderRadius: BorderRadius.circular(8),
           ),
           elevation: 2,
+          disabledBackgroundColor:
+              Theme.of(context).colorScheme.primary.withOpacity(0.6),
         ),
-        child: const Text(
-          'SIGN UP',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),
-        ),
+        child: isLoading
+            ? const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            : const Text(
+                'SIGN UP',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
       ),
     );
   }
