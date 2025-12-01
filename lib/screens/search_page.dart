@@ -18,6 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   late TextEditingController _searchController;
   List<Product> _searchResults = [];
+  bool _hasSearched = false;
 
   @override
   void initState() {
@@ -76,6 +77,7 @@ class _SearchPageState extends State<SearchPage> {
 
     setState(() {
       _searchResults = results;
+      _hasSearched = true;
     });
   }
 
@@ -112,7 +114,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
               const SizedBox(height: 24),
 
-              // Results
+              // Results or empty state
               if (_searchResults.isNotEmpty) ...[
                 Text(
                   '${_searchResults.length} ${_searchResults.length == 1 ? 'result' : 'results'} found',
@@ -120,10 +122,33 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 const SizedBox(height: 16),
                 _buildResultsGrid(),
+              ] else if (_hasSearched) ...[
+                _buildEmptyState(),
               ],
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        children: [
+          const SizedBox(height: 48),
+          Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
+          const SizedBox(height: 16),
+          Text(
+            'No products found',
+            style: TextStyles.productHeading.copyWith(fontSize: 20),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Try a different search term',
+            style: TextStyles.bodyText.copyWith(color: Colors.grey[600]),
+          ),
+        ],
       ),
     );
   }
