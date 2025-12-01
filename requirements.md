@@ -423,3 +423,47 @@ Implement a search feature with two entry points: a search icon in the navbar th
 - [ ] Register search route with query parameter support.
 - [ ] Add widget tests for search page.
 - [ ] Add widget tests for search overlay.
+
+---
+
+## 14. User Authentication
+
+### Description
+Implement user authentication using Firebase Auth, enabling users to sign in, sign up, and sign out with email/password. Integrate authentication state throughout the app with appropriate UI updates in the navbar and error handling for common authentication scenarios.
+
+### User Stories
+- As a user, I want to create an account so I can have a personalized shopping experience.
+- As a user, I want to sign in to my account so I can access my saved information.
+- As a user, I want to sign out so I can secure my account on shared devices.
+- As a user, I want to see my authentication status in the navbar so I know if I'm logged in.
+- As a user, I want clear error messages when authentication fails so I can resolve the issue.
+
+### Acceptance Criteria
+- [ ] Auth service integrates with Firebase Auth for email/password authentication.
+- [ ] Auth state is managed via Provider and accessible throughout the app.
+- [ ] Sign up validates email format and password strength (min 6 characters).
+- [ ] Sign up displays user-friendly errors for: email in use, invalid email, weak password.
+- [ ] Sign in validates non-empty fields before submission.
+- [ ] Sign in displays user-friendly errors for: invalid credentials, user not found, too many attempts.
+- [ ] Sign out clears auth state and redirects to home page.
+- [ ] Navbar shows "Login" link when unauthenticated.
+- [ ] Navbar shows user indicator and "Sign Out" option when authenticated.
+- [ ] Loading state displayed during auth operations; form disabled while loading.
+- [ ] Successful auth navigates to home page or previous destination.
+- [ ] Auth state persists across app restarts (Firebase default behavior).
+- [ ] Widget tests verify auth-dependent UI states.
+
+### Subtasks
+- [ ] Add `firebase_auth` package to `pubspec.yaml`.
+- [ ] Create auth service with sign in, sign up, sign out methods.
+- [ ] Create auth provider/state management with ChangeNotifier.
+- [ ] Implement error code mapping to user-friendly messages.
+- [ ] Update login/signup screen to use auth service.
+- [ ] Add loading states to login/signup form.
+- [ ] Display error messages in login/signup form.
+- [ ] Update navbar to show auth-aware UI.
+- [ ] Add sign out action to navbar (dropdown on desktop, menu item on mobile).
+- [ ] Add AuthProvider to main.dart provider tree.
+- [ ] Add widget tests for auth service.
+- [ ] Add widget tests for login/signup with auth integration.
+- [ ] Add widget tests for navbar auth states.
