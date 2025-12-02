@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/labeled_dropdown_selector.dart';
 
+/// A dropdown selector for choosing a color from a list of options.
 class ColorSelector extends StatelessWidget {
   final List<String> colors;
   final String? selectedColour;
@@ -14,31 +16,12 @@ class ColorSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Colour',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 8),
-        DropdownButton<String>(
-          value: selectedColour,
-          hint: const Text('Select a colour'),
-          isExpanded: true,
-          items: colors.map((String colour) {
-            return DropdownMenuItem<String>(
-              value: colour,
-              child: Text(colour),
-            );
-          }).toList(),
-          onChanged: onChanged,
-        ),
-      ],
+    return LabeledDropdownSelector<String>(
+      label: 'Colour',
+      hint: 'Select a colour',
+      options: colors,
+      selectedValue: selectedColour,
+      onChanged: onChanged,
     );
   }
 }
