@@ -40,10 +40,7 @@ class QuantitySelector extends StatelessWidget {
               child: Center(
                 child: Text(
                   quantity.toString(),
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyles.quantityDisplay,
                 ),
               ),
             ),

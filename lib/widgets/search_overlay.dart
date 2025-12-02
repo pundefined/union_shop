@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:union_shop/styles/text_styles.dart';
 
 /// A search overlay that covers the navbar with a search input field.
 ///
@@ -65,7 +66,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
               focusNode: _focusNode,
               decoration: InputDecoration(
                 hintText: 'Search products...',
-                hintStyle: const TextStyle(color: Colors.white70),
+                hintStyle: TextStyles.searchHint,
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
                 fillColor: Colors.white24,
@@ -78,7 +79,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
                   vertical: 12,
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyles.searchInput,
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => _submitSearch(),
             ),

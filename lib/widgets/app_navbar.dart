@@ -199,10 +199,7 @@ class _AppNavbarState extends State<AppNavbar> {
                                           enabled: false,
                                           child: Text(
                                             authProvider.userEmail ?? 'Account',
-                                            style: TextStyle(
-                                              color: Colors.grey[600],
-                                              fontSize: 12,
-                                            ),
+                                            style: TextStyles.caption,
                                           ),
                                         ),
                                         const PopupMenuDivider(),
@@ -505,10 +502,7 @@ class _MobileMenuContainerState extends State<MobileMenuContainer> {
                       width: double.infinity,
                       child: Text(
                         authProvider.userEmail ?? 'Account',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 12,
-                        ),
+                        style: TextStyles.caption,
                       ),
                     ),
                     _MobileMenuItem(
@@ -571,10 +565,7 @@ class _MobileMenuItem extends StatelessWidget {
                 button: true,
                 child: Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[800],
-                  ),
+                  style: TextStyles.menuItem,
                 ),
               ),
             ],
@@ -622,10 +613,7 @@ class _MobileMenuExpandableItem extends StatelessWidget {
                   button: true,
                   child: Text(
                     label,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[800],
-                    ),
+                    style: TextStyles.menuItem,
                   ),
                 ),
               ),
@@ -670,10 +658,7 @@ class _MobileMenuSubItem extends StatelessWidget {
                 button: true,
                 child: Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                  ),
+                  style: TextStyles.menuSubItem,
                 ),
               ),
             ],
@@ -718,15 +703,15 @@ class PrintShackDropdown extends StatelessWidget {
         child: Container(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'Print Shack',
-                style: TextStyle(color: Colors.black),
+                style: TextStyles.navLink,
               ),
-              SizedBox(width: 4),
-              Icon(Icons.arrow_drop_down, size: 18),
+              const SizedBox(width: 4),
+              const Icon(Icons.arrow_drop_down, size: 18),
             ],
           ),
         ),
@@ -763,15 +748,15 @@ class ShopDropdown extends StatelessWidget {
         child: Container(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'Shop',
-                style: TextStyle(color: Colors.black),
+                style: TextStyles.navLink,
               ),
-              SizedBox(width: 4),
-              Icon(Icons.arrow_drop_down, size: 18),
+              const SizedBox(width: 4),
+              const Icon(Icons.arrow_drop_down, size: 18),
             ],
           ),
         ),

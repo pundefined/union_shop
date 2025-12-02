@@ -93,6 +93,12 @@ class TextStyles {
     height: 1.5,
   );
 
+  /// Caption text - Small, muted text for secondary information
+  static TextStyle caption = TextStyle(
+    fontSize: 12,
+    color: Colors.grey[600],
+  );
+
   // ============================================================================
   // PRODUCT & CARD STYLES
   // ============================================================================
@@ -103,19 +109,37 @@ class TextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  /// Product price style - Bold, primary brand color
+  /// Product price style - Bold, uses theme primary color
+  /// Note: For colored prices, use getPriceStyle() or apply color via theme
   static const TextStyle productPrice = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: Color(0xFF4d2963),
   );
 
   /// Strikethrough price style - Discounted original price
-  static TextStyle strikethroughPrice = const TextStyle(
+  static const TextStyle strikethroughPrice = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: Colors.grey,
     decoration: TextDecoration.lineThrough,
+  );
+
+  /// Item price in cart/checkout - Medium emphasis price display
+  static const TextStyle itemPrice = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Total price style - Bold, large for order totals
+  static const TextStyle totalPrice = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  /// Quantity display - For quantity selector number display
+  static const TextStyle quantityDisplay = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
   );
 
   // ============================================================================
@@ -128,12 +152,44 @@ class TextStyles {
     letterSpacing: 1,
   );
 
+  /// Elevated button label - Medium weight for primary buttons
+  static const TextStyle buttonLabel = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
+  /// Destructive action - Red text for delete/remove actions
+  static const TextStyle destructiveAction = TextStyle(
+    color: Colors.red,
+  );
+
+  // ============================================================================
+  // NAVIGATION & MENU STYLES
+  // ============================================================================
+
+  /// Navigation link - Standard text for nav bar links
+  static const TextStyle navLink = TextStyle(
+    color: Colors.black,
+  );
+
+  /// Mobile menu item - Primary menu item text
+  static TextStyle menuItem = TextStyle(
+    fontSize: 16,
+    color: Colors.grey[800],
+  );
+
+  /// Mobile menu sub-item - Indented secondary menu item
+  static TextStyle menuSubItem = TextStyle(
+    fontSize: 14,
+    color: Colors.grey[700],
+  );
+
   // ============================================================================
   // FOOTER STYLES
   // ============================================================================
 
   /// Footer link style - Blue, medium weight
-  static TextStyle footerLink = const TextStyle(
+  static const TextStyle footerLink = TextStyle(
     color: Colors.blue,
     fontSize: 14,
     fontWeight: FontWeight.w500,
@@ -159,6 +215,20 @@ class TextStyles {
     color: Colors.grey[800],
     fontSize: 16,
     fontWeight: FontWeight.w700,
+  );
+
+  // ============================================================================
+  // SEARCH OVERLAY STYLES
+  // ============================================================================
+
+  /// Search input hint text - Semi-transparent white
+  static const TextStyle searchHint = TextStyle(
+    color: Colors.white70,
+  );
+
+  /// Search input text - White text on colored background
+  static const TextStyle searchInput = TextStyle(
+    color: Colors.white,
   );
 
   // ============================================================================

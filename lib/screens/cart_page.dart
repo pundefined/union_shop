@@ -141,10 +141,8 @@ class CartPage extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 '£${unitPrice.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF4d2963),
+                style: TextStyles.itemPrice.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ],
@@ -174,7 +172,7 @@ class CartPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () => cart.removeItem(item.uniqueKey),
-              child: const Text('Remove', style: TextStyle(color: Colors.red)),
+              child: const Text('Remove', style: TextStyles.destructiveAction),
             ),
           ],
         ),

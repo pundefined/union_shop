@@ -37,12 +37,12 @@ class CheckoutPage extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Order items
-                _buildOrderItemsList(cart),
+                _buildOrderItemsList(context, cart),
 
                 const SizedBox(height: 24),
 
                 // Total
-                _buildTotal(cart),
+                _buildTotal(context, cart),
 
                 const SizedBox(height: 32),
 
@@ -99,18 +99,18 @@ class CheckoutPage extends StatelessWidget {
     );
   }
 
-  Widget _buildOrderItemsList(CartProvider cart) {
+  Widget _buildOrderItemsList(BuildContext context, CartProvider cart) {
     return Column(
       children: [
         for (int i = 0; i < cart.items.length; i++) ...[
-          _buildOrderItem(cart.items[i]),
+          _buildOrderItem(context, cart.items[i]),
           if (i < cart.items.length - 1) const Divider(height: 32),
         ],
       ],
     );
   }
 
-  Widget _buildOrderItem(CartItem item) {
+  Widget _buildOrderItem(BuildContext context, CartItem item) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -161,17 +161,15 @@ class CheckoutPage extends StatelessWidget {
         // Item total price
         Text(
           '£${item.totalPrice.toStringAsFixed(2)}',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF4d2963),
+          style: TextStyles.itemPrice.copyWith(
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildTotal(CartProvider cart) {
+  Widget _buildTotal(BuildContext context, CartProvider cart) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -181,20 +179,14 @@ class CheckoutPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'Total',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+            style: TextStyles.totalPrice.copyWith(color: Colors.black),
           ),
           Text(
             '£${cart.totalPrice.toStringAsFixed(2)}',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF4d2963),
+            style: TextStyles.totalPrice.copyWith(
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ],
@@ -222,7 +214,7 @@ class PlaceOrderButton extends StatelessWidget {
         ),
         child: const Text(
           'Place Order',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyles.buttonLabel,
         ),
       ),
     );
