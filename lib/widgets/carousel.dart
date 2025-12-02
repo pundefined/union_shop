@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/models/carousel_slide.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/widgets/app_image.dart';
 
 class Carousel extends StatefulWidget {
   final List<CarouselSlide> slides;
@@ -55,15 +56,10 @@ class _CarouselState extends State<Carousel> {
               Positioned.fill(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 500),
-                  child: Image.network(
-                    slide.imageUrl,
+                  child: AppImage(
                     key: ValueKey<String>(slide.imageUrl),
+                    imageUrl: slide.imageUrl,
                     fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(color: Colors.grey[200]);
-                    },
                   ),
                 ),
               ),

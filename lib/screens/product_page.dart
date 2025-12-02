@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
 import '../styles/text_styles.dart';
+import '../widgets/app_image.dart';
 import '../widgets/color_selector.dart';
 import '../widgets/size_selector.dart';
 import '../widgets/quantity_selector.dart';
@@ -58,31 +59,9 @@ class _ProductPageState extends State<ProductPage> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                widget.product.imageUrl,
+              child: AppImage(
+                imageUrl: widget.product.imageUrl,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[300],
-                    child: const Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.image_not_supported,
-                            size: 64,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Image unavailable',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
               ),
             ),
           ),
