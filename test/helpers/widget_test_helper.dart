@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/auth_provider.dart';
+import 'package:union_shop/models/cart.dart';
 
 import 'mock_auth_service.dart';
 
@@ -45,6 +46,29 @@ Widget wrapWidgetWithProvidersScrollable(Widget child) {
         create: (_) => AuthProvider(authService: MockAuthService()),
       ),
     ],
+    child: MaterialApp(
+      home: Scaffold(
+        body: SingleChildScrollView(child: child),
+      ),
+    ),
+  );
+}
+
+/// Wrapper with CartProvider for widgets that need cart state.
+/// Optionally accepts an existing CartProvider for pre-populated carts.
+Widget wrapWidgetWithCart(Widget child, {CartProvider? cart}) {
+  return ChangeNotifierProvider<CartProvider>(
+    create: (_) => cart ?? CartProvider(),
+    child: MaterialApp(
+      home: Scaffold(body: child),
+    ),
+  );
+}
+
+/// Wrapper with CartProvider and scrolling.
+Widget wrapWidgetWithCartScrollable(Widget child, {CartProvider? cart}) {
+  return ChangeNotifierProvider<CartProvider>(
+    create: (_) => cart ?? CartProvider(),
     child: MaterialApp(
       home: Scaffold(
         body: SingleChildScrollView(child: child),
