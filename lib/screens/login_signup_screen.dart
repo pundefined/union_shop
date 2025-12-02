@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../models/auth_provider.dart';
 import '../utils/auth_error_messages.dart';
+import '../utils/responsive.dart';
 
 /// LoginSignupScreen provides a unified interface for user authentication.
 /// Users can toggle between login and signup modes, with form state management
@@ -136,7 +137,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 600;
+    final isMobile = context.isMobile;
 
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {

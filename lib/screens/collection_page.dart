@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'package:union_shop/widgets/control_section.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
@@ -270,17 +271,7 @@ class _CollectionPageState extends State<CollectionPage> {
 
   /// Builds a responsive product grid based on screen width.
   Widget _buildProductGrid(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final int columnCount;
-
-    if (screenWidth < 600) {
-      columnCount = 2;
-    } else if (screenWidth < 900) {
-      columnCount = 3;
-    } else {
-      columnCount = 3;
-    }
-
+    final columnCount = context.productGridColumnCount;
     final products = _paginatedProducts;
 
     return GridView.builder(

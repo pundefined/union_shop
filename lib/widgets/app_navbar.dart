@@ -4,13 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'package:union_shop/widgets/search_overlay.dart';
-
-/// Responsive breakpoint constants for adaptive navigation layout.
-const double _mobileBreakpoint = 600.0;
-
-/// Enumeration for screen size categories.
-enum ScreenSize { mobile, desktop }
 
 /// A reusable top navigation bar used across the app with responsive design.
 /// On mobile screens, displays a hamburger menu; on desktop, displays horizontal links.
@@ -39,15 +34,6 @@ class _AppNavbarState extends State<AppNavbar> {
   /// Tracks whether the search overlay is open or closed.
   bool _isSearchOpen = false;
 
-  /// Determines the screen size category based on media query width.
-  ScreenSize _getScreenSize(double width) {
-    if (width < _mobileBreakpoint) {
-      return ScreenSize.mobile;
-    } else {
-      return ScreenSize.desktop;
-    }
-  }
-
   /// Toggles the mobile menu open/closed state.
   void _toggleMenu() {
     setState(() {
@@ -68,8 +54,7 @@ class _AppNavbarState extends State<AppNavbar> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenSize = _getScreenSize(screenWidth);
+    final screenSize = context.screenSize;
     return Container(
       color: Colors.white,
       child: Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'product_card.dart';
 
 /// A reusable widget that displays a product section with a header and grid of products.
@@ -32,7 +33,7 @@ class ProductSection extends StatelessWidget {
         GridView.count(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
+          crossAxisCount: context.isMobile ? 1 : 2,
           crossAxisSpacing: 24,
           mainAxisSpacing: 48,
           children:

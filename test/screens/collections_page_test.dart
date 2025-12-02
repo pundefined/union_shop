@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/screens/collections_page.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
 
 void main() {
@@ -32,21 +33,14 @@ void main() {
       expect(find.text('Winter Favourites'), findsOneWidget);
     });
 
-    testWidgets('getColumnCount returns correct values', (tester) async {
+    testWidgets('getGridColumnCount returns correct values', (tester) async {
       // Test mobile (< 600px)
-      expect(CollectionsPage.getColumnCount(400), 2);
+      expect(Responsive.getGridColumnCount(400), 2);
+      expect(Responsive.getGridColumnCount(599), 2);
 
-      // Test tablet (600-900px)
-      expect(CollectionsPage.getColumnCount(750), 3);
-
-      // Test desktop (> 900px)
-      expect(CollectionsPage.getColumnCount(1280), 4);
-
-      // Test edge cases
-      expect(CollectionsPage.getColumnCount(599), 2);
-      expect(CollectionsPage.getColumnCount(600), 3);
-      expect(CollectionsPage.getColumnCount(899), 3);
-      expect(CollectionsPage.getColumnCount(900), 4);
+      // Test desktop (>= 600px)
+      expect(Responsive.getGridColumnCount(600), 4);
+      expect(Responsive.getGridColumnCount(1280), 4);
     });
 
     testWidgets('collection tiles are rendered as CollectionTile widgets',

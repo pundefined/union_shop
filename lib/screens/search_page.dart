@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 /// Search page that allows users to search for products by name or description.
@@ -156,12 +157,8 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildResultsGrid() {
     // Calculate columns based on screen width
-    final screenWidth = MediaQuery.of(context).size.width;
-    final crossAxisCount = screenWidth < 600
-        ? 2
-        : screenWidth < 900
-            ? 3
-            : 4;
+    final screenWidth = context.screenWidth;
+    final crossAxisCount = context.gridColumnCount;
 
     return Wrap(
       spacing: 16,

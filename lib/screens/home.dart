@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/carousel_slide.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/models/product.dart';
+import 'package:union_shop/utils/responsive.dart';
 import 'package:union_shop/widgets/carousel.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
 import 'package:union_shop/widgets/product_section.dart';
@@ -93,8 +94,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 // Category Links Grid
                 GridView.count(
-                  crossAxisCount:
-                      MediaQuery.of(context).size.width > 600 ? 3 : 1,
+                  crossAxisCount: context.isMobile ? 1 : 3,
                   mainAxisSpacing: 16.0,
                   crossAxisSpacing: 16.0,
                   shrinkWrap: true,
