@@ -1,14 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
+
+import '../helpers/mock_auth_service.dart';
 
 void main() {
   group('AppNavbar', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
+    Widget wrapWithAuthProvider(Widget child) {
+      return ChangeNotifierProvider<AuthProvider>.value(
+        value: authProvider,
+        child: MaterialApp(
+          home: Scaffold(body: child),
+        ),
+      );
+    }
+
     testWidgets('renders promotional banner', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
-        ),
+        wrapWithAuthProvider(const AppNavbar()),
       );
 
       expect(
@@ -19,9 +43,7 @@ void main() {
 
     testWidgets('renders logo image', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
-        ),
+        wrapWithAuthProvider(const AppNavbar()),
       );
 
       expect(find.byType(ImageNetworkLogo), findsOneWidget);
@@ -30,9 +52,7 @@ void main() {
     testWidgets('renders search, account, and cart icons',
         (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
-        ),
+        wrapWithAuthProvider(const AppNavbar()),
       );
 
       expect(find.byIcon(Icons.search), findsOneWidget);
@@ -45,10 +65,13 @@ void main() {
       bool searchTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: AppNavbar(
-              onSearch: () => searchTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: AppNavbar(
+                onSearch: () => searchTapped = true,
+              ),
             ),
           ),
         ),
@@ -65,10 +88,13 @@ void main() {
       bool accountTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: AppNavbar(
-              onAccount: () => accountTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: AppNavbar(
+                onAccount: () => accountTapped = true,
+              ),
             ),
           ),
         ),
@@ -85,10 +111,13 @@ void main() {
       bool cartTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: AppNavbar(
-              onCart: () => cartTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: AppNavbar(
+                onCart: () => cartTapped = true,
+              ),
             ),
           ),
         ),
@@ -109,10 +138,13 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: AppNavbar(
-              onLogoTap: () => logoTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: AppNavbar(
+                onLogoTap: () => logoTapped = true,
+              ),
             ),
           ),
         ),
@@ -136,6 +168,19 @@ void main() {
   });
 
   group('AppNavbar - Mobile view', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
     testWidgets('shows hamburger menu on mobile screen size',
         (WidgetTester tester) async {
       // Set mobile screen size (less than 600)
@@ -143,8 +188,11 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
@@ -164,8 +212,11 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
@@ -184,8 +235,11 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
@@ -214,6 +268,19 @@ void main() {
   });
 
   group('AppNavbar - Desktop view', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
     testWidgets('shows horizontal nav links on desktop screen size',
         (WidgetTester tester) async {
       // Set desktop screen size (900 or more)
@@ -221,14 +288,17 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
-      // NavLink widgets should be present on desktop
-      expect(find.byType(NavLink),
-          findsNWidgets(4)); // Home, Sale, About, Collections
+      // NavLink widgets should be present on desktop (Home, Sale, About)
+      // Shop and Print Shack are dropdowns, not NavLinks
+      expect(find.byType(NavLink), findsNWidgets(3));
 
       addTearDown(() {
         tester.view.resetPhysicalSize();
@@ -242,8 +312,11 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
@@ -261,15 +334,19 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppNavbar()),
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
         ),
       );
 
       expect(find.text('Home'), findsOneWidget);
       expect(find.text('Sale'), findsOneWidget);
       expect(find.text('About'), findsOneWidget);
-      expect(find.text('Collections'), findsOneWidget);
+      expect(find.text('Shop'), findsOneWidget); // Shop dropdown
+      expect(find.text('Print Shack'), findsOneWidget); // Print Shack dropdown
 
       addTearDown(() {
         tester.view.resetPhysicalSize();
@@ -279,30 +356,46 @@ void main() {
   });
 
   group('MobileMenuContainer', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
+    Widget wrapWithAuthProvider(Widget child) {
+      return ChangeNotifierProvider<AuthProvider>.value(
+        value: authProvider,
+        child: MaterialApp(
+          home: Scaffold(body: child),
+        ),
+      );
+    }
+
     testWidgets('renders all menu items', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: MobileMenuContainer()),
-        ),
+        wrapWithAuthProvider(const MobileMenuContainer()),
       );
 
       expect(find.text('Home'), findsOneWidget);
       expect(find.text('Sale'), findsOneWidget);
       expect(find.text('About'), findsOneWidget);
-      expect(find.text('Collections'), findsOneWidget);
     });
 
     testWidgets('renders menu icons', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: MobileMenuContainer()),
-        ),
+        wrapWithAuthProvider(const MobileMenuContainer()),
       );
 
       expect(find.byIcon(Icons.home), findsOneWidget);
       expect(find.byIcon(Icons.local_offer), findsOneWidget);
       expect(find.byIcon(Icons.info), findsOneWidget);
-      expect(find.byIcon(Icons.grid_view), findsOneWidget);
     });
 
     testWidgets('calls onHomeTap when Home is tapped',
@@ -310,10 +403,13 @@ void main() {
       bool homeTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: MobileMenuContainer(
-              onHomeTap: () => homeTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: MobileMenuContainer(
+                onHomeTap: () => homeTapped = true,
+              ),
             ),
           ),
         ),
@@ -330,10 +426,13 @@ void main() {
       bool saleTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: MobileMenuContainer(
-              onSaleTap: () => saleTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: MobileMenuContainer(
+                onSaleTap: () => saleTapped = true,
+              ),
             ),
           ),
         ),
@@ -350,10 +449,13 @@ void main() {
       bool aboutTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: MobileMenuContainer(
-              onAboutTap: () => aboutTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: MobileMenuContainer(
+                onAboutTap: () => aboutTapped = true,
+              ),
             ),
           ),
         ),
@@ -365,24 +467,27 @@ void main() {
       expect(aboutTapped, isTrue);
     });
 
-    testWidgets('calls onCollectionsTap when Collections is tapped',
+    testWidgets('calls onLoginTap when Login is tapped (unauthenticated)',
         (WidgetTester tester) async {
-      bool collectionsTapped = false;
+      bool loginTapped = false;
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: MobileMenuContainer(
-              onCollectionsTap: () => collectionsTapped = true,
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: MaterialApp(
+            home: Scaffold(
+              body: MobileMenuContainer(
+                onLoginTap: () => loginTapped = true,
+              ),
             ),
           ),
         ),
       );
 
-      await tester.tap(find.text('Collections'));
+      await tester.tap(find.text('Login'));
       await tester.pump();
 
-      expect(collectionsTapped, isTrue);
+      expect(loginTapped, isTrue);
     });
   });
 
