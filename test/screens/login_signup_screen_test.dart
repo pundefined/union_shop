@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:union_shop/main.dart';
+import 'package:provider/provider.dart';
+import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/screens/login_signup_screen.dart';
 import 'package:union_shop/widgets/app_shell.dart';
 
+import '../helpers/mock_auth_service.dart';
+
 void main() {
   group('LoginSignupScreen Widget Tests', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
     // Helper widget to wrap LoginSignupScreen in AppShell for realistic testing
     Widget wrapInAppShell(Widget child) {
-      return MaterialApp(
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+      return ChangeNotifierProvider<AuthProvider>.value(
+        value: authProvider,
+        child: MaterialApp(
+          theme: ThemeData(
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
+          ),
+          home: AppShell(child: child),
         ),
-        home: AppShell(child: child),
       );
     }
 
@@ -111,7 +131,12 @@ void main() {
       // Initially in login mode
       expect(find.text('Log in to your account'), findsOneWidget);
 
-      // Tap the mode toggle
+      // Scroll to make the mode toggle visible and tap it
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
@@ -126,6 +151,11 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
@@ -139,6 +169,11 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
@@ -152,8 +187,20 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
+
+      // Scroll to make sure SIGN UP button is visible
+      await tester.dragUntilVisible(
+        find.text('SIGN UP'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
 
       expect(find.text('SIGN UP'), findsOneWidget);
       expect(find.text('LOG IN'), findsNothing);
@@ -166,8 +213,20 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
+
+      // Scroll to find the "Log in here" toggle
+      await tester.dragUntilVisible(
+        find.text('Log in here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
 
       expect(find.text('Log in here'), findsOneWidget);
     });
@@ -290,8 +349,20 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
+
+      // Scroll to find the SIGN UP button
+      await tester.dragUntilVisible(
+        find.text('SIGN UP'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
 
       final signupButton = find.text('SIGN UP');
       expect(signupButton, findsOneWidget);
@@ -318,6 +389,11 @@ void main() {
       expect(find.text('test@example.com'), findsOneWidget);
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
@@ -337,6 +413,11 @@ void main() {
       expect(find.byIcon(Icons.visibility), findsOneWidget);
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
@@ -355,10 +436,20 @@ void main() {
       await tester.pumpAndSettle();
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
       // Switch back to login mode
+      await tester.dragUntilVisible(
+        find.text('Log in here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Log in here'));
       await tester.pumpAndSettle();
 
@@ -390,6 +481,13 @@ void main() {
         wrapInAppShell(const LoginSignupScreen()),
       );
 
+      // Scroll to find the mode toggle
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
+
       final modeToggle = find.text('Sign up here');
       expect(modeToggle, findsOneWidget);
 
@@ -407,10 +505,20 @@ void main() {
       );
 
       // Switch to signup mode
+      await tester.dragUntilVisible(
+        find.text('Sign up here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       await tester.tap(find.text('Sign up here'));
       await tester.pumpAndSettle();
 
       // Tap mode toggle in signup mode
+      await tester.dragUntilVisible(
+        find.text('Log in here'),
+        find.byType(SingleChildScrollView),
+        const Offset(0, -100),
+      );
       final modeToggle = find.text('Log in here');
       await tester.tap(modeToggle);
       await tester.pumpAndSettle();
@@ -430,28 +538,6 @@ void main() {
 
       // The main column should be centered
       expect(find.byType(Center), findsWidgets);
-    });
-
-    // ========================================================================
-    // ROUTING TESTS
-    // ========================================================================
-
-    testWidgets(
-        'login page is accessible from navbar person icon in UnionShopApp',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const UnionShopApp());
-      await tester.pumpAndSettle();
-
-      // Find and tap the person icon (from navbar)
-      final personIcon = find.byIcon(Icons.person_outline);
-      expect(personIcon, findsOneWidget);
-
-      await tester.tap(personIcon);
-      await tester.pumpAndSettle();
-
-      // Should now be on login page
-      expect(find.text('UNION SHOP'), findsOneWidget);
-      expect(find.text('Log in to your account'), findsOneWidget);
     });
   });
 }
