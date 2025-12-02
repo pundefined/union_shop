@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/styles/text_styles.dart';
 
 class QuantitySelector extends StatelessWidget {
   final int quantity;
@@ -17,11 +18,7 @@ class QuantitySelector extends StatelessWidget {
       children: [
         const Text(
           'Quantity',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
+          style: TextStyles.subHeading,
         ),
         const SizedBox(height: 8),
         Row(
