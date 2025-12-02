@@ -1,61 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:union_shop/main.dart';
+import 'package:union_shop/screens/home.dart';
+import 'package:union_shop/widgets/carousel.dart';
+import 'package:union_shop/widgets/product_section.dart';
+import 'package:union_shop/widgets/collection_tile.dart';
+
+import 'helpers/widget_test_helper.dart';
 
 void main() {
-  group('Home Page Tests', () {
-    testWidgets('should display home page with basic elements', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+  group('HomeScreen Widget Tests', () {
+    testWidgets('displays carousel', (tester) async {
+      await tester.setViewportSize(TestViewportSizes.desktop);
+
+      await tester.pumpWidget(wrapWidgetScrollable(const HomeScreen()));
       await tester.pump();
 
-      // Check that basic UI elements are present
-      expect(
-        find.text('PLACEHOLDER HEADER TEXT - STUDENTS TO UPDATE!'),
-        findsOneWidget,
-      );
-      expect(find.text('Placeholder Hero Title'), findsOneWidget);
-      expect(find.text('PLACEHOLDER PRODUCTS SECTION'), findsOneWidget);
-      expect(find.text('BROWSE PRODUCTS'), findsOneWidget);
-      expect(find.text('VIEW ALL PRODUCTS'), findsOneWidget);
+      expect(find.byType(Carousel), findsOneWidget);
+
+      await tester.resetViewportSize();
     });
 
-    testWidgets('should display product cards', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+    testWidgets('displays product sections', (tester) async {
+      await tester.setViewportSize(TestViewportSizes.desktop);
+
+      await tester.pumpWidget(wrapWidgetScrollable(const HomeScreen()));
       await tester.pump();
 
-      // Check that product cards are displayed
-      expect(find.text('Placeholder Product 1'), findsOneWidget);
-      expect(find.text('Placeholder Product 2'), findsOneWidget);
-      expect(find.text('Placeholder Product 3'), findsOneWidget);
-      expect(find.text('Placeholder Product 4'), findsOneWidget);
+      expect(find.byType(ProductSection), findsWidgets);
+      expect(find.text('Summer Range'), findsOneWidget);
+      expect(find.text('New Arrivals'), findsAtLeast(1));
+      expect(find.text('Featured Collection'), findsOneWidget);
 
-      // Check prices are displayed
-      expect(find.text('£10.00'), findsOneWidget);
-      expect(find.text('£15.00'), findsOneWidget);
-      expect(find.text('£20.00'), findsOneWidget);
-      expect(find.text('£25.00'), findsOneWidget);
+      await tester.resetViewportSize();
     });
 
-    testWidgets('should display header icons', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+    testWidgets('displays OUR RANGE section with collection tiles',
+        (tester) async {
+      await tester.setViewportSize(TestViewportSizes.desktop);
+
+      await tester.pumpWidget(wrapWidgetScrollable(const HomeScreen()));
       await tester.pump();
 
-      // Check that header icons are present
-      expect(find.byIcon(Icons.search), findsOneWidget);
-      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.menu), findsOneWidget);
+      expect(find.text('OUR RANGE'), findsOneWidget);
+      expect(find.byType(CollectionTile), findsWidgets);
+
+      await tester.resetViewportSize();
     });
 
-    testWidgets('should display footer', (tester) async {
-      await tester.pumpWidget(const UnionShopApp());
+    testWidgets('displays carousel navigation buttons', (tester) async {
+      await tester.setViewportSize(TestViewportSizes.desktop);
+
+      await tester.pumpWidget(wrapWidgetScrollable(const HomeScreen()));
       await tester.pump();
 
-      // Check that footer is present
-      expect(find.text('Placeholder Footer'), findsOneWidget);
-      expect(
-        find.text('Students should customise this footer section'),
-        findsOneWidget,
-      );
+      expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+      expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
+
+      await tester.resetViewportSize();
+    });
+
+    testWidgets('displays VIEW ALL button in Featured Collection',
+        (tester) async {
+      await tester.setViewportSize(TestViewportSizes.desktop);
+
+      await tester.pumpWidget(wrapWidgetScrollable(const HomeScreen()));
+      await tester.pump();
+
+      expect(find.text('VIEW ALL'), findsOneWidget);
+
+      await tester.resetViewportSize();
     });
   });
 }
