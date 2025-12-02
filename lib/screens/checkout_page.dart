@@ -87,7 +87,7 @@ class CheckoutPage extends StatelessWidget {
                 onPressed: () => context.go('/'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  backgroundColor: const Color(0xFF4d2963),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Colors.white,
                 ),
                 child: const Text('Continue Shopping'),
@@ -217,7 +217,7 @@ class PlaceOrderButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () => _placeOrder(context),
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF4d2963),
+          backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
         ),
         child: const Text(

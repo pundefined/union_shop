@@ -99,7 +99,8 @@ class _CarouselState extends State<Carousel> {
                       ElevatedButton(
                         onPressed: slide.onCtaPressed,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF4d2963),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.white,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero,
@@ -166,7 +167,7 @@ class _CarouselState extends State<Carousel> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: index == _currentIndex
-                          ? const Color(0xFF4d2963)
+                          ? Theme.of(context).colorScheme.primary
                           : Colors.grey[400],
                     ),
                   ),

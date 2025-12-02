@@ -54,7 +54,7 @@ class _SearchOverlayState extends State<SearchOverlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF4d2963),
+      color: Theme.of(context).colorScheme.primary,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
