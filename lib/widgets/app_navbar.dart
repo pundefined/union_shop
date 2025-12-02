@@ -5,6 +5,9 @@ import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
 import 'package:union_shop/utils/responsive.dart';
+import 'package:union_shop/widgets/navbar_components.dart';
+import 'package:union_shop/widgets/navbar_desktop.dart';
+import 'package:union_shop/widgets/navbar_mobile.dart';
 import 'package:union_shop/widgets/search_overlay.dart';
 
 /// A reusable top navigation bar used across the app with responsive design.
@@ -16,12 +19,12 @@ class AppNavbar extends StatefulWidget {
   final VoidCallback? onCart;
 
   const AppNavbar({
-    Key? key,
+    super.key,
     this.onLogoTap,
     this.onSearch,
     this.onAccount,
     this.onCart,
-  }) : super(key: key);
+  });
 
   @override
   State<AppNavbar> createState() => _AppNavbarState();
@@ -55,697 +58,124 @@ class _AppNavbarState extends State<AppNavbar> {
   @override
   Widget build(BuildContext context) {
     final screenSize = context.screenSize;
+    final isMobile = screenSize == ScreenSize.mobile;
+
     return Container(
       color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Top banner
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            color: Theme.of(context).colorScheme.primary,
-            child: const Text(
-              'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
-              textAlign: TextAlign.center,
-              style: TextStyles.bannerText,
-            ),
-          ),
+          _buildBanner(context),
 
           // Main header row - show search overlay or normal header
           SizedBox(
             height: 56,
             child: _isSearchOpen
                 ? SearchOverlay(onClose: _toggleSearch)
-                : Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Logo with semantic label and minimum tappable area
-                        Semantics(
-                          label: 'Home',
-                          button: true,
-                          child: InkWell(
-                            onTap: widget.onLogoTap ??
-                                () => _navigateHome(context),
-                            child: const SizedBox(
-                              height: 48,
-                              child: Center(
-                                child: ImageNetworkLogo(),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        // Show/hide nav links based on screen size
-                        if (screenSize != ScreenSize.mobile)
-                          Flexible(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                NavLink(
-                                  label: 'Home',
-                                  text: 'Home',
-                                  onPressed: () => context.go('/'),
-                                ),
-                                NavLink(
-                                  label: 'Sale',
-                                  text: 'Sale',
-                                  onPressed: () {
-                                    final saleCollection =
-                                        sampleCollections.firstWhere(
-                                            (c) => c.id == 'summer-sale');
-                                    context.go(
-                                        '/collections/${saleCollection.slug}');
-                                  },
-                                ),
-                                NavLink(
-                                  label: 'About',
-                                  text: 'About',
-                                  onPressed: () => context.go('/about'),
-                                ),
-                                // Shop dropdown for desktop - links to each collection
-                                const ShopDropdown(),
-                                // Print Shack dropdown for desktop
-                                const PrintShackDropdown(),
-                              ],
-                            ),
-                          ),
-
-                        // Right-side icons constrained in width
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 600),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.search,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 48,
-                                  minHeight: 48,
-                                ),
-                                onPressed: widget.onSearch ?? _toggleSearch,
-                              ),
-                              // Auth-aware account button
-                              Consumer<AuthProvider>(
-                                builder: (context, authProvider, child) {
-                                  final isAuthenticated =
-                                      authProvider.isAuthenticated;
-
-                                  if (isAuthenticated) {
-                                    // Show popup menu for authenticated users
-                                    return PopupMenuButton<String>(
-                                      icon: Icon(
-                                        Icons.person,
-                                        size: 18,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                      tooltip: 'Account',
-                                      constraints: const BoxConstraints(
-                                        minWidth: 48,
-                                        minHeight: 48,
-                                      ),
-                                      onSelected: (value) async {
-                                        if (value == 'signout') {
-                                          context.go('/');
-                                          await authProvider.signOut();
-                                        }
-                                      },
-                                      itemBuilder: (context) => [
-                                        PopupMenuItem<String>(
-                                          enabled: false,
-                                          child: Text(
-                                            authProvider.userEmail ?? 'Account',
-                                            style: TextStyles.caption,
-                                          ),
-                                        ),
-                                        const PopupMenuDivider(),
-                                        const PopupMenuItem<String>(
-                                          value: 'signout',
-                                          child: Row(
-                                            children: [
-                                              Icon(Icons.logout, size: 18),
-                                              SizedBox(width: 8),
-                                              Text('Sign Out'),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }
-
-                                  // Show login button for unauthenticated users
-                                  return IconButton(
-                                    icon: const Icon(
-                                      Icons.person_outline,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    padding: const EdgeInsets.all(8),
-                                    constraints: const BoxConstraints(
-                                      minWidth: 48,
-                                      minHeight: 48,
-                                    ),
-                                    tooltip: 'Login',
-                                    onPressed: widget.onAccount ??
-                                        () => context.go('/login'),
-                                  );
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.shopping_bag_outlined,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 48,
-                                  minHeight: 48,
-                                ),
-                                onPressed:
-                                    widget.onCart ?? () => context.go('/cart'),
-                              ),
-                              // Hamburger menu icon shown only on mobile
-                              if (screenSize == ScreenSize.mobile)
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.menu,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 48,
-                                    minHeight: 48,
-                                  ),
-                                  onPressed: _toggleMenu,
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                : _buildHeader(context, isMobile),
           ),
 
           // Mobile menu - shown only on mobile screens when menu is open
-          if (screenSize == ScreenSize.mobile && _isMenuOpen)
-            MobileMenuContainer(
-              onHomeTap: () {
-                context.go('/');
-                _toggleMenu();
-              },
-              onSaleTap: () {
-                final saleCollection =
-                    sampleCollections.firstWhere((c) => c.id == 'summer-sale');
-                context.go('/collections/${saleCollection.slug}');
-                _toggleMenu();
-              },
-              onAboutTap: () {
-                context.go('/about');
-                _toggleMenu();
-              },
-              onShopCollectionTap: (slug) {
-                context.go('/collections/$slug');
-                _toggleMenu();
-              },
-              onPrintShackPersonaliseTap: () {
-                context.go('/print-shack');
-                _toggleMenu();
-              },
-              onPrintShackAboutTap: () {
-                context.go('/print-shack/about');
-                _toggleMenu();
-              },
-              onLoginTap: () {
-                context.go('/login');
-                _toggleMenu();
-              },
-              onSignOutTap: () async {
-                final authProvider = context.read<AuthProvider>();
-                // Navigate and close menu first, then sign out to avoid
-                // context issues during rebuild
-                context.go('/');
-                _toggleMenu();
-                await authProvider.signOut();
-              },
-            ),
+          if (isMobile && _isMenuOpen) _buildMobileMenu(context),
         ],
       ),
     );
   }
-}
 
-/// Reusable navigation link widget with consistent styling and accessibility.
-/// Displays a navigation link as an expanded centered button with semantic labels.
-class NavLink extends StatelessWidget {
-  final String label;
-  final String text;
-  final VoidCallback onPressed;
-
-  const NavLink({
-    Key? key,
-    required this.label,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: Semantics(
-          label: label,
-          button: true,
-          child: TextButton(
-            onPressed: onPressed,
-            style: TextButton.styleFrom(
-              minimumSize: const Size(48, 48),
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              foregroundColor: Colors.black,
-            ),
-            child: Text(text),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Small stateless widget to keep the image construction const-friendly
-/// while preserving the same NetworkImage + errorBuilder behavior.
-class ImageNetworkLogo extends StatelessWidget {
-  const ImageNetworkLogo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(
-      'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-      height: 18,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) {
-        return Container(
-          color: Colors.grey[300],
-          width: 18,
-          height: 18,
-          child: const Center(
-            child: Icon(Icons.image_not_supported, color: Colors.grey),
-          ),
-        );
-      },
-    );
-  }
-}
-
-/// Mobile menu container that displays navigation links vertically.
-/// Designed to slide down below the navbar on mobile screens.
-class MobileMenuContainer extends StatefulWidget {
-  /// Callback when a menu item is tapped
-  final VoidCallback? onHomeTap;
-  final VoidCallback? onSaleTap;
-  final VoidCallback? onAboutTap;
-  final VoidCallback? onPrintShackPersonaliseTap;
-  final VoidCallback? onPrintShackAboutTap;
-  final void Function(String slug)? onShopCollectionTap;
-  final VoidCallback? onLoginTap;
-  final VoidCallback? onSignOutTap;
-
-  const MobileMenuContainer({
-    Key? key,
-    this.onHomeTap,
-    this.onSaleTap,
-    this.onAboutTap,
-    this.onPrintShackPersonaliseTap,
-    this.onPrintShackAboutTap,
-    this.onShopCollectionTap,
-    this.onLoginTap,
-    this.onSignOutTap,
-  }) : super(key: key);
-
-  @override
-  State<MobileMenuContainer> createState() => _MobileMenuContainerState();
-}
-
-class _MobileMenuContainerState extends State<MobileMenuContainer> {
-  bool _isPrintShackExpanded = false;
-  bool _isShopExpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
+  /// Builds the top promotional banner.
+  Widget _buildBanner(BuildContext context) {
     return Container(
-      // Border at the bottom for visual separation
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.grey[300]!,
-            width: 1,
-          ),
-        ),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      color: Theme.of(context).colorScheme.primary,
+      child: const Text(
+        'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
+        textAlign: TextAlign.center,
+        style: TextStyles.bannerText,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+    );
+  }
+
+  /// Builds the main header row with logo, nav links, and icons.
+  Widget _buildHeader(BuildContext context, bool isMobile) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Mobile menu item for Home
-          _MobileMenuItem(
-            icon: Icons.home,
+          // Logo with semantic label and minimum tappable area
+          Semantics(
             label: 'Home',
-            onTap: widget.onHomeTap,
-          ),
-          // Mobile menu item for Sale
-          _MobileMenuItem(
-            icon: Icons.local_offer,
-            label: 'Sale',
-            onTap: widget.onSaleTap,
-          ),
-          // Mobile menu item for About
-          _MobileMenuItem(
-            icon: Icons.info,
-            label: 'About',
-            onTap: widget.onAboutTap,
-          ),
-          // Expandable Shop section
-          _MobileMenuExpandableItem(
-            icon: Icons.shopping_bag,
-            label: 'Shop',
-            isExpanded: _isShopExpanded,
-            onTap: () {
-              setState(() {
-                _isShopExpanded = !_isShopExpanded;
-              });
-            },
-          ),
-          if (_isShopExpanded) ...[
-            for (final collection in sampleCollections)
-              _MobileMenuSubItem(
-                label: collection.title,
-                onTap: () => widget.onShopCollectionTap?.call(collection.slug),
+            button: true,
+            child: InkWell(
+              onTap: widget.onLogoTap ?? () => _navigateHome(context),
+              child: const SizedBox(
+                height: 48,
+                child: Center(
+                  child: ImageNetworkLogo(),
+                ),
               ),
-          ],
-          // Expandable Print Shack section
-          _MobileMenuExpandableItem(
-            icon: Icons.edit,
-            label: 'The Print Shack',
-            isExpanded: _isPrintShackExpanded,
-            onTap: () {
-              setState(() {
-                _isPrintShackExpanded = !_isPrintShackExpanded;
-              });
-            },
+            ),
           ),
-          if (_isPrintShackExpanded) ...[
-            _MobileMenuSubItem(
-              label: 'Personalise',
-              onTap: widget.onPrintShackPersonaliseTap,
-            ),
-            _MobileMenuSubItem(
-              label: 'About',
-              onTap: widget.onPrintShackAboutTap,
-            ),
-          ],
-          // Auth-aware menu item (Login or Sign Out)
-          Consumer<AuthProvider>(
-            builder: (context, authProvider, child) {
-              if (authProvider.isAuthenticated) {
-                return Column(
-                  children: [
-                    // Show user email as disabled item
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      width: double.infinity,
-                      child: Text(
-                        authProvider.userEmail ?? 'Account',
-                        style: TextStyles.caption,
-                      ),
-                    ),
-                    _MobileMenuItem(
-                      icon: Icons.logout,
-                      label: 'Sign Out',
-                      onTap: widget.onSignOutTap,
-                    ),
-                  ],
-                );
-              }
-              return _MobileMenuItem(
-                icon: Icons.login,
-                label: 'Login',
-                onTap: widget.onLoginTap,
-              );
-            },
+
+          // Show/hide nav links based on screen size
+          if (!isMobile) const DesktopNavLinks(),
+
+          // Right-side icons
+          NavbarIcons(
+            onSearch: widget.onSearch ?? _toggleSearch,
+            onAccount: widget.onAccount,
+            onCart: widget.onCart,
+            onMenuToggle: _toggleMenu,
+            showMenuButton: isMobile,
           ),
         ],
       ),
     );
   }
-}
 
-/// Individual menu item widget for mobile menu.
-/// Displays an icon, label, and tap feedback.
-class _MobileMenuItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback? onTap;
-
-  const _MobileMenuItem({
-    Key? key,
-    required this.icon,
-    required this.label,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          // Padding for comfortable touch target and spacing
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              // Icon for visual identification
-              Icon(
-                icon,
-                size: 20,
-                color: Colors.grey[700],
-              ),
-              // Space between icon and label
-              const SizedBox(width: 16),
-              // Menu item label text
-              Semantics(
-                label: label,
-                button: true,
-                child: Text(
-                  label,
-                  style: TextStyles.menuItem,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Expandable menu item for mobile menu with expand/collapse arrow.
-class _MobileMenuExpandableItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isExpanded;
-  final VoidCallback? onTap;
-
-  const _MobileMenuExpandableItem({
-    Key? key,
-    required this.icon,
-    required this.label,
-    required this.isExpanded,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 20,
-                color: Colors.grey[700],
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Semantics(
-                  label: label,
-                  button: true,
-                  child: Text(
-                    label,
-                    style: TextStyles.menuItem,
-                  ),
-                ),
-              ),
-              Icon(
-                isExpanded ? Icons.expand_less : Icons.expand_more,
-                size: 20,
-                color: Colors.grey[700],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Sub-item for expandable mobile menu sections.
-class _MobileMenuSubItem extends StatelessWidget {
-  final String label;
-  final VoidCallback? onTap;
-
-  const _MobileMenuSubItem({
-    Key? key,
-    required this.label,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          // Indent sub-items
-          margin: const EdgeInsets.only(left: 36),
-          child: Row(
-            children: [
-              Semantics(
-                label: label,
-                button: true,
-                child: Text(
-                  label,
-                  style: TextStyles.menuSubItem,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Desktop dropdown menu for The Print Shack section.
-/// Shows a dropdown with sub-items on click.
-class PrintShackDropdown extends StatelessWidget {
-  const PrintShackDropdown({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
-      offset: const Offset(0, 40),
-      tooltip: 'The Print Shack',
-      popUpAnimationStyle: AnimationStyle.noAnimation,
-      onSelected: (value) {
-        if (value == 'personalise') {
-          context.go('/print-shack');
-        } else if (value == 'about') {
-          context.go('/print-shack/about');
-        }
+  /// Builds the mobile menu with navigation callbacks.
+  Widget _buildMobileMenu(BuildContext context) {
+    return MobileMenuContainer(
+      onHomeTap: () {
+        context.go('/');
+        _toggleMenu();
       },
-      itemBuilder: (context) => [
-        const PopupMenuItem<String>(
-          value: 'personalise',
-          child: Text('Personalise'),
-        ),
-        const PopupMenuItem<String>(
-          value: 'about',
-          child: Text('About'),
-        ),
-      ],
-      child: Semantics(
-        label: 'The Print Shack',
-        button: true,
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Print Shack',
-                style: TextStyles.navLink,
-              ),
-              const SizedBox(width: 4),
-              const Icon(Icons.arrow_drop_down, size: 18),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Desktop dropdown menu for Shop section.
-/// Shows a dropdown with links to each collection.
-class ShopDropdown extends StatelessWidget {
-  const ShopDropdown({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
-      offset: const Offset(0, 40),
-      tooltip: 'Shop',
-      popUpAnimationStyle: AnimationStyle.noAnimation,
-      onSelected: (value) {
-        context.go('/collections/$value');
+      onSaleTap: () {
+        final saleCollection =
+            sampleCollections.firstWhere((c) => c.id == 'summer-sale');
+        context.go('/collections/${saleCollection.slug}');
+        _toggleMenu();
       },
-      itemBuilder: (context) => sampleCollections
-          .map(
-            (collection) => PopupMenuItem<String>(
-              value: collection.slug,
-              child: Text(collection.title),
-            ),
-          )
-          .toList(),
-      child: Semantics(
-        label: 'Shop',
-        button: true,
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Shop',
-                style: TextStyles.navLink,
-              ),
-              const SizedBox(width: 4),
-              const Icon(Icons.arrow_drop_down, size: 18),
-            ],
-          ),
-        ),
-      ),
+      onAboutTap: () {
+        context.go('/about');
+        _toggleMenu();
+      },
+      onShopCollectionTap: (slug) {
+        context.go('/collections/$slug');
+        _toggleMenu();
+      },
+      onPrintShackPersonaliseTap: () {
+        context.go('/print-shack');
+        _toggleMenu();
+      },
+      onPrintShackAboutTap: () {
+        context.go('/print-shack/about');
+        _toggleMenu();
+      },
+      onLoginTap: () {
+        context.go('/login');
+        _toggleMenu();
+      },
+      onSignOutTap: () async {
+        final authProvider = context.read<AuthProvider>();
+        // Navigate and close menu first, then sign out to avoid
+        // context issues during rebuild
+        context.go('/');
+        _toggleMenu();
+        await authProvider.signOut();
+      },
     );
   }
 }
