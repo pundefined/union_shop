@@ -10,7 +10,7 @@ class CollectionsPage extends StatelessWidget {
   /// - 2 columns for screen width < 600px (mobile)
   /// - 3 columns for screen width 600–900px (tablet)
   /// - 4 columns for screen width > 900px (desktop)
-  int _getColumnCount(double width) {
+  static int getColumnCount(double width) {
     if (width < 600) {
       return 2;
     } else if (width < 900) {
@@ -24,7 +24,7 @@ class CollectionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final columnCount = _getColumnCount(constraints.maxWidth);
+        final columnCount = getColumnCount(constraints.maxWidth);
 
         return GridView.builder(
           padding: const EdgeInsets.all(12.0),
