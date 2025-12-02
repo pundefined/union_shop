@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
 import '../styles/text_styles.dart';
-import '../widgets/app_image.dart';
 import '../widgets/color_selector.dart';
 import '../widgets/size_selector.dart';
 import '../widgets/quantity_selector.dart';
@@ -59,8 +58,8 @@ class _ProductPageState extends State<ProductPage> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: AppImage(
-                imageUrl: widget.product.imageUrl,
+              child: Image.asset(
+                widget.product.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),

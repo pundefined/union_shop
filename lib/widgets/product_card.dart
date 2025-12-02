@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/product.dart';
 import 'package:union_shop/styles/text_styles.dart';
-import 'package:union_shop/widgets/app_image.dart';
 
 /// A reusable widget that displays a single product card in a grid.
 /// Tapping the card navigates to the product detail page at /products/{slug}.
@@ -33,8 +32,8 @@ class ProductCard extends StatelessWidget {
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8),
                 ),
-                child: AppImage(
-                  imageUrl: product.imageUrl,
+                child: Image.asset(
+                  product.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),

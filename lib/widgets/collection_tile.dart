@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:union_shop/models/collection.dart';
 import 'package:union_shop/styles/text_styles.dart';
-import 'package:union_shop/widgets/app_image.dart';
 
 /// CollectionTile widget displays a single collection with image background,
 /// overlay text, and tap feedback via Material InkWell.
@@ -30,8 +29,8 @@ class CollectionTile extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Background image
-            AppImage(
-              imageUrl: collection.imageUrl,
+            Image.asset(
+              collection.imageUrl,
               fit: BoxFit.cover,
             ),
             // Dark gradient overlay for text contrast

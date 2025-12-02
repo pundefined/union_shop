@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/styles/text_styles.dart';
-import 'package:union_shop/widgets/app_image.dart';
 
 /// Shopping cart page displaying cart items, total price, and checkout button.
 class CartPage extends StatelessWidget {
@@ -114,8 +113,8 @@ class CartPage extends StatelessWidget {
           child: SizedBox(
             width: 80,
             height: 80,
-            child: AppImage(
-              imageUrl: item.product.imageUrl,
+            child: Image.asset(
+              item.product.imageUrl,
               fit: BoxFit.cover,
             ),
           ),

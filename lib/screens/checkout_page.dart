@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/cart.dart';
 import 'package:union_shop/styles/text_styles.dart';
-import 'package:union_shop/widgets/app_image.dart';
 
 /// Checkout page displaying order summary and allowing users to place their order.
 /// Shows all cart items with details, price breakdown, and a Place Order button.
@@ -121,8 +120,8 @@ class CheckoutPage extends StatelessWidget {
           child: SizedBox(
             width: 80,
             height: 80,
-            child: AppImage(
-              imageUrl: item.product.imageUrl,
+            child: Image.asset(
+              item.product.imageUrl,
               fit: BoxFit.cover,
             ),
           ),
