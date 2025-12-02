@@ -110,10 +110,14 @@ class _AppNavbarState extends State<AppNavbar> {
             button: true,
             child: InkWell(
               onTap: widget.onLogoTap ?? () => _navigateHome(context),
-              child: const SizedBox(
+              child: SizedBox(
                 height: 48,
                 child: Center(
-                  child: ImageNetworkLogo(),
+                  child: Image.asset(
+                    'assets/images/union_logo.png',
+                    height: 18,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

@@ -48,7 +48,7 @@ void main() {
         wrapWithAuthProvider(const AppNavbar()),
       );
 
-      expect(find.byType(ImageNetworkLogo), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
     });
 
     testWidgets('renders search, account, and cart icons',
@@ -154,7 +154,7 @@ void main() {
 
       // Find the InkWell that wraps the logo and trigger its onTap callback
       final logoInkWell = find.ancestor(
-        of: find.byType(ImageNetworkLogo),
+        of: find.byType(Image),
         matching: find.byType(InkWell),
       );
       final inkWellWidget = tester.widget<InkWell>(logoInkWell);
@@ -563,18 +563,6 @@ void main() {
             widget is Semantics && widget.properties.label == 'Navigation Link',
       );
       expect(semanticsWidget, findsOneWidget);
-    });
-  });
-
-  group('ImageNetworkLogo', () {
-    testWidgets('renders Image.network widget', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: ImageNetworkLogo()),
-        ),
-      );
-
-      expect(find.byType(Image), findsOneWidget);
     });
   });
 }
