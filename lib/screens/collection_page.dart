@@ -39,8 +39,25 @@ class _CollectionPageState extends State<CollectionPage> {
   @override
   void initState() {
     super.initState();
+    _initializeProducts();
+  }
+
+  @override
+  void didUpdateWidget(CollectionPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Reset state when navigating to a different collection
+    if (oldWidget.collection.id != widget.collection.id) {
+      _initializeProducts();
+    }
+  }
+
+  /// Initialize or reset product lists and state from the current collection.
+  void _initializeProducts() {
     _allProducts = List.from(widget.collection.items);
     _displayedProducts = List.from(_allProducts);
+    _currentSort = 'name';
+    _currentFilter = 'all';
+    _currentPage = 1;
     _applySorting(_currentSort);
   }
 
