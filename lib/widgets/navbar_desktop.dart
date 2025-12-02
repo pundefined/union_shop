@@ -35,9 +35,9 @@ class DesktopNavLinks extends StatelessWidget {
             onPressed: () => context.go('/about'),
           ),
           // Shop dropdown for desktop - links to each collection
-          const ShopDropdown(),
+          const Expanded(child: Center(child: ShopDropdown())),
           // Print Shack dropdown for desktop
-          const PrintShackDropdown(),
+          const Expanded(child: Center(child: PrintShackDropdown())),
         ],
       ),
     );
