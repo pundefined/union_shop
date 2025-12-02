@@ -18,7 +18,7 @@ void main() {
       id: 'test-1',
       name: 'Test Product',
       price: 10.00,
-      imageUrl: 'https://example.com/image.jpg',
+      imageUrl: 'assets/images/mug.png',
       description: 'A test product',
       category: ProductCategory.merchandise,
     );
