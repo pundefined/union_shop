@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
+import 'package:union_shop/widgets/navbar_components.dart';
+import 'package:union_shop/widgets/navbar_mobile.dart';
 
 import '../helpers/mock_auth_service.dart';
 
