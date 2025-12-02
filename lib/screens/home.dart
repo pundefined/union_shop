@@ -16,8 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final carouselSlides = [
       CarouselSlide(
-        imageUrl:
-            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        imageUrl: 'assets/images/summer_carousel.png',
         title: 'Summer Sale',
         subtitle:
             'Hot deals on cool styles! Up to 50% off selected items while stocks last.',
@@ -27,8 +26,7 @@ class HomeScreen extends StatelessWidget {
         },
       ),
       CarouselSlide(
-        imageUrl:
-            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        imageUrl: 'assets/images/print_shack_carousel.png',
         title: 'Make It Yours',
         subtitle:
             'Add a personal touch with custom printing. Perfect for gifts, events, or treating yourself.',
@@ -38,8 +36,7 @@ class HomeScreen extends StatelessWidget {
         },
       ),
       CarouselSlide(
-        imageUrl:
-            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+        imageUrl: 'assets/images/items_carousel.png',
         title: 'Explore Our Collections',
         subtitle:
             'From everyday essentials to statement pieces — find something for every occasion.',

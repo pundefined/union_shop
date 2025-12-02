@@ -41,14 +41,14 @@ class NavLink extends StatelessWidget {
 }
 
 /// Small stateless widget to keep the image construction const-friendly
-/// while preserving the same NetworkImage + errorBuilder behavior.
+/// while preserving the same errorBuilder behavior.
 class ImageNetworkLogo extends StatelessWidget {
   const ImageNetworkLogo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
+    return Image.asset(
+      'assets/images/union_logo.png',
       height: 18,
       fit: BoxFit.cover,
       errorBuilder: (context, error, stackTrace) {
