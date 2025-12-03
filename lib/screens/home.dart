@@ -60,8 +60,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 // Summer Range Section
                 ProductSection(
-                  title: 'Summer Range',
-                  products: summerRangeProducts.take(2).toList(),
+                  title: 'Summer Sale',
+                  products: summerSaleProducts.take(2).toList(),
                 ),
                 const SizedBox(height: 64),
                 // New Arrivals Section

@@ -501,10 +501,3 @@ final List<Product> winterFavouritesProducts = [
     category: ProductCategory.merchandise,
   ),
 ];
-
-// =============================================================================
-// HOME PAGE PRODUCT LISTS (for display sections)
-// =============================================================================
-
-/// Products displayed in the Summer Range section on the home page.
-final List<Product> summerRangeProducts = summerSaleProducts;
