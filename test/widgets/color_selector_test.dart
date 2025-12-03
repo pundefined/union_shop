@@ -9,7 +9,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colors: ['Red', 'Blue'],
+              colors: const ['Red', 'Blue'],
               selectedColour: null,
               onChanged: (_) {},
             ),
@@ -55,7 +55,7 @@ void main() {
             body: StatefulBuilder(
               builder: (context, setState) {
                 return ColorSelector(
-                  colors: ['Red', 'Blue', 'Green'],
+                  colors: const ['Red', 'Blue', 'Green'],
                   selectedColour: selectedColour,
                   onChanged: (newColour) {
                     setState(() {
@@ -106,7 +106,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: ColorSelector(
-              colors: ['Red', 'Blue'],
+              colors: const ['Red', 'Blue'],
               selectedColour: null,
               onChanged: (_) {},
             ),

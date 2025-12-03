@@ -8,17 +8,17 @@ import '../helpers/widget_test_helper.dart';
 void main() {
   group('Carousel Widget Tests', () {
     final testSlides = [
-      CarouselSlide(
+      const CarouselSlide(
         imageUrl: 'assets/images/backpack.png',
         title: 'Slide 1',
         subtitle: 'Subtitle 1',
       ),
-      CarouselSlide(
+      const CarouselSlide(
         imageUrl: 'assets/images/backpack.png',
         title: 'Slide 2',
         subtitle: 'Subtitle 2',
       ),
-      CarouselSlide(
+      const CarouselSlide(
         imageUrl: 'assets/images/backpack.png',
         title: 'Slide 3',
         subtitle: 'Subtitle 3',

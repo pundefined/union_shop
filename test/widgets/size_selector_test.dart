@@ -9,7 +9,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SizeSelector(
-              sizes: ['S', 'M'],
+              sizes: const ['S', 'M'],
               selectedSize: null,
               onChanged: (_) {},
             ),
@@ -55,7 +55,7 @@ void main() {
             body: StatefulBuilder(
               builder: (context, setState) {
                 return SizeSelector(
-                  sizes: ['XS', 'S', 'M', 'L', 'XL'],
+                  sizes: const ['XS', 'S', 'M', 'L', 'XL'],
                   selectedSize: selectedSize,
                   onChanged: (newSize) {
                     setState(() {

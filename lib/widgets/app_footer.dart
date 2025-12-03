@@ -41,15 +41,15 @@ class AppFooter extends StatelessWidget {
           // Clickable items (no links yet) — use same font settings but blue color for visual affordance.
           InkWell(
             onTap: () => context.go('/search'),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 6.0),
               child: Text('Search', style: TextStyles.footerLink),
             ),
           ),
           InkWell(
             onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 6.0),
               child: Text('Terms & Conditions of Sale Policy',
                   style: TextStyles.footerLink),
             ),
