@@ -508,6 +508,3 @@ final List<Product> winterFavouritesProducts = [
 
 /// Products displayed in the Summer Range section on the home page.
 final List<Product> summerRangeProducts = summerSaleProducts;
-
-/// Legacy sample products list (for backwards compatibility).
-final List<Product> sampleProducts = essentialsProducts;
