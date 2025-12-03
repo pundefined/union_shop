@@ -5,6 +5,7 @@ import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/widgets/app_navbar.dart';
 import 'package:union_shop/widgets/navbar_components.dart';
 import 'package:union_shop/widgets/navbar_mobile.dart';
+import 'package:union_shop/widgets/search_overlay.dart';
 
 import '../helpers/mock_auth_service.dart';
 
@@ -427,6 +428,69 @@ void main() {
             widget is Semantics && widget.properties.label == 'Navigation Link',
       );
       expect(semanticsWidget, findsOneWidget);
+    });
+  });
+
+  group('AppNavbar - Search overlay', () {
+    late MockAuthService mockAuthService;
+    late AuthProvider authProvider;
+
+    setUp(() {
+      mockAuthService = MockAuthService();
+      authProvider = AuthProvider(authService: mockAuthService);
+    });
+
+    tearDown(() {
+      authProvider.dispose();
+      mockAuthService.dispose();
+    });
+
+    testWidgets(
+        'toggles search overlay when search icon tapped without callback',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
+        ),
+      );
+
+      // Search overlay should not be visible initially
+      expect(find.byType(SearchOverlay), findsNothing);
+
+      // Tap search icon
+      await tester.tap(find.byIcon(Icons.search));
+      await tester.pump();
+
+      // Search overlay should now be visible
+      expect(find.byType(SearchOverlay), findsOneWidget);
+    });
+
+    testWidgets('closes search overlay when close is triggered',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        ChangeNotifierProvider<AuthProvider>.value(
+          value: authProvider,
+          child: const MaterialApp(
+            home: Scaffold(body: AppNavbar()),
+          ),
+        ),
+      );
+
+      // Open search overlay
+      await tester.tap(find.byIcon(Icons.search));
+      await tester.pump();
+
+      expect(find.byType(SearchOverlay), findsOneWidget);
+
+      // Find and tap the close button in the overlay
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pump();
+
+      // Search overlay should be closed
+      expect(find.byType(SearchOverlay), findsNothing);
     });
   });
 }
