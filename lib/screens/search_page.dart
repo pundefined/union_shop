@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
     final Set<String> seenIds = {};
     final List<Product> allProducts = [];
 
-    for (final collection in sampleCollections) {
+    for (final collection in storeCollections) {
       for (final product in collection.items) {
         if (!seenIds.contains(product.id)) {
           seenIds.add(product.id);

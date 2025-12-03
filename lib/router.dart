@@ -90,7 +90,7 @@ final GoRouter router = GoRouter(
               pageBuilder: (context, state) {
                 final slug = state.pathParameters['collectionSlug']!;
                 final collection =
-                    Collection.findBySlug(sampleCollections, slug);
+                    Collection.findBySlug(storeCollections, slug);
                 if (collection == null) {
                   throw Exception('Collection not found: $slug');
                 }
@@ -106,7 +106,7 @@ final GoRouter router = GoRouter(
           pageBuilder: (context, state) {
             final slug = state.pathParameters['productSlug']!;
             // Search all collections for the product
-            for (final collection in sampleCollections) {
+            for (final collection in storeCollections) {
               final product = Product.findBySlug(collection.items, slug);
               if (product != null) {
                 return NoTransitionPage(

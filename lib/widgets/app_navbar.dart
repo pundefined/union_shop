@@ -148,7 +148,7 @@ class _AppNavbarState extends State<AppNavbar> {
       },
       onSaleTap: () {
         final saleCollection =
-            sampleCollections.firstWhere((c) => c.id == 'summer-sale');
+            storeCollections.firstWhere((c) => c.id == 'summer-sale');
         context.go('/collections/${saleCollection.slug}');
         _toggleMenu();
       },

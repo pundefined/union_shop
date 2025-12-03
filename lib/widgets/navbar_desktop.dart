@@ -25,7 +25,7 @@ class DesktopNavLinks extends StatelessWidget {
           text: 'Sale',
           onPressed: () {
             final saleCollection =
-                sampleCollections.firstWhere((c) => c.id == 'summer-sale');
+                storeCollections.firstWhere((c) => c.id == 'summer-sale');
             context.go('/collections/${saleCollection.slug}');
           },
         ),
@@ -108,7 +108,7 @@ class ShopDropdown extends StatelessWidget {
       onSelected: (value) {
         context.go('/collections/$value');
       },
-      itemBuilder: (context) => sampleCollections
+      itemBuilder: (context) => storeCollections
           .map(
             (collection) => PopupMenuItem<String>(
               value: collection.slug,

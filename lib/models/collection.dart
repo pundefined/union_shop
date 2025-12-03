@@ -88,7 +88,7 @@ final Collection winterFavouritesCollection = Collection(
 );
 
 /// All collections available in the store.
-final List<Collection> sampleCollections = [
+final List<Collection> storeCollections = [
   essentialsCollection,
   summerSaleCollection,
   newArrivalsCollection,

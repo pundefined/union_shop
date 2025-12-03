@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 16.0,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: sampleCollections
+                  children: storeCollections
                       .map((collection) =>
                           CollectionTile(collection: collection))
                       .toList(),

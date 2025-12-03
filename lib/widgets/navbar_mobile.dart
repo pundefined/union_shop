@@ -83,7 +83,7 @@ class _MobileMenuContainerState extends State<MobileMenuContainer> {
             },
           ),
           if (_isShopExpanded) ...[
-            for (final collection in sampleCollections)
+            for (final collection in storeCollections)
               MobileMenuSubItem(
                 label: collection.title,
                 onTap: () => widget.onShopCollectionTap?.call(collection.slug),

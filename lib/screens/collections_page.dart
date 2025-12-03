@@ -23,10 +23,10 @@ class CollectionsPage extends StatelessWidget {
             mainAxisSpacing: 12.0,
             childAspectRatio: 1.0, // Square tiles
           ),
-          itemCount: sampleCollections.length,
+          itemCount: storeCollections.length,
           itemBuilder: (context, index) {
             return CollectionTile(
-              collection: sampleCollections[index],
+              collection: storeCollections[index],
             );
           },
         );
