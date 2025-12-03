@@ -185,7 +185,7 @@ void main() {
 
     testWidgets('shows hamburger menu on mobile screen size',
         (WidgetTester tester) async {
-      // Set mobile screen size (less than 600)
+      // Set mobile screen size (less than 820)
       tester.view.physicalSize = const Size(400, 800);
       tester.view.devicePixelRatio = 1.0;
 
