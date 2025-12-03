@@ -72,11 +72,11 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 64),
                 // Featured Collection Section
                 ProductSection(
-                  title: 'Featured Collection',
-                  products: featuredCollectionProducts,
+                  title: 'Essentials',
+                  products: essentialsProducts.take(4).toList(),
                   showViewAll: true,
                   onViewAllPressed: () {
-                    context.go('/collections');
+                    context.go('/collections/essentials');
                   },
                 ),
                 const SizedBox(height: 64),
