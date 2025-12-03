@@ -90,15 +90,6 @@ void main() {
       expect(find.byType(Checkbox), findsOneWidget);
     });
 
-    testWidgets('displays forgot password link in login mode',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        wrapInAppShell(const LoginSignupScreen()),
-      );
-
-      expect(find.text('Forgot password?'), findsOneWidget);
-    });
-
     testWidgets('displays login button in login mode',
         (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -160,24 +151,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Remember me'), findsNothing);
-    });
-
-    testWidgets('hides forgot password link in signup mode',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        wrapInAppShell(const LoginSignupScreen()),
-      );
-
-      // Switch to signup mode
-      await tester.dragUntilVisible(
-        find.text('Sign up here'),
-        find.byType(SingleChildScrollView),
-        const Offset(0, -100),
-      );
-      await tester.tap(find.text('Sign up here'));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Forgot password?'), findsNothing);
     });
 
     testWidgets('displays signup button in signup mode',
@@ -460,20 +433,6 @@ void main() {
     // ========================================================================
     // LINK TESTS
     // ========================================================================
-
-    testWidgets('forgot password link is tappable',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        wrapInAppShell(const LoginSignupScreen()),
-      );
-
-      final forgotPasswordLink = find.text('Forgot password?');
-      expect(forgotPasswordLink, findsOneWidget);
-
-      // Should be tappable without error
-      await tester.tap(forgotPasswordLink);
-      await tester.pumpAndSettle();
-    });
 
     testWidgets('mode toggle link in login mode is tappable',
         (WidgetTester tester) async {

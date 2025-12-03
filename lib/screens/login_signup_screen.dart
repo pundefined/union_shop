@@ -187,13 +187,6 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   if (_isLoginMode) const SizedBox(height: 8),
 
                   // ============================================================
-                  // FORGOT PASSWORD LINK (if login mode)
-                  // ============================================================
-                  if (_isLoginMode)
-                    _buildForgotPasswordLink(isLoading: isLoading),
-                  if (_isLoginMode) const SizedBox(height: 16),
-
-                  // ============================================================
                   // ACTION BUTTONS (Phase 4)
                   // ============================================================
                   if (_isLoginMode)
@@ -382,32 +375,6 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  /// Builds the "Forgot password?" link (only shown in login mode)
-  Widget _buildForgotPasswordLink({required bool isLoading}) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: isLoading
-            ? null
-            : () {
-                // TODO: Implement password recovery flow
-                debugPrint('Forgot password clicked');
-              },
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          minimumSize: const Size(48, 48),
-        ),
-        child: Text(
-          'Forgot password?',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                decoration: TextDecoration.underline,
-              ),
-        ),
-      ),
     );
   }
 
