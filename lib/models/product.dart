@@ -509,9 +509,5 @@ final List<Product> winterFavouritesProducts = [
 /// Products displayed in the Summer Range section on the home page.
 final List<Product> summerRangeProducts = summerSaleProducts;
 
-/// Products displayed in the Featured Collection section on the home page.
-final List<Product> featuredCollectionProducts =
-    essentialsProducts.take(4).toList();
-
 /// Legacy sample products list (for backwards compatibility).
 final List<Product> sampleProducts = essentialsProducts;
