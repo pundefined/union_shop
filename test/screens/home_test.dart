@@ -27,9 +27,27 @@ void main() {
       await tester.pump();
 
       expect(find.byType(ProductSection), findsWidgets);
-      expect(find.text('Summer Range'), findsOneWidget);
-      expect(find.text('New Arrivals'), findsAtLeast(1));
-      expect(find.text('Featured Collection'), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(ProductSection),
+          matching: find.text('Summer Sale'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: find.byType(ProductSection),
+          matching: find.text('New Arrivals'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: find.byType(ProductSection),
+          matching: find.text('Essentials'),
+        ),
+        findsOneWidget,
+      );
 
       await tester.resetViewportSize();
     });
