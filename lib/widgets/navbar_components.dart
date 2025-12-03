@@ -5,7 +5,7 @@ import 'package:union_shop/models/auth_provider.dart';
 import 'package:union_shop/styles/text_styles.dart';
 
 /// Reusable navigation link widget with consistent styling and accessibility.
-/// Displays a navigation link as an expanded centered button with semantic labels.
+/// Displays a navigation link as a centered button with semantic labels.
 class NavLink extends StatelessWidget {
   final String label;
   final String text;
@@ -20,21 +20,17 @@ class NavLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: Semantics(
-          label: label,
-          button: true,
-          child: TextButton(
-            onPressed: onPressed,
-            style: TextButton.styleFrom(
-              minimumSize: const Size(48, 48),
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              foregroundColor: Colors.black,
-            ),
-            child: Text(text),
-          ),
+    return Semantics(
+      label: label,
+      button: true,
+      child: TextButton(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          foregroundColor: Colors.black,
         ),
+        child: Text(text),
       ),
     );
   }

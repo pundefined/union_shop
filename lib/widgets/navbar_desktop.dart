@@ -6,40 +6,39 @@ import 'package:union_shop/widgets/navbar_components.dart';
 
 /// Desktop navigation links row.
 /// Contains Home, Sale, About links plus Shop and Print Shack dropdowns.
+/// Only displayed when screen width >= 900px (Breakpoints.mobile).
 class DesktopNavLinks extends StatelessWidget {
   const DesktopNavLinks({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          NavLink(
-            label: 'Home',
-            text: 'Home',
-            onPressed: () => context.go('/'),
-          ),
-          NavLink(
-            label: 'Sale',
-            text: 'Sale',
-            onPressed: () {
-              final saleCollection =
-                  sampleCollections.firstWhere((c) => c.id == 'summer-sale');
-              context.go('/collections/${saleCollection.slug}');
-            },
-          ),
-          NavLink(
-            label: 'About',
-            text: 'About',
-            onPressed: () => context.go('/about'),
-          ),
-          // Shop dropdown for desktop - links to each collection
-          const Expanded(child: Center(child: ShopDropdown())),
-          // Print Shack dropdown for desktop
-          const Expanded(child: Center(child: PrintShackDropdown())),
-        ],
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        NavLink(
+          label: 'Home',
+          text: 'Home',
+          onPressed: () => context.go('/'),
+        ),
+        NavLink(
+          label: 'Sale',
+          text: 'Sale',
+          onPressed: () {
+            final saleCollection =
+                sampleCollections.firstWhere((c) => c.id == 'summer-sale');
+            context.go('/collections/${saleCollection.slug}');
+          },
+        ),
+        NavLink(
+          label: 'About',
+          text: 'About',
+          onPressed: () => context.go('/about'),
+        ),
+        // Shop dropdown for desktop - links to each collection
+        const ShopDropdown(),
+        // Print Shack dropdown for desktop
+        const PrintShackDropdown(),
+      ],
     );
   }
 }
