@@ -5,7 +5,7 @@ import 'package:union_shop/widgets/carousel.dart';
 import 'package:union_shop/widgets/product_section.dart';
 import 'package:union_shop/widgets/collection_tile.dart';
 
-import 'helpers/widget_test_helper.dart';
+import '../helpers/widget_test_helper.dart';
 
 void main() {
   group('HomeScreen Widget Tests', () {
