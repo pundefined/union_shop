@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class Breakpoints {
   Breakpoints._();
 
-  /// Mobile breakpoint (< 600px)
-  static const double mobile = 600.0;
+  /// Mobile breakpoint - screens narrower than this use mobile layout
+  /// Set to 820px to ensure desktop navbar has enough room for all links
+  static const double mobile = 820.0;
 }
 
 /// Enumeration for screen size categories used throughout the app.

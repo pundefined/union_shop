@@ -34,12 +34,13 @@ void main() {
     });
 
     testWidgets('getGridColumnCount returns correct values', (tester) async {
-      // Test mobile (< 600px)
+      // Test mobile (< 820px)
       expect(Responsive.getGridColumnCount(400), 2);
-      expect(Responsive.getGridColumnCount(599), 2);
+      expect(Responsive.getGridColumnCount(600), 2);
+      expect(Responsive.getGridColumnCount(819), 2);
 
-      // Test desktop (>= 600px)
-      expect(Responsive.getGridColumnCount(600), 4);
+      // Test desktop (>= 820px)
+      expect(Responsive.getGridColumnCount(820), 4);
       expect(Responsive.getGridColumnCount(1280), 4);
     });
 
