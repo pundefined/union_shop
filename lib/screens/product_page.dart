@@ -177,7 +177,11 @@ class _ProductPageState extends State<ProductPage> {
             width: double.infinity,
             child: OutlinedButton(
               onPressed: () {
-                context.pop();
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go('/collections');
+                }
               },
               child: const Text('Back to store'),
             ),
