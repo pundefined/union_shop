@@ -19,17 +19,14 @@ A Flutter e-commerce application recreating the University of Portsmouth Student
 - **Responsive Navigation** — adaptive navbar for mobile and desktop views
 - **Deep Linking** — all pages accessible via URL routing
 - **Search Functionality** — search products across the store
-- **App Shell Pattern** — consistent layout with navbar and footer
 
 ### User Features
-- **Firebase Authentication** — user login/signup with email and Google sign-in
-- **Cart Persistence** — shopping cart maintained across sessions
+- **Firebase Authentication** — user login/signup with email
 - **Print Shack** — custom text personalization service with dynamic form
 
 ### Technical Features
-- **Responsive Design** — works on mobile, tablet, and desktop
+- **Responsive Design** — works on mobile and desktop
 - **State Management** — Provider pattern for cart and authentication
-- **Clean Architecture** — separated models, screens, widgets, and services
 
 ## 📸 Screenshots
 
