@@ -150,19 +150,6 @@ union_shop/
 - **Chrome DevTools** for responsive testing
 - **Git** for version control
 
-## 🔧 Configuration
-
-### Firebase Setup
-
-The app uses Firebase for authentication and hosting. Firebase configuration is in:
-- `lib/firebase_options.dart` — Platform-specific Firebase config
-- `firebase.json` — Hosting configuration
-- `android/app/google-services.json` — Android Firebase config
-
-### Environment
-
-No additional environment variables are required. The Firebase project is pre-configured.
-
 ## 🐛 Known Issues & Limitations
 
 - **Web-focused** — Primary testing done on Chrome; native mobile may have minor UI differences
