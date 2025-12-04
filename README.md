@@ -110,7 +110,7 @@ union_shop/
 | `firebase_auth` | User authentication |
 
 ### External Services
-- **Firebase Authentication** — User sign-in (email/password, Google)
+- **Firebase Authentication** — User sign-in (email/password)
 - **Firebase Hosting** — Live web deployment
 
 ### Development Tools
