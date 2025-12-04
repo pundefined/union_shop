@@ -39,6 +39,11 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Build content widget with optional padding
+    final content = padding != null
+        ? Padding(padding: padding!, child: child)
+        : child;
+
     return Scaffold(
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: bottomNavigationBar,
@@ -47,10 +52,7 @@ class AppShell extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (showNavbar) const AppNavbar(),
-            if (padding != null)
-              Padding(padding: padding!, child: child)
-            else
-              child,
+            content,
             if (showFooter) const AppFooter(),
           ],
         ),
