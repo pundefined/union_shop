@@ -30,13 +30,9 @@ A Flutter e-commerce application recreating the University of Portsmouth Student
 
 ## 📸 Screenshots
 
-| Home | Collections | Product |
-|------|-------------|---------|
-| Homepage with carousel | Browse product collections | Product details with options |
-
-| Cart | Search | Login |
-|------|--------|-------|
-| Shopping cart management | Search results | Authentication |
+| Home | Cart | Search |
+|------|------|--------|
+| ![Home](screenshots/home-carousel.png) | ![Cart](screenshots/cart.png) | ![Search](screenshots/search.png) |
 
 ## 🚀 Getting Started
 
