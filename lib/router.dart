@@ -75,6 +75,7 @@ final GoRouter router = GoRouter(
           pageBuilder: (context, state) {
             final query = state.uri.queryParameters['q'];
             return NoTransitionPage(
+              key: state.pageKey,
               child: SearchPage(initialQuery: query),
             );
           },
@@ -95,6 +96,7 @@ final GoRouter router = GoRouter(
                   throw Exception('Collection not found: $slug');
                 }
                 return NoTransitionPage(
+                  key: state.pageKey,
                   child: CollectionPage(collection: collection),
                 );
               },
@@ -110,6 +112,7 @@ final GoRouter router = GoRouter(
               final product = Product.findBySlug(collection.items, slug);
               if (product != null) {
                 return NoTransitionPage(
+                  key: state.pageKey,
                   child: ProductPage(product: product),
                 );
               }
