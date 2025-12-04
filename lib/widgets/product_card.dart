@@ -53,28 +53,36 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   if (product.discountedPrice != null)
-                    Row(
-                      children: [
-                        Text(
-                          '£${product.price.toStringAsFixed(2)}',
-                          style: TextStyles.productPrice.copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey[600],
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '£${product.price.toStringAsFixed(2)}',
+                            style: TextStyles.productPrice.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey[600],
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          '£${product.discountedPrice!.toStringAsFixed(2)}',
-                          style: TextStyles.productPrice.copyWith(
-                            color: Colors.red,
+                          const SizedBox(width: 8),
+                          Text(
+                            '£${product.discountedPrice!.toStringAsFixed(2)}',
+                            style: TextStyles.productPrice.copyWith(
+                              color: Colors.red,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   else
-                    Text(
-                      '£${product.price.toStringAsFixed(2)}',
-                      style: TextStyles.productPrice,
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '£${product.price.toStringAsFixed(2)}',
+                        style: TextStyles.productPrice,
+                      ),
                     ),
                 ],
               ),
