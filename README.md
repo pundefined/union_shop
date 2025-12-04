@@ -8,12 +8,13 @@ A Flutter e-commerce application recreating the University of Portsmouth Student
 
 ## ✨ Features
 
-### Core Shopping Experience
+### Shopping Experience
 - **Homepage** with featured products carousel and promotional sections
 - **Collections** browsing with responsive grid layout
 - **Product Pages** with size/color selection, quantity controls, and description
 - **Shopping Cart** with full management (add, remove, update quantities)
 - **Checkout Flow** with order summary and confirmation
+- **Print Shack** — custom text personalization service with dynamic form
 
 ### Navigation & Search
 - **Deep Linking** — all pages accessible via URL routing
@@ -21,7 +22,6 @@ A Flutter e-commerce application recreating the University of Portsmouth Student
 
 ### User Features
 - **Firebase Authentication** — user login/signup with email
-- **Print Shack** — custom text personalization service with dynamic form
 
 ### Technical Features
 - **Responsive Design** — works on mobile and desktop
@@ -118,3 +118,4 @@ union_shop/
 - **Web-focused** — Primary testing done on Chrome; native mobile may have minor UI differences
 - **Sample Data** — Products and collections use placeholder data, not connected to a live inventory
 - **Payment** — Checkout flow is simulated; no real payment processing
+- **No integration testing** — Some mock services are used for widget/unit tests, but there is no true integration testing
