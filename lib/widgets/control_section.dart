@@ -27,6 +27,7 @@ class ControlSection extends StatelessWidget {
           // Filter By Dropdown
           Expanded(
             child: DropdownButtonFormField<String>(
+              isExpanded: true,
               initialValue: currentFilter,
               decoration: InputDecoration(
                 labelText: 'Filter By',
@@ -63,6 +64,7 @@ class ControlSection extends StatelessWidget {
           // Sort By Dropdown
           Expanded(
             child: DropdownButtonFormField<String>(
+              isExpanded: true,
               initialValue: currentSort,
               decoration: InputDecoration(
                 labelText: 'Sort By',
