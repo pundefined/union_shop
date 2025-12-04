@@ -35,10 +35,6 @@ class Responsive {
   static bool isDesktop(double width) => width >= Breakpoints.mobile;
 
   /// Calculate responsive grid column count based on screen width.
-  ///
-  /// Returns:
-  /// - 2 columns for mobile (< 600px)
-  /// - 4 columns for desktop (>= 600px)
   static int getGridColumnCount(double width) {
     if (width < Breakpoints.mobile) {
       return 2;
@@ -48,10 +44,6 @@ class Responsive {
   }
 
   /// Calculate responsive grid column count for product grids.
-  ///
-  /// Returns:
-  /// - 2 columns for mobile (< 600px)
-  /// - 3 columns for desktop (>= 600px)
   static int getProductGridColumnCount(double width) {
     if (width < Breakpoints.mobile) {
       return 2;
