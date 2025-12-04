@@ -1,6 +1,6 @@
 # Union Shop
 
-A Flutter e-commerce application recreating the University of Portsmouth Student Union shop ([shop.upsu.net](https://shop.upsu.net)). This project was developed as coursework for the **Programming Applications and Programming Languages (M30235)** module.
+A Flutter e-commerce application recreating the University of Portsmouth Student Union shop ([shop.upsu.net](https://shop.upsu.net)). This project was developed as coursework for the **Programming Applications and Programming Languages** module.
 
 ## 🛍️ Live Demo
 
@@ -11,12 +11,11 @@ A Flutter e-commerce application recreating the University of Portsmouth Student
 ### Core Shopping Experience
 - **Homepage** with featured products carousel and promotional sections
 - **Collections** browsing with responsive grid layout
-- **Product Pages** with size/color selection, quantity controls, and detailed information
+- **Product Pages** with size/color selection, quantity controls, and description
 - **Shopping Cart** with full management (add, remove, update quantities)
 - **Checkout Flow** with order summary and confirmation
 
 ### Navigation & Search
-- **Responsive Navigation** — adaptive navbar for mobile and desktop views
 - **Deep Linking** — all pages accessible via URL routing
 - **Search Functionality** — search products across the store
 
