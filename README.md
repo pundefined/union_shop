@@ -86,45 +86,16 @@ flutter run -d chrome
 ```
 union_shop/
 ├── lib/
-│   ├── main.dart              # App entry point and configuration
-│   ├── router.dart            # GoRouter navigation setup
-│   ├── firebase_options.dart  # Firebase configuration
-│   ├── models/                # Data models
-│   │   ├── auth_provider.dart # Authentication state
-│   │   ├── cart.dart          # Cart state management
-│   │   ├── collection.dart    # Collection model
-│   │   ├── product.dart       # Product model
-│   │   └── carousel_slide.dart
-│   ├── screens/               # App screens/pages
-│   │   ├── home.dart
-│   │   ├── about_page.dart
-│   │   ├── cart_page.dart
-│   │   ├── checkout_page.dart
-│   │   ├── collection_page.dart
-│   │   ├── collections_page.dart
-│   │   ├── login_signup_screen.dart
-│   │   ├── product_page.dart
-│   │   ├── search_page.dart
-│   │   └── print_shack_*.dart
-│   ├── widgets/               # Reusable UI components
-│   │   ├── app_shell.dart     # Main layout wrapper
-│   │   ├── app_navbar.dart    # Navigation bar
-│   │   ├── app_footer.dart    # Footer component
-│   │   ├── carousel.dart      # Image carousel
-│   │   ├── product_card.dart  # Product display card
-│   │   └── ...
-│   ├── services/              # External services
-│   │   └── auth_service.dart  # Firebase auth service
-│   ├── styles/                # Theme and styling
-│   └── utils/                 # Utility functions
-├── test/                      # Widget and unit tests
-│   ├── screens/
-│   ├── widgets/
-│   ├── models/
-│   └── helpers/
-├── assets/
-│   └── images/                # App images
-└── pubspec.yaml               # Dependencies
+│   ├── main.dart          # App entry point
+│   ├── router.dart        # Navigation routes
+│   ├── models/            # Data models (Product, Cart, Collection, Auth)
+│   ├── screens/           # App pages (Home, Cart, Product, Collections, etc.)
+│   ├── widgets/           # Reusable UI components (Navbar, Footer, Cards, etc.)
+│   ├── services/          # External service integrations
+│   └── styles/            # Theme and styling
+├── test/                  # Widget and unit tests
+├── assets/images/         # App images
+└── pubspec.yaml           # Dependencies
 ```
 
 ## 🛠️ Technologies Used
